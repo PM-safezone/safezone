@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>로그인</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+	<style>
+		body {
+            background-color: #f7f7f7;
+			font-family: 'arial', sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+		}
+		
+		h1 {
+			margin-top: 50px;
+			text-align: center;
+			font-size: 3rem;
+            font-weight: bold;
+			color: #333;
+		}
+		
+		.form-container {
+			max-width: 500px;
+			margin: 50px auto;
+			padding: 50px;
+			background-color: #fff;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+		}
+		
+		.form-container form {
+			display: flex;
+			flex-direction: column;
+			align-items: left;
+		}
+		
+		.form-container label {
+			display: block;
+			margin-bottom: 10px;
+			font-size: 1.5rem;
+            font-weight: bold;
+			color: #666;
+		}
+		
+		.form-container input[type="text"],
+		.form-container input[type="password"] {
+			padding: 10px;
+			border: none;
+			border-radius: 3px;
+			width: 100%;
+			margin-bottom: 20px;
+			background-color: #f7f7f7;
+			font-size: 1.1rem;
+			color: #555;
+			box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease-in-out;
+		}
+		
+		.form-container input[type="text"]:focus,
+		.form-container input[type="password"]:focus {
+			outline: none;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+			background-color: #fff;
+		}
+		
+		.form-container input[type="submit"] {
+			padding: 10px;
+			border: none;
+			border-radius: 3px;
+			background-color: #008CBA;
+			color: #fff;
+			font-size: 1.1rem;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all
+        }
+	
+        .form-container input[type="submit"] {
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #008CBA;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .form-container input[type="submit"]:hover {
+            background-color: #00587a;
+        }
+        
+        .form-container .form-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #999;
+        }
+        
+        .form-container .form-footer a {
+            color: #008CBA;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .form-container .form-footer a:hover {
+            color: #00587a;
+        }
+        
+        .form-container .admin-login {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .form-container .admin-login a {
+            margin-right: 10px;
+            color: #333;
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .form-container .admin-login a:hover {
+            color: #008CBA;
+        }
+        
+        .form-container .admin-login .btn {
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #008CBA;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .form-container .admin-login .btn:hover {
+            background-color: #00587a;
+        }
+        
+        .btn {
+            font-size: 16px;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: right;
+        }
+        
+        .btn-login {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>로그인</h1>
+    <div class="form-container">
+        <form>
+            <label for="username">아이디</label>
+            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+        </form>
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary btn-login">로그인</button>
+            <button type="button" class="btn btn-success" onclick="location.href='manregister.html'">관리자 등록</button>
+        </div>
+    </div>
+</body>
+</html> 
