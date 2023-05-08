@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>건설현장 안전장비 감지</title>
+        <style>
+        body {
+            background-color: #F2F2F2;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: #0b2c4e;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cctv-screen {
+            width: 640px;
+            height: 360px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            background-color: black;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px #666;
+        }
+
+        .cctv-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sensor-card {
+            width: 320px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px #666;
+            margin-bottom: 20px;
+        }
+
+        .sensor-card-header {
+            background-color: #0b2c4e;
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .sensor-card-header h3 {
+            margin: 0;
+        }
+
+        .sensor-card-content {
+            padding: 10px;
+        }
+
+        .sensor-card-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .sensor-card-value {
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: #1E90FF;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+        <h1>건설현장 안전장비 감지</h1>
+        </div>
+
+        <div class="content">
+        <div class="cctv-screen">
+            <img src="cctv_image.jpg" alt="CCTV 화면">
+        </div>
+
+        <div class="sensor-card">
+            <div class="sensor-card-header">
+            <h3>현재 상태</h3>
+            </div>
+            <div class="sensor-card-content">
+            <div>
+                <span class="sensor-card-label">온도:</span>
+                <span class="sensor-card-value">24℃</span>
+            </div>
+            <div>
+                <span class="sensor-card-label">습도:</span>
+                <span class="sensor-card-value">40%</span>
+            </div>
+            <div>
+                <span class="sensor-card-label">가스 농도:</span>
+                <span class="sensor-card-value">0.5ppm</span>
+            </div>
+            <div>
+                <span class="sensor-card-label">압력:</span>
+                <span class="sensor-card-value">5.5bar</span>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
