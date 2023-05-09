@@ -1,121 +1,120 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>건설현장 안전장비 감지</title>
-        <style>
-        body {
-            background-color: #F2F2F2;
-            font-family: Arial, sans-serif;
+<head>
+	<title>건설현장 안전인식 인공지능</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        h1 {
+            margin-top: 30px;
+            margin-left: 5%;
+            text-align: left;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
         }
 
-        .header {
-            background-color: #0b2c4e;
-            color: white;
-            padding: 10px;
-            text-align: center;
+        .cctv-container {
+        width: 50%;
+        margin: auto;
+        margin-top: 30px;
+        margin-left: 5%;
         }
 
-        .content {
+        .cctv-row {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-evenly;
-            margin-top: 30px;
-            margin-bottom: 30px;
-        }
-
-        .cctv-screen {
-            width: 640px;
-            height: 360px;
-            margin-right: 20px;
+            justify-content: space-between;
             margin-bottom: 20px;
-            background-color: black;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px #666;
         }
 
-        .cctv-screen img {
+        .cctv-camera {
+            display: inline-block;
+            width: calc(33.33% - 2.5%);
+            padding-top: 20%;
+            margin-bottom: 2%;
+            margin-right: 2.5%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            font-weight: bold;
+            vertical-align: top;
+            position: relative;
+        }
+
+        .cctv-camera img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
         }
 
-        .sensor-card {
-            width: 320px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px #666;
-            margin-bottom: 20px;
+        .violation-box {
+            background-color: #FFCCCC;
+            border: 1px solid #FF0000;
+            padding: 200px;
+            margin-left: 60%;
+            margin-right: 5%;
+            margin-top: -494px;
         }
 
-        .sensor-card-header {
-            background-color: #0b2c4e;
-            color: white;
-            padding: 10px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+        #logout-button {
+        position: fixed;
+        top: 0;
+        right: 0;
         }
-
-        .sensor-card-header h3 {
-            margin: 0;
-        }
-
-        .sensor-card-content {
-            padding: 10px;
-        }
-
-        .sensor-card-label {
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .sensor-card-value {
-            margin-bottom: 10px;
-        }
-
-        .footer {
-            background-color: #1E90FF;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-        }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-        <h1>건설현장 안전장비 감지</h1>
-        </div>
-
-        <div class="content">
-        <div class="cctv-screen">
-            <img src="cctv_image.jpg" alt="CCTV 화면">
-        </div>
-
-        <div class="sensor-card">
-            <div class="sensor-card-header">
-            <h3>현재 상태</h3>
-            </div>
-            <div class="sensor-card-content">
-            <div>
-                <span class="sensor-card-label">온도:</span>
-                <span class="sensor-card-value">24℃</span>
-            </div>
-            <div>
-                <span class="sensor-card-label">습도:</span>
-                <span class="sensor-card-value">40%</span>
-            </div>
-            <div>
-                <span class="sensor-card-label">가스 농도:</span>
-                <span class="sensor-card-value">0.5ppm</span>
-            </div>
-            <div>
-                <span class="sensor-card-label">압력:</span>
-                <span class="sensor-card-value">5.5bar</span>
-            </div>
-            </div>
-        </div>
-    </body>
+    </style>
+</head>
+<body>
+	<main>
+		<section>
+			<h1>CCTV 연동화면</h1>
+            <button id="logout-button" class="btn btn-primary">로그아웃</button>
+			<div class="cctv-container">
+                <div class="cctv-row">
+                    <div class="cctv-camera" id="cctv-1">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+1" alt="CCTV 1">
+                    </div>
+                    <div class="cctv-camera" id="cctv-2">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+2" alt="CCTV 2">
+                    </div>
+                    <div class="cctv-camera" id="cctv-3">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+3" alt="CCTV 3">
+                    </div>
+                    <div class="cctv-camera" id="cctv-4">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+4" alt="CCTV 4">
+                    </div>
+                    <div class="cctv-camera" id="cctv-5">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+5" alt="CCTV 5">
+                    </div>
+                    <div class="cctv-camera" id="cctv-6">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+6" alt="CCTV 6">
+                    </div>
+                    <div class="cctv-camera" id="cctv-7">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+7" alt="CCTV 7">
+                    </div>
+                    <div class="cctv-camera" id="cctv-8">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+8" alt="CCTV 8">
+                    </div>
+                    <div class="cctv-camera" id="cctv-9">
+                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+9" alt="CCTV 9">
+                    </div>
+                </div>
+              </div>
+              <div class="violation-box">
+                위반사항이라는 내용을 입력하세요.
+              </div>               
+		</section>
+		<section>
+            <h2>SETTINGS</h2>
+			<h2>위반행동 로그</h2>
+			<p>안전장비를 착용하지 않는 사람이 감지되었습니다. 시간: 2023-05-09 14:30:00</p>
+		</section>
+	</main>
+</body>
 </html>
