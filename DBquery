@@ -1,0 +1,35 @@
+CREATE DATABASE safezone;
+
+
+    CREATE TABLE admin_user_info(
+                'userNo'    int(20) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '계정번호',
+                'userID'    varchar(100) NOT NULL COMMENT '계정',
+                'userPW'    varchar(70) NOT NULL COMMENT '비밀번호' ,
+                'username'  varchar(20) NOT NULL COMMENT '이름',
+                'regdate'   date DEFAULT (current_date) COMMENT '가입날짜'
+
+    );
+
+    CREATE TABLE upload_file(
+                'fileNo'    int(20) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '파일번호',
+                'filepath'  varchar(100) NOT NULL COMMENT '파일 경로',
+                'filename'  varchar(100) NULL COMMENT '파일명',
+                'regdate'   date DEFAULT (current_date) COMMENT '등록날짜'
+    );
+
+    CREATE TABLE setting(
+                'setno'     int(10) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '설정번호',
+                'cammode'   int(10) NOT NULL COMMENT '1. WebCam 2.USBCam 3.IPCam',
+                'camIP'     varchar(20) NULL COMMENT '3번 IPCAM 선택 시 활성화',
+                'camport'   int(20) NULL COMMENT '3번 IPCAM 선택 시 활성화',
+                'alarmmode' varchar(20) NOT NULL COMMENT '1.SMS문자메세지 2.디스코드 3.이메일',
+                'alarmsend' varchar(30) NOT NULL COMMENT '전화번호, 이메일, 디스코드 아이디',
+                'logpath'   varchar(50) NULL COMMENT '로그저장 경로',
+                'videorecordlength' int(10) NULL COMMENT '영상저장 길이'
+    );
+
+    CREATE TABLE event(
+                'eventNo'   int(100) AUTO_INCREMENT NOT NULL PRIMARY KEY COMMENT '메세지번호',
+                'eventtype' varchar(20) NOT NULL COMMENT '위반 종류',
+                'eventtime' datetime() (current_date) NULL COMMENT '위반시간'
+    );
