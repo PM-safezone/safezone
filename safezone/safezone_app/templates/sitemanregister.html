@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CCTV 관제 화면</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+  .container {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .cctv-container {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .cctv {
+    background-color: #000;
+    border: 2px solid #fff;
+    height: 100%;
+  }
+  
+  .log-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+  
+  .log {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="cctv-container">
+      <p>제목1</p>
+      <div class="cctv"></div>
+      <div class="cctv"></div>
+      <div class="cctv"></div>
+      <div class="cctv"></div>
+      <div class="cctv"></div>
+      <div class="cctv"></div>
+      <div class="cctv"></div>
+      <div class="cctv"></div>
+      <div class="cctv"></div>
+    </div>
+    <div class="log-container">
+      <div class="log">로그 1</div>
+      <div class="log">로그 2</div>
+      <div class="log">로그 3</div>
+      <div class="log">로그 4</div>
+      <div class="log">로그 5</div>
+      <div class="log">로그 6</div>
+      <div class="log">로그 7</div>
+      <div class="log">로그 8</div>
+      <div class="log">로그 9</div>
+    </div>
+  </div>
+</body>
+</html>
