@@ -1,1 +1,188 @@
-goodmorning~
+<!DOCTYPE html>
+<html>
+<head>
+    <title>관리자 등록</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: 'arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+        }
+    
+        .form-group {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        
+        .form-group form {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+        
+        .form-group input[type="submit"] {
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #008CBA;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .form-group input[type="submit"]:hover {
+            background-color: #00587a;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: inline-block;
+            text-align: left;
+            padding: 5px 25px 5px 0;
+
+            width: 200px;
+        }
+
+        .form-group input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+        
+        .form-group .form-group label {
+            margin-right: 10px;
+        }
+
+        .form-group .checkbox-group {
+            margin-left: 200px;
+        }
+
+        .form-group .checkbox-group .checkbox-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-group .checkbox-group .checkbox-row label {
+            margin-right: 5px;
+        }
+
+        .form-group .checkbox-group .checkbox-row input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .form-group .btn-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+ </head>
+ <body>
+     <div class="container">
+         <h1>Settings</h1>
+         <form>
+             <div class="form-group">
+                <label for="log-interval">로그 출력 간격</label>
+                <input type="text" id="log-interval" name="log-interval" value="00:01:00">
+
+                <label for="alarm-type">알림 수단</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="checkbox1" name="Discord" value="Discord">
+                        <label for="checkbox1">Discord</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="checkbox2" name="이메일" value="이메일">
+                        <label for="checkbox2">이메일</label>
+                    </div>
+                    <div class="checkbox-row">
+                        <input type="checkbox" id="checkbox3" name="휴대전화" value="휴대전화">
+                        <label for="checkbox3">휴대전화</label>
+                    </div>
+                </div>
+
+                <label for="log-location">로그 저장위치</label>
+                <input type="text" id="log-location" name="log-location" value="D:/log">
+
+                <label for="video-location">영상 저장위치</label>
+                <input type="text" id="video-location" name="video-location" value="D:/video">
+
+                <label for="violation-location">위반영상 저장위치</label>
+                <input type="text" id="violation-location" name="violation-location" value="D:/video_Violations">
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" onclick="location.href='sitemanregister.html'">관리자 등록</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.href='main.html'">메인화면으로 돌아가기</button>
+                    <button type="submit" class="btn btn-primary" onclick="saveSettings()">저장</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+</body>
+</html>
+
+    <!-- // function saveSettings() {
+    //     // 로그 출력 간격
+    //     var logInterval = document.getElementById("log-interval").value;
+
+    //     // 알림 수단
+    //     var discordCheckbox = document.getElementById("checkbox1");
+    //     var emailCheckbox = document.getElementById("checkbox2");
+    //     var phoneCheckbox = document.getElementById("checkbox3");
+    //     var alarmTypes = [];
+    //     if (discordCheckbox.checked) {
+    //         alarmTypes.push(discordCheckbox.value);
+    //     }
+    //     if (emailCheckbox.checked) {
+    //         alarmTypes.push(emailCheckbox.value);
+    //     }
+    //     if (phoneCheckbox.checked) {
+    //         alarmTypes.push(phoneCheckbox.value);
+    //     }
+
+    //     // 로그 저장위치
+    //     var logLocation = document.getElementById("log-location").value;
+
+    //     // 영상 저장위치
+    //     var videoLocation = document.getElementById("video-location").value;
+
+    //     // 위반영상 저장위치
+    //     var violationLocation = document.getElementById("violation-location").value;
+
+    //     // TODO: 값들을 저장하는 로직을 추가
+
+    //     // 여기서는 각 값들을 콘솔에 출력하는 예시를 보여줍니다.
+    //     console.log("로그 출력 간격:", logInterval);
+    //     console.log("알림 수단:", alarmTypes);
+    //     console.log("로그 저장위치:", logLocation);
+    //     console.log("영상 저장위치:", videoLocation);
+    //     console.log("위반영상 저장위치:", violationLocation);
+
+    //     // TODO: 값들을 서버에 저장하는 로직을 추가
+
+    //     // 저장 완료 메시지
+    //     alert("설정이 저장되었습니다.");
+    // -->
