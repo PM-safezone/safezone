@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>건설현장 안전인식 인공지능</title>
+    <title>건설현장 안전인식 인공지능</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         h1 {
-            margin-top: 30px;
+            margin-top: 50px;
             margin-left: 5%;
             text-align: left;
             font-size: 3rem;
@@ -17,10 +17,10 @@
         }
 
         .cctv-container {
-        width: 50%;
-        margin: auto;
-        margin-top: 30px;
-        margin-left: 5%;
+            width: 50%;
+            margin: auto;
+            margin-top: 50px;
+            margin-left: 5%;
         }
 
         .cctv-row {
@@ -34,7 +34,7 @@
             display: inline-block;
             width: calc(33.33% - 2.5%);
             padding-top: 20%;
-            margin-bottom: 2%;
+            margin-bottom: 2.5%;
             margin-right: 2.5%;
             background-color: #333;
             color: #fff;
@@ -56,89 +56,256 @@
 
         .camera-name {
             color: #333;
-            position: relative;
-            top: 18px;
-            left: 10px;
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .violation-box {
-        padding: 150px;
-        margin-left: 60%;
-        margin-right: 5%;
-        margin-top: -494px;
-        background-color: #fff;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
+            padding: 20px;
+            margin-right: 5%;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: absolute;
+            top: 110px;
+            right: 30px;
+            width: 400px;
+            height: auto;
+            margin-top: 30px;
+        }
+
+        .violation-box div {
+            margin-bottom: 10px;
         }
 
         .violation-text {
-        position: absolute;
-        top: 0;
-        left: 0;
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-left: -150px;
-        margin-top: -150px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .violation-content {
+            width: 100%;
+            height: 150px;
+            resize: none;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+        }
+
+        .button-container button {
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: right;
+            gap: 10px;
+            width: 100%;
         }
 
         #logout-button {
-        position: fixed;
-        top: 30px; /* 기존값은 0px */
-        right: 70px;
-        }  
+            position: absolute;
+            top: 50px;
+            right: 100px;
+            z-index: 1;
+        }
+
     </style>
 </head>
 <body>
-	<main>
-		<section>
-			<h1>CCTV 연동화면</h1>
-            <button id="logout-button" class="btn btn-primary">로그아웃</button>
-			<div class="cctv-container">
-                <div class="cctv-row">
-                    <div class="cctv-camera" id="cctv-1">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+1" alt="CCTV 1">
-                        <div class="camera-name">카메라-1</div>
-                    </div>
-                    <div class="cctv-camera" id="cctv-2">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+2" alt="CCTV 2">
-                    </div>
-                    <div class="cctv-camera" id="cctv-3">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+3" alt="CCTV 3">
-                    </div>
-                    <div class="cctv-camera" id="cctv-4">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+4" alt="CCTV 4">
-                    </div>
-                    <div class="cctv-camera" id="cctv-5">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+5" alt="CCTV 5">
-                    </div>
-                    <div class="cctv-camera" id="cctv-6">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+6" alt="CCTV 6">
-                    </div>
-                    <div class="cctv-camera" id="cctv-7">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+7" alt="CCTV 7">
-                    </div>
-                    <div class="cctv-camera" id="cctv-8">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+8" alt="CCTV 8">
-                    </div>
-                    <div class="cctv-camera" id="cctv-9">
-                        <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+9" alt="CCTV 9">
-                    </div>
+<main>
+    <section>
+        <h1>CCTV 연동화면</h1>
+        <button id="logout-button" class="btn btn-primary">로그아웃</button>
+        <div class="cctv-container">
+            <div class="cctv-row">
+                <div class="cctv-camera" id="cctv-1">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+1" alt="CCTV 1">
+                    <div class="camera-name">CCTV-1</div>
                 </div>
-              </div>
-        </section>
-        <section>   
-            <div class="violation-box">
-            <div class="violation-text">위반 사항</div>
-            <p>이곳에 위반 사항을 입력하세요.</p>
+                <div class="cctv-camera" id="cctv-2">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+2" alt="CCTV 2">
+                    <div class="camera-name">CCTV-2</div>
+                </div>
+                <div class="cctv-camera" id="cctv-3">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+3" alt="CCTV 3">
+                    <div class="camera-name">CCTV-3</div>
+                </div>
+                <div class="cctv-camera" id="cctv-4">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+4" alt="CCTV 4">
+                    <div class="camera-name">CCTV-4</div>
+                </div>
+                <div class="cctv-camera" id="cctv-5">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+5" alt="CCTV 5">
+                    <div class="camera-name">CCTV-5</div>
+                </div>
+                <div class="cctv-camera" id="cctv-6">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+6" alt="CCTV 6">
+                    <div class="camera-name">CCTV-6</div>
+                </div>
+                <div class="cctv-camera" id="cctv-7">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+7" alt="CCTV 7">
+                    <div class="camera-name">CCTV-7</div>
+                </div>
+                <div class="cctv-camera" id="cctv-8">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+8" alt="CCTV 8">
+                    <div class="camera-name">CCTV-8</div>
+                </div>
+                <div class="cctv-camera" id="cctv-9">
+                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+9" alt="CCTV 9">
+                    <div class="camera-name">CCTV-9</div>
+                </div>
             </div>
-        </section>            
-		<section>
-            <br><br><br><br>
-            <br><br><br><br>
-            <h2>SETTINGS</h2>
-			<h2>위반행동 로그</h2>
-			<p>안전장비를 착용하지 않는 사람이 감지되었습니다. 시간: 2023-05-09 14:30:00</p>
-		</section>
-	</main>
+            <div class="violation-box">
+                <div class="violation-text">위반 사항</div>
+                <div>
+                    <select id="area-select">
+                        <option value="1">1구역</option>
+                        <option value="2">2구역</option>
+                        <option value="3">3구역</option>
+                        <option value="4">4구역</option>
+                        <option value="5">5구역</option>
+                        <option value="6">6구역</option>
+                        <option value="7">7구역</option>
+                        <option value="8">8구역</option>
+                        <option value="9">9구역</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea id="violation-content" class="violation-content" rows="5"></textarea>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-primary" id="open-folder-button">Open Folder</button>
+                    <input type="file" id="folder-input" style="display: none;">
+                    <button class="btn btn-secondary">Clear</button>
+                </div>
+                <div class="button-container">
+                    <button class="btn btn-primary" onclick="location.href='settings.html'">Settings</button>
+                    <button class="btn btn-success">Save File</button>
+                    <button class="btn btn-warning">Video Upload</button>
+                </div>
+            </div>
+        </div>
+</section>
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var cameras = document.getElementsByClassName("cctv-camera");
+
+        for (var i = 0; i < cameras.length; i++) {
+            // 카메라 확대
+            cameras[i].addEventListener("click", function () {
+                this.style.width = "100%";
+                this.style.paddingTop = "65%";
+                this.style.marginBottom = "0";
+                this.style.marginRight = "0";
+                this.style.zIndex = "999";
+
+                // 축소 버튼 추가
+                var zoomOutButton = document.createElement("button");
+                zoomOutButton.innerHTML = "축소";
+                zoomOutButton.style.position = "absolute";
+                zoomOutButton.style.top = "5px";
+                zoomOutButton.style.right = "5px";
+                zoomOutButton.style.zIndex = "1000";
+                this.parentElement.appendChild(zoomOutButton);
+
+                // 축소 버튼 클릭
+                zoomOutButton.addEventListener("click", function () {
+                    // 카메라 축소
+                    for (var j = 0; j < cameras.length; j++) {
+                        cameras[j].style.width = "";
+                        cameras[j].style.paddingTop = "";
+                        cameras[j].style.marginBottom = "";
+                        cameras[j].style.marginRight = "";
+                        cameras[j].style.zIndex = "";
+                        cameras[j].style.display = "inline-block";
+                    }
+
+                    // 축소 버튼 삭제
+                    this.remove();
+                });
+
+                // 다른 카메라 숨기기
+                for (var j = 0; j < cameras.length; j++) {
+                    if (cameras[j] !== this) {
+                        cameras[j].style.display = "none";
+                    }
+                }
+            });
+        }
+    });
+
+    // 선택박스 값 변경 시 위반사항 텍스트 박스 내용 변경
+    var areaSelect = document.getElementById("area-select");
+    var violationContent = document.getElementById("violation-content");
+
+    areaSelect.addEventListener("change", function () {
+        var selectedArea = areaSelect.value;
+        if (selectedArea === "1") {
+            violationContent.value = "1구역 위반 사항 내용";
+        } else if (selectedArea === "2") {
+            violationContent.value = "2구역 위반 사항 내용";
+        } else if (selectedArea === "3") {
+            violationContent.value = "3구역 위반 사항 내용";
+        } else if (selectedArea === "4") {
+            violationContent.value = "4구역 위반 사항 내용";
+        } else if (selectedArea === "5") {
+            violationContent.value = "5구역 위반 사항 내용";
+        } else if (selectedArea === "6") {
+            violationContent.value = "6구역 위반 사항 내용";
+        } else if (selectedArea === "7") {
+            violationContent.value = "7구역 위반 사항 내용";
+        } else if (selectedArea === "8") {
+            violationContent.value = "8구역 위반 사항 내용";
+        } else if (selectedArea === "9") {
+            violationContent.value = "9구역 위반 사항 내용";
+        } else {
+            violationContent.value = "";
+        }
+    });
+
+    var openFolderButton = document.getElementById("open-folder-button");
+    var folderInput = document.getElementById("folder-input");
+
+    openFolderButton.addEventListener("click", function() {
+    folderInput.click();
+    });
+
+    folderInput.addEventListener("change", function() {
+        var selectedFolder = folderInput.files[0];
+    });
+</script>
 </body>
 </html>
+
+<!-- 라이브 캠 html
+<div class="cctv-camera" id="cctv-9">
+  <video src="라이브 캠 소스" alt="CCTV 9" autoplay></video>
+  <div class="camera-name">CCTV-9</div>
+</div>
+ -->
+<!-- 라이브 캠 javascript
+navigator.mediaDevices.getUserMedia({ video: true })
+  .then(function(stream) {
+    var videoElement = document.getElementById("cctv-9");
+    videoElement.srcObject = stream;
+  })
+  .catch(function(error) {
+    console.error("라이브 캠을 가져오는 중 오류가 발생했습니다:", error);
+  });
+ -->
