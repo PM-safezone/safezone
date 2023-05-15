@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
     <style>
         h1 {
             margin-top: 50px;
@@ -132,39 +133,39 @@
         <button id="logout-button" class="btn btn-primary">로그아웃</button>
         <div class="cctv-container">
             <div class="cctv-row">
-                <div class="cctv-camera" id="cctv-1">
+                <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+1" alt="CCTV 1">
                     <div class="camera-name">CCTV-1</div>
                 </div>
-                <div class="cctv-camera" id="cctv-2">
+                <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+2" alt="CCTV 2">
                     <div class="camera-name">CCTV-2</div>
                 </div>
-                <div class="cctv-camera" id="cctv-3">
+                <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+3" alt="CCTV 3">
                     <div class="camera-name">CCTV-3</div>
                 </div>
-                <div class="cctv-camera" id="cctv-4">
+                <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+4" alt="CCTV 4">
                     <div class="camera-name">CCTV-4</div>
                 </div>
-                <div class="cctv-camera" id="cctv-5">
+                <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+5" alt="CCTV 5">
                     <div class="camera-name">CCTV-5</div>
                 </div>
-                <div class="cctv-camera" id="cctv-6">
+                <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+6" alt="CCTV 6">
                     <div class="camera-name">CCTV-6</div>
                 </div>
-                <div class="cctv-camera" id="cctv-7">
+                <div class="cctv-camera" id="cctv-7" data-area="7" data-visible="7">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+7" alt="CCTV 7">
                     <div class="camera-name">CCTV-7</div>
                 </div>
-                <div class="cctv-camera" id="cctv-8">
+                <div class="cctv-camera" id="cctv-8" data-area="8" data-visible="8">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+8" alt="CCTV 8">
                     <div class="camera-name">CCTV-8</div>
                 </div>
-                <div class="cctv-camera" id="cctv-9">
+                <div class="cctv-camera" id="cctv-9" data-area="9" data-visible="9">
                     <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+9" alt="CCTV 9">
                     <div class="camera-name">CCTV-9</div>
                 </div>
@@ -190,7 +191,7 @@
                 <div class="button-group">
                     <button class="btn btn-primary" id="open-folder-button">Open Folder</button>
                     <input type="file" id="folder-input" style="display: none;">
-                    <button class="btn btn-secondary">Clear</button>
+                    <button id="clear-button" class="btn btn-secondary">Clear</button>
                 </div>
                 <div class="button-container">
                     <button class="btn btn-primary" onclick="location.href='settings.html'">Settings</button>
@@ -217,10 +218,10 @@
 
                 // 축소 버튼 추가
                 var zoomOutButton = document.createElement("button");
-                zoomOutButton.innerHTML = "축소";
+                zoomOutButton.innerHTML = "<i class='fa-solid fa-down-left-and-up-right-to-center' style='color: #2150a1;''></i>";
                 zoomOutButton.style.position = "absolute";
-                zoomOutButton.style.top = "5px";
-                zoomOutButton.style.right = "5px";
+                zoomOutButton.style.top =  "147px";
+                zoomOutButton.style.right = "660px";
                 zoomOutButton.style.zIndex = "1000";
                 this.parentElement.appendChild(zoomOutButton);
 
@@ -237,9 +238,15 @@
                     }
 
                     // 축소 버튼 삭제
-                    this.remove();
+                    zoomOutButton.addEventListener("transitionend", function () {
+                        zoomOutButton.remove();
+                    });
+
+                    // 버튼 숨기기 애니메이션 시작
+                    zoomOutButton.style.opacity = "0";
                 });
 
+                
                 // 다른 카메라 숨기기
                 for (var j = 0; j < cameras.length; j++) {
                     if (cameras[j] !== this) {
@@ -279,6 +286,7 @@
         }
     });
 
+    // Open Folder 버튼
     var openFolderButton = document.getElementById("open-folder-button");
     var folderInput = document.getElementById("folder-input");
 
@@ -288,6 +296,38 @@
 
     folderInput.addEventListener("change", function() {
         var selectedFolder = folderInput.files[0];
+    });
+
+    // CCTV 클릭 시 선택박스 및 violation box 변경
+    const cctvCameras = document.querySelectorAll('.cctv-camera');
+    cctvCameras.forEach(camera => {
+        camera.addEventListener('click', () => {
+            const selectedArea = camera.dataset.area;
+            const areaSelect = document.querySelector('#area-select');
+            const violationContent = document.querySelector('#violation-content');
+            areaSelect.value = selectedArea;
+            if (selectedArea === "1") {
+                violationContent.value = "1구역 위반 사항 내용";
+            } else if (selectedArea === "2") {
+                violationContent.value = "2구역 위반 사항 내용";
+            } else if (selectedArea === "3") {
+                violationContent.value = "3구역 위반 사항 내용";
+            } else if (selectedArea === "4") {
+                violationContent.value = "4구역 위반 사항 내용";
+            } else if (selectedArea === "5") {
+                violationContent.value = "5구역 위반 사항 내용";
+            } else if (selectedArea === "6") {
+                violationContent.value = "6구역 위반 사항 내용";
+            } else if (selectedArea === "7") {
+                violationContent.value = "7구역 위반 사항 내용";
+            } else if (selectedArea === "8") {
+                violationContent.value = "8구역 위반 사항 내용";
+            } else if (selectedArea === "9") {
+                violationContent.value = "9구역 위반 사항 내용";
+            } else {
+                violationContent.value = "";
+            }
+        });
     });
 </script>
 </body>
