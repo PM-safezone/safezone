@@ -196,7 +196,10 @@
                 <div class="button-container">
                     <button class="btn btn-primary" onclick="location.href='settings.html'">Settings</button>
                     <button class="btn btn-success">Save File</button>
-                    <button class="btn btn-warning">Video Upload</button>
+                    <form action="{% url 'upload_video' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-warning">Video Upload</button>
+                    </form>
                 </div>
             </div>
         </div>
