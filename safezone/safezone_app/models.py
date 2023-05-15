@@ -37,3 +37,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.first_name
 
+
+class Video(models.Model):
+    title = models.CharField(max_length=200)
+    video_file = models.FileField(upload_to='videos/')
+
+    def __str__(self):
+        return self.title

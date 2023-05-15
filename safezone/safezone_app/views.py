@@ -7,8 +7,8 @@ def main(request):
     return render()
 
 def setting(request, memberid):
-    # member = Member.object
-    return render()
+    
+    return render(request, 'settings.html')
     
 
 
