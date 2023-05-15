@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'safezone.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE' : 'django.db.backends.mysql',
+        'NAME' : 'safezone',
+        'USER' : 'root',
+        'PASSWORD' : 'ubuntu',
+        'HOST' : '35.77.252.68',
+        'PORT' : '3306',
     }
 }
 #mysql로 변경할 예정
@@ -106,12 +110,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
+
+MEDIA_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from safezone_app import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('safezone_app.urls')),
+    path('', views.main, name='main'),
+    path('set/<str:memberid>', views.setting, name='setting'),
 ]
