@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
-from .forms import VideoForm
+from .forms import VideoForm, LoginForm
 from .models import Video
 
 # Create your views here.
@@ -32,7 +32,12 @@ def settings(request):
     
     return render(request, 'settings.html')
     
-
+class CustomLoginView(LoginView):
+    template_name = 'testpage.html'
+    authentication_form = LoginForm
+    
+def login(request):
+    return render(request, 'testpage.html')
 
 def upload_video(request):
     if request.method == 'POST':
