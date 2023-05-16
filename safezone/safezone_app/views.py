@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .forms import VideoForm, LoginForm
 from .models import Video
-
+from django.contrib.auth.views import LoginView
 # Create your views here.
 def main(request):
     return render()

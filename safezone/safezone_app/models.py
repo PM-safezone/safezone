@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import Group, Permission
 
 # Create your models here.
 
@@ -24,6 +25,21 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=30)
     is_active = models.BooleanField(default=True)
     regdate = models.DateTimeField(auto_now_add=True)
+    
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name='groups',
+        blank=True,
+        help_text='The groups this user belongs to.',
+        related_name='user_set+'  # related_name을 'user_set+'으로 설정
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name='user_set+'  # related_name을 'user_set+'으로 설정
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -42,6 +58,8 @@ class Video(models.Model):
     filepath = models.CharField(max_length=100, verbose_name='파일 경로')
     filename = models.CharField(max_length=100, null=True, blank=True, verbose_name='파일명')
     regdate = models.DateField(default=models.DateField(auto_now_add=True), verbose_name='등록날짜')
+    title = models.CharField(max_length=100, verbose_name='제목')
+    video_file = models.FileField(upload_to='videos/', verbose_name='비디오 파일')
 
     class Meta:
         db_table = 'upload_file'
