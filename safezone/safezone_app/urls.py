@@ -20,5 +20,6 @@ from safezone_app import views
 urlpatterns = [
     path('', views.main, name='main'),
     path('setting/<str:memberid>', views.setting, name='settings'),
-    path('upload_video', views.upload_video, name='upload_video'),
+    path('upload_video/', views.upload_video, name='upload_video'),
+    path('video_detail/<int:video_id>/', views.video_detail, name='video_detail'),
 ]
