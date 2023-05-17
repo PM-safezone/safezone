@@ -4,7 +4,7 @@ from .models import Video
 from django.contrib.auth.views import LoginView
 # Create your views here.
 def main(request):
-    return render()
+    return render(request, 'main.html')
 
 def settings(request):
     if request.method == 'POST':
