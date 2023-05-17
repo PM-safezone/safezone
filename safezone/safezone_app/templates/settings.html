@@ -72,6 +72,39 @@
             margin-left: 0px;
         }
 
+        .checkbox-container input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox-container input[type="checkbox"] + span:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #0f1020;
+            border: 2px solid #eaff00;
+            border-radius: 3px;
+            margin-right: 5px;
+            position: relative;
+            top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + span:before {
+            background-color: #eaff00;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + span:before {
+            animation-name: glitch-checkbox;
+            animation-duration: var(--glitched-duration);
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    
+        .checkbox-container input[type="checkbox"]:checked + span:before {
+            animation-delay: 0.5s;
+        }
+
         #Discord {
             position: relative;
             top: 10px;
@@ -127,15 +160,79 @@
             color: #0f1020;
         }
 
-        .button-group {
+        /* .button-group {
             display: flex;
             justify-content: right;
             gap: 10px;
             width: 100%;
-        }
+        } */
 
         .btn-group {
             margin-top: -60px;
+        }
+
+        .btn {
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: right;
+            margin-right: -10px;
+        }
+       
+        .btn-save {
+            margin-right: 10px;
+            background-color: #eaff00;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+        }
+
+        .btn-save:hover {
+            background-color: #0f1020;
+            border: 0.5px solid #eaff00;
+            color: #eaff00;
+        }
+
+        .btn-save:active {
+            background-color: #eaff00;
+            color: #0f1020;
+        }
+
+        .btn-main {
+            margin-right: 10px;
+            background-color: #0f1020;
+            border: 0.5px solid #eaff00;
+            color: #eaff00;
+        }
+
+        .btn-main:hover {
+            background-color: #eaff00;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+        }
+
+        .btn-main:active {
+            background-color: #0f1020;
+            color: #eaff00;
+        }
+
+        .btn-register {
+            margin-right: 10px;
+            background-color: #0f1020;
+            border: 0.5px solid #ff6800;
+            color: #ff6800;
+        }
+
+        .btn-register:hover {
+            background-color: #ff6800;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+        }
+
+        .btn-register:active {
+            background-color: #0f1020;
+            color: #ff6800;
         }
     </style>
  </head>
@@ -188,12 +285,12 @@
                 </div>
 
                 <div class="button-group">
-                    <button class="btn btn-primary" id="open-folder-button" onclick="saveSettings()">저장</button>
-                    <button type="button" class="btn btn-secondary" onclick="location.href='main.html'">메인화면으로 돌아가기</button>
+                    <button class="btn btn-save" id="open-folder-button" onclick="saveSettings()">저장</button>
+                    <button type="button" class="btn btn-main" onclick="location.href='main.html'">메인화면으로 돌아가기</button>
                 </div>
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-success" onclick="location.href='sitemanregister.html'">관리자 등록</button>
+                    <button type="button" class="btn btn-register" onclick="location.href='sitemanregister.html'">관리자 등록</button>
                 </div>
             </div>
         </form>
