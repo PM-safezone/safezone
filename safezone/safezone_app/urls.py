@@ -23,5 +23,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('settings/<str:memberid>', views.settings, name='settings'),
     path('upload_video/', views.upload_video, name='upload_video'),
-    path('video_detail/<int:video_id>/', views.video_detail, name='video_detail'),
+    path('video_detail/<int:fileNo>/', views.video_detail, name='video_detail'),
 ]

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.contrib.auth.models import Group, Permission
-
+import datetime
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -56,16 +56,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Video(models.Model):
     fileNo = models.AutoField(primary_key=True, verbose_name='파일번호')
     filepath = models.CharField(max_length=100, verbose_name='파일 경로')
-    filename = models.CharField(max_length=100, null=True, blank=True, verbose_name='파일명')
-    regdate = models.DateField(default=models.DateField(auto_now_add=True), verbose_name='등록날짜')
-    title = models.CharField(max_length=100, verbose_name='제목')
+    regdate = models.DateField(default=datetime.date.today, verbose_name='등록날짜')
+    title = models.CharField(max_length=100, verbose_name='제목', blank=True)
     video_file = models.FileField(upload_to='videos/', verbose_name='비디오 파일')
 
     class Meta:
-        db_table = 'upload_file'
-        verbose_name = '업로드 파일'
-        verbose_name_plural = '업로드 파일'
-
+        db_table = 'Video'
+        verbose_name = 'Video Upload'
+        verbose_name_plural = 'Video Upload'
+    
     def __str__(self):
         return f'파일번호: {self.fileNo}'
     
@@ -92,7 +91,7 @@ class Setting(models.Model):
     videorecordlength = models.IntegerField(null=True, blank=True, verbose_name='영상 저장 길이')
 
     class Meta:
-        db_table = 'setting'
+        db_table = 'Setting'
         verbose_name = '설정'
         verbose_name_plural = '설정'
 
@@ -111,7 +110,7 @@ class Event(models.Model):
     eventtime = models.DateTimeField(null=True, blank=True, auto_now_add=True, verbose_name='위반 시간')
 
     class Meta:
-        db_table = 'event'
+        db_table = 'Event'
         verbose_name = '이벤트'
         verbose_name_plural = '이벤트'
 
