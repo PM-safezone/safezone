@@ -12,12 +12,12 @@
 <body>
     <div class="container">
         <h1 class="mt-5">Upload Video</h1>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'upload_video' %}">
                 {% csrf_token %}
 
                 <div class="form-group">
-                    <label for="video-file">Select Video:</label>
-                    <input type="file" class="form-control-file" id="video-file" name="video-file">
+                    <label for="video_file">Title:</label>
+                    <input type="file" class="form-control-file" id="video_file" name="video_file">
                 </div>
             <button type="submit" class="btn btn-primary">Upload Video</button>
         </form>

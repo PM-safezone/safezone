@@ -36,11 +36,11 @@
         }
 
         h1 {
-            margin-top: 80px;
             text-align: center;
             font-size: 3rem;
             font-weight: bold;
             color: #eaff00;
+            margin-bottom: 50px;
         }
 
         h1:after {
@@ -53,8 +53,9 @@
         }
     
         .form-group {
+            margin-top: 500px;
             max-width: 500px;
-            margin: 50px auto;
+            margin: 100px auto;
             padding: 50px;
             background-color: #0f1020;
             box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
@@ -145,18 +146,18 @@
             width: 200px;
             padding: 10px;
             text-align: left;
-            background-color: #0f1020;
-            color: #eaff00;
-            border: 1px solid #eaff00;
-            box-shadow: 0px 0px 3px #eaff00(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            color: #0f1020;
+            border: 1px solid #ffffff;
+            box-shadow: 0px 0px 3px #ffffff(0, 0, 0, 0.1);
             border-radius: 3px;
             margin-top: 5px;
         }
 
         .form-row input[type="text"]:focus {
             outline: none;
-            box-shadow: 0px 0px 5px #eaff00(0, 0, 0, 0.2);
-            background-color: #eaff00;
+            box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
+            background-color: #ffffff;
             color: #0f1020;
         }
 
@@ -166,6 +167,14 @@
             gap: 10px;
             width: 100%;
         } */
+
+        label[for="violation-location"] {
+            margin-bottom: 10px;
+        }
+
+        #violation-location {
+            margin-bottom: 10px;
+        }
 
         .btn-group {
             margin-top: -60px;
@@ -186,6 +195,7 @@
             background-color: #eaff00;
             border: 0.5px solid #0f1020;
             color: #0f1020;
+            margin-bottom: 10px;
         }
 
         .btn-save:hover {
@@ -204,6 +214,7 @@
             background-color: #0f1020;
             border: 0.5px solid #eaff00;
             color: #eaff00;
+            margin-bottom: 10px;
         }
 
         .btn-main:hover {
@@ -222,6 +233,7 @@
             background-color: #0f1020;
             border: 0.5px solid #ff6800;
             color: #ff6800;
+            margin-bottom: 20px;
         }
 
         .btn-register:hover {
@@ -238,9 +250,10 @@
  </head>
  <body>
      <div class="container">
-         <h1>Settings</h1>
          <form>
              <div class="form-group">
+                <h1>Settings</h1>
+                
                 <div class="form-row">
                     <label for="log-interval">로그 출력 간격</label>
                     <input type="text" id="log-interval" name="log-interval" value="00:01:00">
@@ -290,7 +303,7 @@
                 </div>
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-register" onclick="location.href='sitemanregister.html'">관리자 등록</button>
+                    <button type="button" class="btn btn-register" onclick="location.href='sitemanregister.html'">현장 관리자 등록</button>
                 </div>
             </div>
         </form>

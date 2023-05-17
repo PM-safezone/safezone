@@ -6,6 +6,9 @@ class VideoForm(forms.ModelForm):
     class Meta:
         model = Video
         fields = ('title', 'video_file')
+        widgets = {
+            'title': forms.TextInput(attrs={'required': True})
+        }
         
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label='ID')
