@@ -36,11 +36,11 @@
         }
         
         h1 {
-            margin-top: 80px;
             text-align: center;
             font-size: 3rem;
             font-weight: bold;
             color: #eaff00;
+            margin-bottom: 50px;
         }
 
         h1:after {
@@ -53,8 +53,9 @@
         }
        
         .form-group {
+            margin-top: 500px;
             max-width: 500px;
-            margin: 50px auto;
+            margin: 100px auto;
             padding: 50px;
             background-color: #0f1020;
             box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
@@ -83,19 +84,19 @@
             border-radius: 3px;
             width: 100%;
             margin-bottom: 20px;
-            background-color: #0f1020;
+            background-color: #ffffff;
             font-size: 1.5rem;
-            color: #eaff00;
-            border: 1px solid #eaff00;
-            box-shadow: 0px 0px 3px #eaff00(0, 0, 0, 0.1);
+            color: #0f1020;
+            border: 2px solid #ffffff;
+            box-shadow: 0px 0px 3px #ffffff(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
         }
         
         .form-group input[type="text"]:focus,
         .form-group input[type="email"]:focus {
             outline: none;
-            box-shadow: 0px 0px 5px #eaff00(0, 0, 0, 0.2);
-            background-color: #eaff00;
+            box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
+            background-color: #ffffff;
             color: #0f1020;
         }
     
@@ -120,19 +121,19 @@
             border: none;
             border-radius: 3px;
             width: 100%;
-            margin-bottom: 20px;
-            background-color: #0f1020;
+            margin-bottom: 50px;
+            background-color: #ffffff;
             font-size: 1.5rem;
-            color: #eaff00;
-            border: 1px solid #eaff00;
-            box-shadow: 0px 0px 3px #eaff00(0, 0, 0, 0.1);
+            color: #0f1020;
+            border: 1px solid #ffffff;
+            box-shadow: 0px 0px 3px #ffffff(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
         }
 
         .form-group input[type="tel"]:focus {
             outline: none;
-            box-shadow: 0px 0px 5px #eaff00(0, 0, 0, 0.2);
-            background-color: #eaff00;
+            box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
+            background-color: #ffffff;
             color: #0f1020;
         }
 
@@ -151,11 +152,12 @@
             background-color: #eaff00;
             border: 0.5px solid #0f1020;
             color: #0f1020;
+            margin-bottom: 30px;
         }
 
         .btn-register:hover {
             background-color: #0f1020;
-            border: 0.5px solid #0f1020;
+            border: 0.5px solid #eaff00;
             color: #eaff00;
         }
 
@@ -167,9 +169,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>현장 관리자 등록</h1>
         <form>
             <div class="form-group">
+                <h1>현장 관리자 등록</h1>
+
                 <label for="name">이름</label>
                 <input type="text" class="form-control" id="name" name="name">
 
