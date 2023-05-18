@@ -42,7 +42,7 @@
             text-align: left;
             font-size: 3rem;
             font-weight: bold;
-            color: #eaff00;
+            color: #00eaff;
         }
 
         h1:after {
@@ -82,9 +82,13 @@
             font-weight: bold;
             vertical-align: top;
             position: relative;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
+            border: 2px solid #00eaff;
         }
 
         .cctv-camera img {
+            border-radius: 10px;
             position: absolute;
             top: 0;
             left: 0;
@@ -93,9 +97,9 @@
         }
 
         .camera-name {
-            color: #333;
+            color: #00eaff;
             position: absolute;
-            bottom: -20px;
+            bottom: -22px;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -103,11 +107,12 @@
         .violation-box {
             padding: 20px;
             margin-right: 5%;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
+            border: 2px solid #00eaff;
             border-radius: 10px;
             position: absolute;
-            top: 130px;
+            top: 133px;
             right: 30px;
             width: 400px;
             height: auto;
@@ -126,7 +131,7 @@
 
         .violation-content {
             width: 100%;
-            height: 150px;
+            height: 240px;
             resize: none;
         }
 
@@ -161,49 +166,118 @@
             z-index: 1;
         }
 
+        .btn-logout {
+            background-color: #00eaff;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+            margin-bottom: 20px;
+        }
+
+        .btn-logout:hover {
+            background-color: #0f1020;
+            border: 0.5px solid #00eaff;
+            color: #00eaff;
+        }
+
+        .btn-logout:active {
+            background-color: #00eaff;
+            color: #0f1020;
+        }
+
+        .btn-clear {
+            margin-right: 10px;
+            background-color: #0f1020;
+            border: 0.5px solid #00eaff;
+            color: #00eaff;
+            margin-bottom: 20px;
+        }
+
+        .btn-clear:hover {
+            background-color: #00eaff;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+        }
+
+        .btn-clear:active {
+            background-color: #0f1020;
+            color: #00eaff;
+        }
+
+        .btn-settings,
+        .btn-save,
+        .btn-video {
+            margin-right: 10px;
+            background-color: #0f1020;
+            border: 0.5px solid #ff6800;
+            color: #ff6800;
+            margin-bottom: 20px;
+        }
+
+        .btn-settings:hover,
+        .btn-save:hover,
+        .btn-video:hover {
+            background-color: #ff6800;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+        }
+
+        .btn-settings:active,
+        .btn-save:active,
+        .btn-video:active {
+            background-color: #0f1020;
+            color: #ff6800;
+        }
     </style>
 </head>
-<body style="background-color: #333;">
+<body>
 <main>
     <section>
         <h1>CCTV 연동화면</h1>
-        <button id="logout-button" class="btn btn-primary">로그아웃</button>
+<<<<<<< HEAD
+        {% if user %}
+            <button id="logout-button" class="btn btn-primary">로그아웃</button>
+        {% else %}
+            <button id="logout-button" class="btn btn-primary">로그인</button>
+        {% endif %}
+=======
+        <button id="logout-button" class="btn btn-logout">로그아웃</button>
+>>>>>>> a600a65338832053548a7bb80054c88167a801d7
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+1" alt="CCTV 1">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+1" alt="CCTV 1">
                     <div class="camera-name">CCTV-1</div>
                 </div>
                 <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+2" alt="CCTV 2">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+2" alt="CCTV 2">
                     <div class="camera-name">CCTV-2</div>
                 </div>
                 <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+3" alt="CCTV 3">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+3" alt="CCTV 3">
                     <div class="camera-name">CCTV-3</div>
                 </div>
                 <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+4" alt="CCTV 4">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+4" alt="CCTV 4">
                     <div class="camera-name">CCTV-4</div>
                 </div>
                 <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+5" alt="CCTV 5">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+5" alt="CCTV 5">
                     <div class="camera-name">CCTV-5</div>
                 </div>
                 <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+6" alt="CCTV 6">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+6" alt="CCTV 6">
                     <div class="camera-name">CCTV-6</div>
                 </div>
                 <div class="cctv-camera" id="cctv-7" data-area="7" data-visible="7">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+7" alt="CCTV 7">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+7" alt="CCTV 7">
                     <div class="camera-name">CCTV-7</div>
                 </div>
                 <div class="cctv-camera" id="cctv-8" data-area="8" data-visible="8">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+8" alt="CCTV 8">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+8" alt="CCTV 8">
                     <div class="camera-name">CCTV-8</div>
                 </div>
                 <div class="cctv-camera" id="cctv-9" data-area="9" data-visible="9">
-                    <img src="https://dummyimage.com/640x480/000/fff&text=CCTV+9" alt="CCTV 9">
+                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+9" alt="CCTV 9">
                     <div class="camera-name">CCTV-9</div>
                 </div>
             </div>
@@ -226,16 +300,14 @@
                     <textarea id="violation-content" class="violation-content" rows="5"></textarea>
                 </div>
                 <div class="button-group">
-                    <button class="btn btn-primary" id="open-folder-button">Open Folder</button>
-                    <input type="file" id="folder-input" style="display: none;">
-                    <button id="clear-button" class="btn btn-secondary">Clear</button>
+                    <button id="clear-button" class="btn btn-clear">Clear</button>
                 </div>
                 <div class="button-container">
-                    <button class="btn btn-primary" onclick="location.href='settings.html'">Settings</button>
-                    <button class="btn btn-success">Save File</button>
+                    <button class="btn btn-settings" onclick="location.href='settings.html'">Settings</button>
+                    <button class="btn btn-save">Save File</button>
                     <form action="{% url 'upload_video' %}" method="POST">
                         {% csrf_token %}
-                        <button class="btn btn-warning">Video Upload</button>
+                        <button class="btn btn-video">Video Upload</button>
                     </form>
                 </div>
             </div>
@@ -258,7 +330,7 @@
 
                 // 축소 버튼 추가
                 var zoomOutButton = document.createElement("button");
-                zoomOutButton.innerHTML = "<i class='fa-solid fa-down-left-and-up-right-to-center' style='color: #2150a1;''></i>";
+                zoomOutButton.innerHTML = "<i class='fa-solid fa-down-left-and-up-right-to-center' style='color: #0f1020;''></i>";
                 zoomOutButton.style.position = "absolute";
                 zoomOutButton.style.top =  "175px";
                 zoomOutButton.style.right = "660px";
@@ -324,18 +396,6 @@
         } else {
             violationContent.value = "";
         }
-    });
-
-    // Open Folder 버튼
-    var openFolderButton = document.getElementById("open-folder-button");
-    var folderInput = document.getElementById("folder-input");
-
-    openFolderButton.addEventListener("click", function() {
-    folderInput.click();
-    });
-
-    folderInput.addEventListener("change", function() {
-        var selectedFolder = folderInput.files[0];
     });
 
     // CCTV 클릭 시 선택박스 및 violation box 변경

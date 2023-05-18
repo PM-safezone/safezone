@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Site Manager Registration</title>
+    <title>로그인</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -34,13 +34,13 @@
             font-size: 16px;
             line-height: 1.5;
         }
-        
+
         h1 {
+            margin-top: 80px;
             text-align: center;
             font-size: 3rem;
             font-weight: bold;
-            color: #eaff00;
-            margin-bottom: 50px;
+            color: #b2b5d1;
         }
 
         h1:after {
@@ -51,56 +51,54 @@
             animation-timing-function: linear;
             animation-delay: 0.5s;
         }
-       
-        .form-group {
-            margin-top: 500px;
+
+        .form-container {
             max-width: 500px;
-            margin: 100px auto;
+            margin: 50px auto;
             padding: 50px;
             background-color: #0f1020;
-            box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px #b2b5d1 0.1;
             border-radius: 5px;
-            border: 2px solid #eaff00;
+            border: 2px solid #b2b5d1;
         }
         
-        .form-group form {
+        .form-container form {
             display: flex;
             flex-direction: column;
             align-items: left;
         }
         
-        .form-group label {
+        .form-container label {
             display: block;
             margin-bottom: 10px;
             font-size: 1.5rem;
             font-weight: bold;
-            color: #eaff00;
+            color: #b2b5d1;
         }
         
-        .form-group input[type="text"],
-        .form-group input[type="email"] {
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
             padding: 10px;
             border: none;
             border-radius: 3px;
             width: 100%;
             margin-bottom: 20px;
-            background-color: #ffffff;
+            background-color: #0f1020;
             font-size: 1.5rem;
-            color: #0f1020;
-            border: 2px solid #ffffff;
-            box-shadow: 0px 0px 3px #ffffff(0, 0, 0, 0.1);
+            color: #555;
+            border: 2px solid #b2b5d1;
+            box-shadow: 0px 0px 3px b2b5d1(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
         }
         
-        .form-group input[type="text"]:focus,
-        .form-group input[type="email"]:focus {
+        .form-container input[type="text"]:focus,
+        .form-container input[type="password"]:focus {
             outline: none;
-            box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
-            background-color: #ffffff;
-            color: #0f1020;
+            box-shadow: 0px 0px 5px b2b5d1(0, 0, 0, 0.2);
+            background-color: #b2b5d1;
         }
     
-        /* .form-group input[type="submit"] {
+        /* .form-container input[type="submit"] {
             padding: 10px;
             border: none;
             border-radius: 3px;
@@ -110,90 +108,74 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
-        }
-        
-        .form-group input[type="submit"]:hover {
-            background-color: #00587a;
         } */
-
-        .form-group input[type="tel"] {
-            padding: 10px;
-            border: none;
-            border-radius: 3px;
-            width: 100%;
-            margin-bottom: 50px;
-            background-color: #ffffff;
-            font-size: 1.5rem;
-            color: #0f1020;
-            border: 1px solid #ffffff;
-            box-shadow: 0px 0px 3px #ffffff(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .form-group input[type="tel"]:focus {
-            outline: none;
-            box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
-            background-color: #ffffff;
-            color: #0f1020;
-        }
+        
+        /* .form-container input[type="submit"]:hover {
+            background-color: #b2b5d1;
+        } */
 
         .btn {
             font-size: 16px;
         }
-
+        
         .btn-container {
             display: flex;
             justify-content: right;
-            margin-right: -10px;
         }
        
+        .btn-login {
+            margin-right: 10px;
+            background-color: #0f1020;
+            border: 0.5px solid #b2b5d1;
+            color: #b2b5d1;
+        }
+
+        .btn-login:hover {
+            background-color: #b2b5d1;
+            border: 0.5px solid #b2b5d1;
+            color: #0f1020;
+        }
+
+        .btn-login:active {
+            background-color: #0f1020;
+            color: #b2b5d1;
+        }
+
         .btn-register {
             margin-right: 10px;
-            background-color: #eaff00;
+            background-color: #b2b5d1;
             border: 0.5px solid #0f1020;
             color: #0f1020;
-            margin-bottom: 30px;
         }
 
         .btn-register:hover {
             background-color: #0f1020;
-            border: 0.5px solid #eaff00;
-            color: #eaff00;
+            border: 0.5px solid #b2b5d1;
+            color: #b2b5d1;
         }
 
         .btn-register:active {
-            background-color: #eaff00;
+            background-color: #b2b5d1;
             color: #0f1020;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <form>
-            <div class="form-group">
-                <h1>현장 관리자 등록</h1>
-
-                <label for="name">이름</label>
-                <input type="text" class="form-control" id="name" name="name">
-
-                <label for="device number">기기번호</label>
-                <input type="text" class="form-control" id="device number" name="device number">
-
-                <label for="email">이메일</label>
-                <input type="email" class="form-control" id="email" name="email">
-
-                <label for="discord username">디스코드 계정 아이디</label>
-                <input type="text" class="form-control" id="discord username" name="discord username">
-
-                <label for="phone">휴대전화</label>
-                <input type="tel" class="form-control" id="phone" name="phone">
-
-                <div class="btn-container">
-                    <button type="submit" class="btn btn-register">등록</button>
-                </div>
-            </div>
+    <h1>로그인</h1>
+    <div class="form-container">
+        <form  method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <label for="username">아이디</label>
+            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+        
+        <div class="btn-container">
+            <button type="submit" class="btn btn-login">로그인</button>
+            <button type="button" class="btn btn-register" onclick="location.href='manregister.html'">관리자 등록</button>
+        </div>
         </form>
     </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-</html>
+</html> 
