@@ -12,15 +12,26 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+# environ 설정 추가
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(
+    os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j!1$5ccgna@8!g5p*v^0dg%ws0naauc-g13%5jpiskx&qxyz70'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'safezone_app'
+    'safezone_app',
+    'account_app', # 추가
 ]
 
 MIDDLEWARE = [
@@ -84,7 +96,7 @@ DATABASES = {
         'PORT' : '3306',
     }
 }
-#mysql로 변경할 예정
+#mysql 로 변경할 예정
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
