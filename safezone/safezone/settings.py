@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 import environ
 
+from django.urls import reverse_lazy
+
 # environ 설정 추가
 env = environ.Env(
     DEBUG=(bool, False)
@@ -141,3 +143,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = reverse_lazy('') #todo mainpage 등록해야함.

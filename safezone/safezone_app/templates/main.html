@@ -167,7 +167,7 @@
 <main>
     <section>
         <h1>CCTV 연동화면</h1>
-        <button id="logout-button" class="btn btn-primary">로그아웃</button>
+        <button id="logout-button" class="btn btn-primary"><a href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a></button>
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
@@ -211,15 +211,15 @@
                 <div class="violation-text">위반 사항</div>
                 <div>
                     <select id="area-select">
-                        <option value="1">1구역</option>
-                        <option value="2">2구역</option>
-                        <option value="3">3구역</option>
-                        <option value="4">4구역</option>
-                        <option value="5">5구역</option>
-                        <option value="6">6구역</option>
-                        <option value="7">7구역</option>
-                        <option value="8">8구역</option>
-                        <option value="9">9구역</option>
+                        <option value="1">1 구역</option>
+                        <option value="2">2 구역</option>
+                        <option value="3">3 구역</option>
+                        <option value="4">4 구역</option>
+                        <option value="5">5 구역</option>
+                        <option value="6">6 구역</option>
+                        <option value="7">7 구역</option>
+                        <option value="8">8 구역</option>
+                        <option value="9">9 구역</option>
                     </select>
                 </div>
                 <div>
@@ -286,7 +286,7 @@
                     zoomOutButton.style.opacity = "0";
                 });
 
-                
+
                 // 다른 카메라 숨기기
                 for (var j = 0; j < cameras.length; j++) {
                     if (cameras[j] !== this) {
@@ -347,23 +347,23 @@
             const violationContent = document.querySelector('#violation-content');
             areaSelect.value = selectedArea;
             if (selectedArea === "1") {
-                violationContent.value = "1구역 위반 사항 내용";
+                violationContent.value = "1 구역 위반 사항 내용";
             } else if (selectedArea === "2") {
-                violationContent.value = "2구역 위반 사항 내용";
+                violationContent.value = "2 구역 위반 사항 내용";
             } else if (selectedArea === "3") {
-                violationContent.value = "3구역 위반 사항 내용";
+                violationContent.value = "3 구역 위반 사항 내용";
             } else if (selectedArea === "4") {
-                violationContent.value = "4구역 위반 사항 내용";
+                violationContent.value = "4 구역 위반 사항 내용";
             } else if (selectedArea === "5") {
-                violationContent.value = "5구역 위반 사항 내용";
+                violationContent.value = "5 구역 위반 사항 내용";
             } else if (selectedArea === "6") {
-                violationContent.value = "6구역 위반 사항 내용";
+                violationContent.value = "6 구역 위반 사항 내용";
             } else if (selectedArea === "7") {
-                violationContent.value = "7구역 위반 사항 내용";
+                violationContent.value = "7 구역 위반 사항 내용";
             } else if (selectedArea === "8") {
-                violationContent.value = "8구역 위반 사항 내용";
+                violationContent.value = "8 구역 위반 사항 내용";
             } else if (selectedArea === "9") {
-                violationContent.value = "9구역 위반 사항 내용";
+                violationContent.value = "9 구역 위반 사항 내용";
             } else {
                 violationContent.value = "";
             }

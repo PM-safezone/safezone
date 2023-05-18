@@ -11,7 +11,5 @@ from account_app.models import UserModel
 class CreateAdminView(CreateView):
 	model = UserModel
 	form_class = CreateAdminForm
-	success_url = reverse_lazy('login')   # Todo 메인페이지로 바꿔야함
+	success_url = reverse_lazy('login')
 	template_name = 'account_app/create_admin.html'
-
-
