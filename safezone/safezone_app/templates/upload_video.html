@@ -3,27 +3,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Upload Video</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
+    <title>Upload the Video</title>
+    <style>
+    @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+        :root {
+            --glitched-duration: 1s;
+        }
+
+        @keyframes hxafter {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0;
+            }
+            51% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        body {
+            background-color: #0f1020;
+            font-family: 'nanumsquare', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #eaff00;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #eaff00;
+            margin-bottom: 50px;
+        }
+
+        h1:after {
+            content: "_";
+            animation-name: hxafter;
+            animation-duration: var(--glitched-duration);
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-delay: 0.5s;
+        }
+
+        .form-group {
+            margin-top: 500px;
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 50px;
+            background-color: #0f1020;
+            box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
+            border-radius: 5px;
+            border: 2px solid #eaff00;
+        }
+        
+        .form-group form {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #eaff00;
+        }
+
+        p {
+            color: #eaff00;
+        }
+
+        .btn {
+            font-size: 16px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: right;
+            margin-right: -10px;
+        }
+
+        .btn-analyze {
+            margin-right: 10px;
+            background-color: #eaff00;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+            margin-bottom: 30px;
+        }
+
+        .btn-analyze:hover {
+            background-color: #0f1020;
+            border: 0.5px solid #eaff00;
+            color: #eaff00;
+        }
+
+        .btn-analyze:active {
+            background-color: #eaff00;
+            color: #0f1020;
+        }
+        </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-5">Upload Video</h1>
         <form method="POST" enctype="multipart/form-data" action="{% url 'upload_video' %}">
                 {% csrf_token %}
 
                 <div class="form-group">
-                    <label for="video_file">Title:</label>
+                    <h1>영상 업로드</h1>
                     <input type="file" class="form-control-file" id="video_file" name="video_file">
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-analyze">영상 분석하기</button>
+                    </div>
                 </div>
-            <button type="submit" class="btn btn-primary">Upload Video</button>
         </form>
     </div>
         <!-- 서버에서 저장된 비디오 파일 경로 -->
-    <br><br>
     {% if video_path %}
         <div class="embed-responsive embed-responsive-21by9">
             <iframe class="embed-responsive-item" src="{{ video_path }}" allowfullscreen></iframe>
