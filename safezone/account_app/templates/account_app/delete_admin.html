@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>mypage</title>
+    <title>관리자 등록</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
@@ -180,32 +180,18 @@
 </head>
 <body>
     <div class="container">
-        {{ form.as_p }}
+        <form action="{% url 'account_app:delete' pk=user.pk %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <h1>관리자 탈퇴</h1>
+                {{ form.as_p }}
 
-        <p>
-            {{ target_user.data_join }}
-        </p>
-        <h2>
-            {{ target_user.username }}
-{#            todo DB 저장은되는데 테이블이 달라서 조회가 안되나.. 조회가 안됨#}
-            {{ target_user.management_locations }}
-            {{ target_user.phone }}
-            {{ target_user.email }}
-        </h2>
-
-        {% if target_user == user %}
-        <a href="{% url 'account_app:update' pk=user.pk %}">
-            <p>
-                프로필수정
-            </p>
-        </a>
-          <a href="{% url 'account_app:delete' pk=user.pk %}">
-            <p>
-                관리자삭제
-            </p>
-        </a>
-        {% endif %}
-
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-danger">확인</button>
+                </div>
+            </div>
+        </form>
     </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

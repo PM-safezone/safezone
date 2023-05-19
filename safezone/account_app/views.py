@@ -1,11 +1,10 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, UpdateView
-from django.urls import reverse_lazy,  reverse
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy, reverse
 
 from account_app.forms import CreateAdminForm, AdminUpdateForm
 from account_app.models import UserModel
-
 
 
 # Create your views here.
@@ -28,3 +27,12 @@ class AdminProfileUpdateView(UpdateView):
 	form_class = AdminUpdateForm
 	success_url = reverse_lazy('account_app:login')
 	template_name = 'account_app/update_admin.html'
+
+
+class AdminDeleteView(DeleteView):
+	model = UserModel
+	success_url = reverse_lazy('account_app:login')
+	template_name = 'account_app/delete_admin.html'
+
+# def get_success_url(self):
+# 	return reverse('account_app:login')
