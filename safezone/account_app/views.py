@@ -21,10 +21,8 @@ class CreateAdminView(CreateView):
 	template_name = 'account_app/create_admin.html'
 
 
-@method_decorator(has_ownership, 'get')
-@method_decorator(has_ownership, 'post')
 class AdminProfileView(DetailView):
-	model = User
+	model = UserModel
 	context_object_name = 'target_user'
 	template_name = 'account_app/profile.html'
 

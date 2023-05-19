@@ -14,7 +14,12 @@
       </list>
     </option>
   </component>
-  <component name="connectionManager">
-    <option name="activeConnectionId" value="sso;us-east-1;https://view.awsapps.com/start" />
+  <component name="connectionPinningManager">
+    <option name="pinnedConnections">
+      <map>
+        <entry key="aws.codecatalyst" value="sso;us-east-1;https://view.awsapps.com/start" />
+        <entry key="aws.codewhisperer" value="sso;us-east-1;https://view.awsapps.com/start" />
+      </map>
+    </option>
   </component>
 </project>

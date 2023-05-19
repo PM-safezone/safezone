@@ -1,6 +1,6 @@
 from django.http import HttpResponseForbidden
 
-from safezone.account_app.models import UserModel
+from account_app.models import UserModel
 
 def admin_ownership_required(func):
 	def decorated(request, *args, **kwargs):
