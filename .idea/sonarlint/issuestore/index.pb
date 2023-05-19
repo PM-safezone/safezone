@@ -9,8 +9,6 @@ P
 safezone/.env,2\3\23eb5fa07f2845e72e217e65e82b98bb05e35c15
 I
 safezone/requirements.txt,f\4\f418339bce840c8d2b92492e23683996fb1df2a9
-C
-safezone/.gitignore,a\1\a1cd3392a16683b77b19b1cf180f0473e8f10423
 [
 +safezone/safezone_app/templates/signin.html,5\f\5f83efb6f1dc2e7ad8e3788378e04437aa54077f
 `
