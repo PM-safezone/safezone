@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from safezone_app.views import upload_video, video_detail,  settings, main
+from safezone_app import views
 # 모듈 불러오는 방식 변경
 # safezone app 이름 등록
 # url 사용할때 {% url 'video_detail' %} X
@@ -22,16 +22,8 @@ from safezone_app.views import upload_video, video_detail,  settings, main
 app_name = 'safezone_app'
 urlpatterns = [
     path('', views.main, name='main'),
-    path('login/', LoginView.as_view(), name='testpage'),
-    path('logout/', LogoutView.as_view(), name='logout'),
     path('settings/<str:memberid>', views.settings, name='settings'),
     path('upload_video/', views.upload_video, name='upload_video'),
     path('video_detail/<int:fileNo>/', views.video_detail, name='video_detail'),
     path('test/', views.livefeed, name='livefeed'),
-
-    # 수정필요
-    path('', main, name='main'),
-    path('settings/<str:memberid>', settings, name='settings'),
-    path('upload_video/', upload_video, name='upload_video'),
-    path('video_detail/<int:fileNo>/', video_detail, name='video_detail'),
 ]

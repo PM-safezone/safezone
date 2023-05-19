@@ -279,15 +279,15 @@
                 <div class="violation-text">위반 사항</div>
                 <div>
                     <select id="area-select">
-                        <option value="1">1구역</option>
-                        <option value="2">2구역</option>
-                        <option value="3">3구역</option>
-                        <option value="4">4구역</option>
-                        <option value="5">5구역</option>
-                        <option value="6">6구역</option>
-                        <option value="7">7구역</option>
-                        <option value="8">8구역</option>
-                        <option value="9">9구역</option>
+                        <option value="1">1 구역</option>
+                        <option value="2">2 구역</option>
+                        <option value="3">3 구역</option>
+                        <option value="4">4 구역</option>
+                        <option value="5">5 구역</option>
+                        <option value="6">6 구역</option>
+                        <option value="7">7 구역</option>
+                        <option value="8">8 구역</option>
+                        <option value="9">9 구역</option>
                     </select>
                 </div>
                 <div>
@@ -303,7 +303,7 @@
 {#                        todo url 변경#}
                     <button class="btn btn-settings" onclick="location.href='settings.html'">Settings</button>
                     <button class="btn btn-save">Save File</button>
-                    <form action="{% url 'upload_video' %}" method="POST">
+                    <form action="{% url 'safezone_app:upload_video' %}" method="POST">
                         {% csrf_token %}
                         <button class="btn btn-video">Video Upload</button>
                     </form>
