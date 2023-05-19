@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.http import Http404
-from .forms import VideoForm, LoginForm
+from .forms import VideoForm
 from .models import Video
 from django.contrib.auth.views import LoginView
 # Create your views here.
@@ -33,31 +33,32 @@ def settings(request):
     
     return render(request, 'settings.html')
     
-class CustomLoginView(LoginView):
-    template_name = 'testpage.html'
-    authentication_form = LoginForm
+# account_app 에서 대체
+# class CustomLoginView(LoginView):
+#     template_name = 'testpage.html'
+#     authentication_form = LoginForm
     
-def login(request):
-    return render(request, 'testpage.html')
+# def login(request):
+#     return render(request, 'testpage.html')
 
 
 def upload_video(request):
-    if request.method == 'POST':                            # form으로 Method=POST로 받아와서 작업
-        form = VideoForm(request.POST, request.FILES)       # forms.py에서 작업하기위해 POST로 요청, FILES를 불러옴 
-        if form.is_valid():                                 # form의 title, video_file 형식으로 들어오는지 유효성 검사
+    if request.method == 'POST':                            # form 으로 Method=POST 로 받아와서 작업
+        form = VideoForm(request.POST, request.FILES)       # forms.py 에서 작업하기위해 POST 로 요청, FILES 를 불러옴 
+        if form.is_valid():                                 # form 의 title, video_file 형식으로 들어오는지 유효성 검사
             
             video_file = request.FILES.get('video_file')    # <label for="video_file">Title:</label>
             video_name = video_file.name                    # <input type="file" class="form-control-file" id="video_file" name="video_file">
-                                                            # 에서 받아온 video_file을 get files화
-            video = form.save(commit=False)                 # file들어온 값들을 form.save 적용은 안하고 video에 입력
+                                                            # 에서 받아온 video_file 을 get files 화
+            video = form.save(commit=False)                 # file 들어온 값들을 form.save 적용은 안하고 video 에 입력
             
-            video.title = video_name                        # video_name을 title에 입력
-            video.filepath = 'videos/' + video_name         # 'videos/' + video_name으로 파일 경로 입력
+            video.title = video_name                        # video_name 을 title 에 입력
+            video.filepath = 'videos/' + video_name         # 'videos/' + video_name 으로 파일 경로 입력
             video.video_file = 'videos/' + video_name
             
-            video.save()                                    # DB 적용 video의 값을
+            video.save()                                    # DB 적용 video 의 값을
 
-            return redirect('video_detail', fileNo=video.fileNo)    # DB적용이 완료되면 video_detail을 불러와, video_detail/fileNo
+            return redirect('video_detail', fileNo=video.fileNo)    # DB 적용이 완료되면 video_detail 을 불러와, video_detail/fileNo
                                                                     # 으로 redirect
         else:
             print(form.errors)                                      # 유효성 검사 틀리면 프린트

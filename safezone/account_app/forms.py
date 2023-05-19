@@ -1,8 +1,8 @@
 from django import forms
 
 from django.contrib.auth.forms import UserCreationForm
-
 from django.contrib.auth.models import User
+from account_app.models import UserModel
 
 
 class CreateAdminForm(UserCreationForm):
@@ -19,7 +19,7 @@ class CreateAdminForm(UserCreationForm):
 	phone = forms.CharField(label="휴대전화")
 
 	class Meta:
-		model = User
+		model = UserModel
 		fields = ('email', 'username', 'password1', 'password2', 'management_locations', 'phone')
 		labels = {
 			'username': '아이디',
@@ -32,3 +32,10 @@ class CreateAdminForm(UserCreationForm):
 			'password2': None,
 			'email': None,
 		}
+
+
+class AdminUpdateForm(CreateAdminForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+		self.fields['username'].disabled = True

@@ -167,7 +167,9 @@
 <main>
     <section>
         <h1>CCTV 연동화면</h1>
-        <button id="logout-button" class="btn btn-primary"><a href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a></button>
+{#        로그아웃 버튼 변경 #}
+        <a id="logout-button" class="btn btn-primary" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
+         <a id="mypage-button" class="btn btn-primary" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
@@ -233,7 +235,8 @@
                 <div class="button-container">
                     <button class="btn btn-primary" onclick="location.href='settings.html'">Settings</button>
                     <button class="btn btn-success">Save File</button>
-                    <form action="{% url 'upload_video' %}" method="POST">
+                    <form action="{% url 'safezone_app:upload_video' %}" method="POST">
+{#                        todo url 변경#}
                         {% csrf_token %}
                         <button class="btn btn-warning">Video Upload</button>
                     </form>

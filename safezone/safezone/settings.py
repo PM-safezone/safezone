@@ -144,4 +144,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = reverse_lazy('') #todo mainpage 등록해야함.
+LOGIN_REDIRECT_URL = reverse_lazy('safezone_app:main') # mainpage 등록
+LOGOUT_REDIRECT_URL = reverse_lazy('account_app:login') # 로그아웃시 로그인 페이지로 이동하도록 설정
