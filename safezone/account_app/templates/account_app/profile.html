@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign In</title>
+    <title>mypage</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
@@ -52,45 +52,34 @@
             animation-delay: 0.5s;
         }
 
-        /* .form-container {
+        .form-group {
             margin-top: 500px;
             max-width: 500px;
             margin: 100px auto;
             padding: 50px;
             background-color: #0f1020;
-            box-shadow: 0px 0px 10px #eaff00 0.1;
-            border-radius: 5px;
-            border: 2px solid #eaff00;
-        } */
-
-        .form-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            padding: 50px;
-            min-width: 500px;
-            transform: translate(-50%, -50%);
-            box-shadow: 0px 0px 10px #eaff00 0.1;
+            box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
             border-radius: 5px;
             border: 2px solid #eaff00;
         }
-        
-        .form-container form {
+
+        .form-group form {
             display: flex;
             flex-direction: column;
             align-items: left;
         }
-        
-        .form-container label {
+
+        .form-group label {
             display: block;
             margin-bottom: 10px;
             font-size: 1.5rem;
             font-weight: bold;
             color: #eaff00;
         }
-        
-        .form-container input[type="text"],
-        .form-container input[type="password"] {
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"] {
             padding: 10px;
             border: none;
             border-radius: 3px;
@@ -104,19 +93,16 @@
             transition: all 0.3s ease-in-out;
         }
 
-        .form-container input[type="password"] {
-            margin-bottom: 50px;
-        }
-        
-        .form-container input[type="text"]:focus,
-        .form-container input[type="password"]:focus {
+        .form-group input[type="text"]:focus,
+        .form-group input[type="password"]:focus,
+        .form-group input[type="email"]:focus {
             outline: none;
-            color: #0f1020;
             box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
             background-color: #ffffff;
+            color: #0f1020;
         }
-    
-        /* .form-container input[type="submit"] {
+
+        /* .form-group input[type="submit"] {
             padding: 10px;
             border: none;
             border-radius: 3px;
@@ -126,23 +112,53 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #00587a;
         } */
-        
-        /* .form-container input[type="submit"]:hover {
-            background-color: #b2b5d1;
-        } */
+
+        .form-group select,
+        .form-group input[type="tel"] {
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            width: 100%;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            font-size: 1.5rem;
+            color: #0f1020;
+            border: 1px solid #ffffff;
+            box-shadow: 0px 0px 3px #ffffff(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-group input[type="tel"]:focus {
+            outline: none;
+            box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            color: #0f1020;
+        }
+
+        .form-group select {
+            font-size: 1.15rem;
+        }
+
+        .form-group input[type="email"] {
+            margin-bottom: 50px;
+        }
 
         .btn {
             font-size: 16px;
         }
-        
+
         .btn-container {
             display: flex;
             justify-content: right;
             margin-right: -10px;
         }
-       
-        .btn-login {
+
+        .btn-register {
             margin-right: 10px;
             background-color: #eaff00;
             border: 0.5px solid #0f1020;
@@ -150,54 +166,46 @@
             margin-bottom: 30px;
         }
 
-        .btn-login:hover {
+        .btn-register:hover {
             background-color: #0f1020;
             border: 0.5px solid #eaff00;
             color: #eaff00;
         }
 
-        .btn-login:active {
+        .btn-register:active {
             background-color: #eaff00;
             color: #0f1020;
-        }
-
-        .btn-register {
-            margin-right: 10px;
-            background-color: #0f1020;
-            border: 0.5px solid #ff6800;
-            color: #ff6800;
-            margin-bottom: 30px;
-        }
-
-        .btn-register:hover {
-            background-color: #ff6800;
-            border: 0.5px solid #0f1020;
-            color: #0f1020;
-        }
-
-        .btn-register:active {
-            background-color: #0f1020;
-            color: #ff6800;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>로그인</h1>
+    <div class="container">
+        {{ form.as_p }}
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <label for="username">아이디</label>
-            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요">
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
-        
-        <div class="btn-container">
-            <button type="submit" class="btn btn-login">로그인</button>
-            <button type="button" class="btn btn-register" onclick="location.href='create_admin.html'">관리자 등록</button>
-        </div>
-        </form>
+        <p>
+            {{ target_user.data_join }}
+        </p>
+        <h2>
+            {{ target_user.username }}
+{#            todo DB 저장은되는데 테이블이 달라서 조회가 안되나.. 조회가 안됨 - user 는 조회안되는데 , target_user 는 조회됨 차이가 뭐야.#}
+            {{ target_user.management_locations }}
+            {{ target_user.phone }}
+            {{ target_user.email }}
+        </h2>
+
+        {% if target_user.pk == request.user.pk %}
+        <a href="{% url 'account_app:update' pk=user.pk %}">
+            <p>
+                프로필수정
+            </p>
+        </a>
+          <a href="{% url 'account_app:delete' pk=user.pk %}">
+            <p>
+                관리자삭제
+            </p>
+        </a>
+        {% endif %}
+
     </div>
 </body>
-</html> 
+</html>

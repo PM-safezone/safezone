@@ -1,13 +1,22 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.http import Http404, StreamingHttpResponse, HttpResponseServerError, JsonResponse
 from .forms import VideoForm, LoginForm
+from django.http import Http404
+from django.utils.decorators import method_decorator
+
+from .forms import VideoForm
 from .models import Video
 from django.contrib.auth.views import LoginView
 import cv2
 from torchvision import transforms
 from yolov5.models.experimental import *
 from django.views.decorators.csrf import csrf_exempt
+from account_app.decorators import admin_ownership_required
+
+
 # Create your views here.
+@login_required
 def main(request):
     return render(request, 'main.html', {'livefeed_result': livefeed(request)})
 
@@ -37,12 +46,13 @@ def settings(request):
     
     return render(request, 'settings.html')
     
-class CustomLoginView(LoginView):
-    template_name = 'testpage.html'
-    authentication_form = LoginForm
+# account_app 에서 대체
+# class CustomLoginView(LoginView):
+#     template_name = 'testpage.html'
+#     authentication_form = LoginForm
     
-def login(request):
-    return render(request, 'testpage.html')
+# def login(request):
+#     return render(request, 'testpage.html')
 
 
 
@@ -67,18 +77,18 @@ def upload_video(request):
         else:
             print(form.errors)                                      # 유효성 검사 틀리면 프린트
     if request.method == 'POST':                            # form으로 Method=POST로 받아와서 작업
-        form = VideoForm(request.POST, request.FILES)       # forms.py에서 작업하기위해 POST로 요청, FILES를 불러옴 
+        form = VideoForm(request.POST, request.FILES)       # forms.py에서 작업하기위해 POST로 요청, FILES를 불러옴
         if form.is_valid():                                 # form의 title, video_file 형식으로 들어오는지 유효성 검사
-            
+
             video_file = request.FILES.get('video_file')    # <label for="video_file">Title:</label>
             video_name = video_file.name                    # <input type="file" class="form-control-file" id="video_file" name="video_file">
                                                             # 에서 받아온 video_file을 get files화
             video = form.save(commit=False)                 # file들어온 값들을 form.save 적용은 안하고 video에 입력
-            
+
             video.title = video_name                        # video_name을 title에 입력
             video.filepath = 'videos/' + video_name         # 'videos/' + video_name으로 파일 경로 입력
             video.video_file = 'videos/' + video_name
-            
+
             video.save()                                    # DB 적용 video의 값을
 
             return redirect('video_detail', fileNo=video.fileNo)    # DB적용이 완료되면 video_detail을 불러와, video_detail/fileNo
@@ -105,20 +115,20 @@ from torchvision import transforms
 from PIL import Image
 import time
 class VideoCamera(object):
-    
+
     def __init__(self):
         self.video = cv2.VideoCapture(0)
         self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
         self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
         (self.grabbed, self.frame) = self.video.read()
-        
+
 
         # Yolov5m model load
         self.model = torch.hub.load('ultralytics/yolov5', 'custom', path='safezone_app/best.pt', force_reload=True)
         self.model.eval()
-        
+
         threading.Thread(target=self.update, args=()).start()
-        
+
     def __del__(self):
         self.video.release()
 
@@ -126,7 +136,7 @@ class VideoCamera(object):
         image = self.frame
         _, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
-    
+
     def update(self):
         while True:
             (self.grabbed, self.frame) = self.video.read()

@@ -233,15 +233,9 @@
 <main>
     <section>
         <h1>CCTV 연동화면</h1>
-<<<<<<< HEAD
-        {% if user %}
-            <button id="logout-button" class="btn btn-primary">로그아웃</button>
-        {% else %}
-            <button id="logout-button" class="btn btn-primary">로그인</button>
-        {% endif %}
-=======
-        <button id="logout-button" class="btn btn-logout">로그아웃</button>
->>>>>>> a600a65338832053548a7bb80054c88167a801d7
+{#        로그아웃 버튼 변경 #}
+        <a id="logout-button" class="btn btn-primary" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
+         <a id="mypage-button" class="btn btn-primary" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
@@ -303,6 +297,10 @@
                     <button id="clear-button" class="btn btn-clear">Clear</button>
                 </div>
                 <div class="button-container">
+                    <button class="btn btn-primary" onclick="location.href='settings.html'">Settings</button>
+                    <button class="btn btn-success">Save File</button>
+                    <form action="{% url 'safezone_app:upload_video' %}" method="POST">
+{#                        todo url 변경#}
                     <button class="btn btn-settings" onclick="location.href='settings.html'">Settings</button>
                     <button class="btn btn-save">Save File</button>
                     <form action="{% url 'upload_video' %}" method="POST">
@@ -358,7 +356,7 @@
                     zoomOutButton.style.opacity = "0";
                 });
 
-                
+
                 // 다른 카메라 숨기기
                 for (var j = 0; j < cameras.length; j++) {
                     if (cameras[j] !== this) {
@@ -398,6 +396,18 @@
         }
     });
 
+    // Open Folder 버튼
+    var openFolderButton = document.getElementById("open-folder-button");
+    var folderInput = document.getElementById("folder-input");
+
+    openFolderButton.addEventListener("click", function() {
+    folderInput.click();
+    });
+
+    folderInput.addEventListener("change", function() {
+        var selectedFolder = folderInput.files[0];
+    });
+
     // CCTV 클릭 시 선택박스 및 violation box 변경
     const cctvCameras = document.querySelectorAll('.cctv-camera');
     cctvCameras.forEach(camera => {
@@ -407,23 +417,23 @@
             const violationContent = document.querySelector('#violation-content');
             areaSelect.value = selectedArea;
             if (selectedArea === "1") {
-                violationContent.value = "1구역 위반 사항 내용";
+                violationContent.value = "1 구역 위반 사항 내용";
             } else if (selectedArea === "2") {
-                violationContent.value = "2구역 위반 사항 내용";
+                violationContent.value = "2 구역 위반 사항 내용";
             } else if (selectedArea === "3") {
-                violationContent.value = "3구역 위반 사항 내용";
+                violationContent.value = "3 구역 위반 사항 내용";
             } else if (selectedArea === "4") {
-                violationContent.value = "4구역 위반 사항 내용";
+                violationContent.value = "4 구역 위반 사항 내용";
             } else if (selectedArea === "5") {
-                violationContent.value = "5구역 위반 사항 내용";
+                violationContent.value = "5 구역 위반 사항 내용";
             } else if (selectedArea === "6") {
-                violationContent.value = "6구역 위반 사항 내용";
+                violationContent.value = "6 구역 위반 사항 내용";
             } else if (selectedArea === "7") {
-                violationContent.value = "7구역 위반 사항 내용";
+                violationContent.value = "7 구역 위반 사항 내용";
             } else if (selectedArea === "8") {
-                violationContent.value = "8구역 위반 사항 내용";
+                violationContent.value = "8 구역 위반 사항 내용";
             } else if (selectedArea === "9") {
-                violationContent.value = "9구역 위반 사항 내용";
+                violationContent.value = "9 구역 위반 사항 내용";
             } else {
                 violationContent.value = "";
             }

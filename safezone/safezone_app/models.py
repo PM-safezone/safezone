@@ -4,53 +4,54 @@ from django.contrib.auth.models import Group, Permission
 import datetime
 # Create your models here.
 
-class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
-        if not email:
-            raise ValueError("The Email field must be set")
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        return self.create_user(email, password, **extra_fields)
-    
-class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    is_active = models.BooleanField(default=True)
-    regdate = models.DateTimeField(auto_now_add=True)
-    
-    groups = models.ManyToManyField(
-        Group,
-        verbose_name='groups',
-        blank=True,
-        help_text='The groups this user belongs to.',
-        related_name='user_set+'  # related_name을 'user_set+'으로 설정
-    )
-    user_permissions = models.ManyToManyField(
-        Permission,
-        verbose_name='user permissions',
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_name='user_set+'  # related_name을 'user_set+'으로 설정
-    )
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
-
-    objects = UserManager()
-
-    def get_full_name(self):
-        return f'{self.first_name} {self.last_name}'
-
-    def get_short_name(self):
-        return self.first_name
+# account_app 에서 대체
+# class UserManager(BaseUserManager):
+#     def create_user(self, email, password=None, **extra_fields):
+#         if not email:
+#             raise ValueError("The Email field must be set")
+#         email = self.normalize_email(email)
+#         user = self.model(email=email, **extra_fields)
+#         user.set_password(password)
+#         user.save(using=self._db)
+#         return user
+#
+#     def create_superuser(self, email, password=None, **extra_fields):
+#         extra_fields.setdefault('is_staff', True)
+#         extra_fields.setdefault('is_superuser', True)
+#         return self.create_user(email, password, **extra_fields)
+#
+# class User(AbstractBaseUser, PermissionsMixin):
+#     email = models.EmailField(unique=True)
+#     first_name = models.CharField(max_length=30)
+#     last_name = models.CharField(max_length=30)
+#     is_active = models.BooleanField(default=True)
+#     regdate = models.DateTimeField(auto_now_add=True)
+#
+#     groups = models.ManyToManyField(
+#         Group,
+#         verbose_name='groups',
+#         blank=True,
+#         help_text='The groups this user belongs to.',
+#         related_name='user_set+'  # related_name 을 'user_set+'으로 설정
+#     )
+#     user_permissions = models.ManyToManyField(
+#         Permission,
+#         verbose_name='user permissions',
+#         blank=True,
+#         help_text='Specific permissions for this user.',
+#         related_name='user_set+'  # related_name 을 'user_set+'으로 설정
+#     )
+#
+#     USERNAME_FIELD = 'email'
+#     REQUIRED_FIELDS = ['first_name', 'last_name']
+#
+#     objects = UserManager()
+#
+#     def get_full_name(self):
+#         return f'{self.first_name} {self.last_name}'
+#
+#     def get_short_name(self):
+#         return self.first_name
 
 
 class Video(models.Model):
@@ -76,7 +77,7 @@ class Setting(models.Model):
     )
 
     ALARM_MODE_CHOICES = (
-        (1, 'SMS문자메세지'),
+        (1, 'SMS 문자메세지'),
         (2, '디스코드'),
         (3, '이메일'),
     )

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign In</title>
+    <title>관리자 등록</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -52,45 +52,34 @@
             animation-delay: 0.5s;
         }
 
-        /* .form-container {
+        .form-group {
             margin-top: 500px;
             max-width: 500px;
             margin: 100px auto;
             padding: 50px;
             background-color: #0f1020;
-            box-shadow: 0px 0px 10px #eaff00 0.1;
-            border-radius: 5px;
-            border: 2px solid #eaff00;
-        } */
-
-        .form-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            padding: 50px;
-            min-width: 500px;
-            transform: translate(-50%, -50%);
-            box-shadow: 0px 0px 10px #eaff00 0.1;
+            box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
             border-radius: 5px;
             border: 2px solid #eaff00;
         }
-        
-        .form-container form {
+
+        .form-group form {
             display: flex;
             flex-direction: column;
             align-items: left;
         }
-        
-        .form-container label {
+
+        .form-group label {
             display: block;
             margin-bottom: 10px;
             font-size: 1.5rem;
             font-weight: bold;
             color: #eaff00;
         }
-        
-        .form-container input[type="text"],
-        .form-container input[type="password"] {
+
+        .form-group input[type="text"],
+        .form-group input[type="password"],
+        .form-group input[type="email"] {
             padding: 10px;
             border: none;
             border-radius: 3px;
@@ -104,19 +93,16 @@
             transition: all 0.3s ease-in-out;
         }
 
-        .form-container input[type="password"] {
-            margin-bottom: 50px;
-        }
-        
-        .form-container input[type="text"]:focus,
-        .form-container input[type="password"]:focus {
+        .form-group input[type="text"]:focus,
+        .form-group input[type="password"]:focus,
+        .form-group input[type="email"]:focus {
             outline: none;
-            color: #0f1020;
             box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
             background-color: #ffffff;
+            color: #0f1020;
         }
-    
-        /* .form-container input[type="submit"] {
+
+        /* .form-group input[type="submit"] {
             padding: 10px;
             border: none;
             border-radius: 3px;
@@ -126,23 +112,53 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #00587a;
         } */
-        
-        /* .form-container input[type="submit"]:hover {
-            background-color: #b2b5d1;
-        } */
+
+        .form-group select,
+        .form-group input[type="tel"] {
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            width: 100%;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            font-size: 1.5rem;
+            color: #0f1020;
+            border: 1px solid #ffffff;
+            box-shadow: 0px 0px 3px #ffffff(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-group input[type="tel"]:focus {
+            outline: none;
+            box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            color: #0f1020;
+        }
+
+        .form-group select {
+            font-size: 1.15rem;
+        }
+
+        .form-group input[type="email"] {
+            margin-bottom: 50px;
+        }
 
         .btn {
             font-size: 16px;
         }
-        
+
         .btn-container {
             display: flex;
             justify-content: right;
             margin-right: -10px;
         }
-       
-        .btn-login {
+
+        .btn-register {
             margin-right: 10px;
             background-color: #eaff00;
             border: 0.5px solid #0f1020;
@@ -150,54 +166,32 @@
             margin-bottom: 30px;
         }
 
-        .btn-login:hover {
+        .btn-register:hover {
             background-color: #0f1020;
             border: 0.5px solid #eaff00;
             color: #eaff00;
         }
 
-        .btn-login:active {
+        .btn-register:active {
             background-color: #eaff00;
             color: #0f1020;
-        }
-
-        .btn-register {
-            margin-right: 10px;
-            background-color: #0f1020;
-            border: 0.5px solid #ff6800;
-            color: #ff6800;
-            margin-bottom: 30px;
-        }
-
-        .btn-register:hover {
-            background-color: #ff6800;
-            border: 0.5px solid #0f1020;
-            color: #0f1020;
-        }
-
-        .btn-register:active {
-            background-color: #0f1020;
-            color: #ff6800;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>로그인</h1>
-
-        <form method="POST">
+    <div class="container">
+        <form action="{% url 'account_app:update' pk=target_user.pk %}" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <label for="username">아이디</label>
-            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요">
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
-        
-        <div class="btn-container">
-            <button type="submit" class="btn btn-login">로그인</button>
-            <button type="button" class="btn btn-register" onclick="location.href='create_admin.html'">관리자 등록</button>
-        </div>
+            <div class="form-group">
+                <h1>관리자 정보 변경</h1>
+                {{ form.as_p }}
+
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-register">변경</button>
+                </div>
+            </div>
         </form>
     </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-</html> 
+</html>
