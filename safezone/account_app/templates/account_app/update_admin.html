@@ -180,7 +180,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="{% url 'account_app:update' pk=user.pk %}" method="post">
+        <form action="{% url 'account_app:update' pk=target_user.pk %}" method="post">
             {% csrf_token %}
             <div class="form-group">
                 <h1>관리자 정보 변경</h1>

@@ -1,9 +1,16 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.http import Http404
+from django.utils.decorators import method_decorator
+
 from .forms import VideoForm
 from .models import Video
 from django.contrib.auth.views import LoginView
+from account_app.decorators import admin_ownership_required
+from account_app.views import has_ownership
+
 # Create your views here.
+@method_decorator(has_ownership, 'get')
+@method_decorator(has_ownership, 'post')
 def main(request):
     return render(request, 'main.html')
 

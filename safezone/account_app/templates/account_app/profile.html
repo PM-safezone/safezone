@@ -194,12 +194,12 @@
         </h2>
 
         {% if target_user == user %}
-        <a href="{% url 'account_app:update' pk=user.pk %}">
+        <a href="{% url 'account_app:update' pk=target_user.pk %}">
             <p>
                 프로필수정
             </p>
         </a>
-          <a href="{% url 'account_app:delete' pk=user.pk %}">
+          <a href="{% url 'account_app:delete' pk=target_user.pk %}">
             <p>
                 관리자삭제
             </p>
