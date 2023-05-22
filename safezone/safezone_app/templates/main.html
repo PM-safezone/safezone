@@ -155,6 +155,7 @@
         .button-group {
             display: flex;
             justify-content: right;
+            margin-right: 100px;
             gap: 10px;
             width: 100%;
         }
@@ -184,23 +185,50 @@
             color: #0f1020;
         }
 
-        .btn-clear {
-            margin-right: 10px;
+        .btn-save0 {
             background-color: #0f1020;
             border: 0.5px solid #00eaff;
             color: #00eaff;
             margin-bottom: 20px;
         }
 
-        .btn-clear:hover {
+        .btn-save0:hover {
             background-color: #00eaff;
             border: 0.5px solid #0f1020;
+            color: #00eaff;
+        }
+
+        .btn-save0:active {
+            background-color: #0f1020;
+            color: #00eaff;
+        }
+
+        .btn-clear {
+            background-color: #00eaff;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+            margin-bottom: 20px;
+        }
+
+        .btn-clear:hover {
+            background-color: #0f1020;
+            border: 0.5px solid #00eaff;
             color: #0f1020;
         }
 
         .btn-clear:active {
+            background-color: #00eaff;
+            color: #0f1020;
+        }
+
+        .btn-settings,
+        .btn-save,
+        .btn-video {
+            margin-right: 10px;
             background-color: #0f1020;
-            color: #00eaff;
+            border: 0.5px solid #ff6800;
+            color: #ff6800;
+            margin-bottom: 20px;
         }
 
         .btn-settings,
@@ -233,15 +261,7 @@
 <main>
     <section>
         <h1>CCTV 연동화면</h1>
-<<<<<<< HEAD
-        {% if user %}
-            <button id="logout-button" class="btn btn-primary">로그아웃</button>
-        {% else %}
-            <button id="logout-button" class="btn btn-primary">로그인</button>
-        {% endif %}
-=======
         <button id="logout-button" class="btn btn-logout">로그아웃</button>
->>>>>>> a600a65338832053548a7bb80054c88167a801d7
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
@@ -300,7 +320,8 @@
                     <textarea id="violation-content" class="violation-content" rows="5"></textarea>
                 </div>
                 <div class="button-group">
-                    <button id="clear-button" class="btn btn-clear">Clear</button>
+                    <button onclick="save0Text()" id="save0-button" class="btn btn-save0">Save</button>
+                    <button onclick="clearText()" id="clear-button" class="btn btn-clear">Clear</button>
                 </div>
                 <div class="button-container">
                     <button class="btn btn-settings" onclick="location.href='settings.html'">Settings</button>
