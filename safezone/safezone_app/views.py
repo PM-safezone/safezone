@@ -1,17 +1,21 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.http import Http404, StreamingHttpResponse, HttpResponseServerError, JsonResponse
-from django.http import Http404
-from django.utils.decorators import method_decorator
-
-from .forms import VideoForm
-from .models import Video
+from django.utils.decorators import method_decorator, gzip
 from django.contrib.auth.views import LoginView
-import cv2
-from torchvision import transforms
-from yolov5.models.experimental import *
 from django.views.decorators.csrf import csrf_exempt
 from account_app.decorators import admin_ownership_required
+import cv2
+import threading
+import torch
+from torchvision import transforms
+from PIL import Image
+import time
+from .forms import VideoForm
+from .models import Video
+from yolov5.models.experimental import *
+import subprocess
+
 
 
 # Create your views here.
@@ -105,14 +109,7 @@ def video_detail(request, fileNo):
     video = get_object_or_404(Video, pk=fileNo)
     return render(request, 'video_detail.html', {'video': video})
 
-from django.views.decorators import gzip
-from django.http import StreamingHttpResponse
-import cv2
-import threading
-import torch
-from torchvision import transforms
-from PIL import Image
-import time
+
 class VideoCamera(object):
 
     def __init__(self):
@@ -195,3 +192,10 @@ def livefeed(request):
     except Exception as e:
         print(e)
         return HttpResponseServerError()
+    
+
+def run_yolov5_webcam(request):
+    command = 'python C:/Users/Jinsan/Desktop/YolosafezoneAI/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    output = result.stdout
+    return render(request, 'yolov5_webcam.html', {'output': output})
