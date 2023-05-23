@@ -155,6 +155,7 @@
         .button-group {
             display: flex;
             justify-content: right;
+            margin-right: 100px;
             gap: 10px;
             width: 100%;
         }
@@ -164,6 +165,21 @@
             top: 80px;
             right: 100px;
             z-index: 1;
+        }
+
+        #mypage-button {
+            position: absolute;
+            top: 80px;
+            right: 190px;
+            z-index: 1;
+        }
+        
+        .button-set {
+            display: flex;
+            justify-content: right;
+            margin-right: 100px;
+            gap: 10px;
+            width: 100%;
         }
 
         .btn-logout {
@@ -184,23 +200,50 @@
             color: #0f1020;
         }
 
-        .btn-clear {
-            margin-right: 10px;
+        .btn-save0 {
             background-color: #0f1020;
             border: 0.5px solid #00eaff;
             color: #00eaff;
             margin-bottom: 20px;
         }
 
-        .btn-clear:hover {
+        .btn-save0:hover {
             background-color: #00eaff;
             border: 0.5px solid #0f1020;
             color: #0f1020;
         }
 
-        .btn-clear:active {
+        .btn-save0:active {
             background-color: #0f1020;
             color: #00eaff;
+        }
+
+        .btn-clear {
+            background-color: #00eaff;
+            border: 0.5px solid #0f1020;
+            color: #0f1020;
+            margin-bottom: 20px;
+        }
+
+        .btn-clear:hover {
+            background-color: #0f1020;
+            border: 0.5px solid #00eaff;
+            color: #00eaff;
+        }
+
+        .btn-clear:active {
+            background-color: #00eaff;
+            color: #0f1020;
+        }
+
+        .btn-settings,
+        .btn-save,
+        .btn-video {
+            margin-right: 10px;
+            background-color: #0f1020;
+            border: 0.5px solid #ff6800;
+            color: #ff6800;
+            margin-bottom: 20px;
         }
 
         .btn-settings,
@@ -233,9 +276,9 @@
 <main>
     <section>
         <h1>CCTV 연동화면</h1>
-{#        로그아웃 버튼 변경 #}
+            {# 로그아웃 버튼 변경 #}
         <a id="logout-button" class="btn btn-primary" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
-         <a id="mypage-button" class="btn btn-primary" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
+        <a id="mypage-button" class="btn btn-primary" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
@@ -294,13 +337,10 @@
                     <textarea id="violation-content" class="violation-content" rows="5"></textarea>
                 </div>
                 <div class="button-group">
-                    <button id="clear-button" class="btn btn-clear">Clear</button>
+                    <button onclick="save0Text()" id="save0-button" class="btn btn-save0">Save</button>
+                    <button onclick="clearText()" id="clear-button" class="btn btn-clear">Clear</button>
                 </div>
                 <div class="button-container">
-                    <button class="btn btn-primary" onclick="location.href='settings.html'">Settings</button>
-                    <button class="btn btn-success">Save File</button>
-                    <form action="{% url 'safezone_app:upload_video' %}" method="POST">
-{#                        todo url 변경#}
                     <button class="btn btn-settings" onclick="location.href='settings.html'">Settings</button>
                     <button class="btn btn-save">Save File</button>
                     <form action="{% url 'safezone_app:upload_video' %}" method="POST">
@@ -356,7 +396,7 @@
                     zoomOutButton.style.opacity = "0";
                 });
 
-
+                
                 // 다른 카메라 숨기기
                 for (var j = 0; j < cameras.length; j++) {
                     if (cameras[j] !== this) {
@@ -374,38 +414,26 @@
     areaSelect.addEventListener("change", function () {
         var selectedArea = areaSelect.value;
         if (selectedArea === "1") {
-            violationContent.value = "1구역 위반 사항 내용";
+            violationContent.value = "1 구역 위반 사항 내용";
         } else if (selectedArea === "2") {
-            violationContent.value = "2구역 위반 사항 내용";
+            violationContent.value = "2 구역 위반 사항 내용";
         } else if (selectedArea === "3") {
-            violationContent.value = "3구역 위반 사항 내용";
+            violationContent.value = "3 구역 위반 사항 내용";
         } else if (selectedArea === "4") {
-            violationContent.value = "4구역 위반 사항 내용";
+            violationContent.value = "4 구역 위반 사항 내용";
         } else if (selectedArea === "5") {
-            violationContent.value = "5구역 위반 사항 내용";
+            violationContent.value = "5 구역 위반 사항 내용";
         } else if (selectedArea === "6") {
-            violationContent.value = "6구역 위반 사항 내용";
+            violationContent.value = "6 구역 위반 사항 내용";
         } else if (selectedArea === "7") {
-            violationContent.value = "7구역 위반 사항 내용";
+            violationContent.value = "7 구역 위반 사항 내용";
         } else if (selectedArea === "8") {
-            violationContent.value = "8구역 위반 사항 내용";
+            violationContent.value = "8 구역 위반 사항 내용";
         } else if (selectedArea === "9") {
-            violationContent.value = "9구역 위반 사항 내용";
+            violationContent.value = "9 구역 위반 사항 내용";
         } else {
             violationContent.value = "";
         }
-    });
-
-    // Open Folder 버튼
-    var openFolderButton = document.getElementById("open-folder-button");
-    var folderInput = document.getElementById("folder-input");
-
-    openFolderButton.addEventListener("click", function() {
-    folderInput.click();
-    });
-
-    folderInput.addEventListener("change", function() {
-        var selectedFolder = folderInput.files[0];
     });
 
     // CCTV 클릭 시 선택박스 및 violation box 변경
@@ -439,6 +467,27 @@
             }
         });
     });
+    // SAVE, CLEAR BUTTON
+    // // 페이지가 로드될 때 텍스트 박스의 값을 복원합니다.
+    // window.onload = function() {
+    // var savedText = localStorage.getItem("myText");
+    // if (savedText) {
+    //     document.getElementById("myTextarea").value = savedText;
+    // }
+    // };
+
+    // // 텍스트 박스의 값을 로컬 스토리지에 저장합니다.
+    // function saveText() {
+    // var text = document.getElementById("myTextarea").value;
+    // localStorage.setItem("myText", text);
+    // }
+
+    // // 텍스트 박스의 값을 지웁니다.
+    // function clearText() {
+    // document.getElementById("myTextarea").value = "";
+    // // 로컬 스토리지에서 저장된 값을 제거합니다.
+    // localStorage.removeItem("myText");
+    // }
 </script>
 </body>
 </html>
