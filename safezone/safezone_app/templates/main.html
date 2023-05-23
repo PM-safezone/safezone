@@ -340,7 +340,10 @@
                         {% csrf_token %}
                         <button class="btn btn-video">Video Upload</button>
                     </form>
-                    <button class="btn btn-webcam" onclick="location.href='#'">WebCam 실시간 인식</button>
+                    <form action="{% url 'safezone_app:yolov5_webcam' %}" method = "POST">
+                        {% csrf_token %}
+                        <button class="btn btn-webcam">WebCam 실시간 인식</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -348,6 +351,27 @@
 </main>
 
 <script>
+    // AJAX 요청 보내기
+    function sendRequest() {
+      $.ajax({
+        type: 'GET',
+        url: '/run_yolov5_webcam/',  // 요청을 처리할 URL
+        success: function(data) {
+          // 응답 처리
+          console.log(data.output);  // 응답 데이터 콘솔에 출력
+        },
+        error: function(xhr, status, error) {
+          // 오류 처리
+          console.error(error);
+        }
+      });
+    }
+
+  // 페이지 로드 시 자동으로 AJAX 요청 보내기
+  $(document).ready(function() {
+    sendRequest();
+  });
+
     document.addEventListener("DOMContentLoaded", function () {
         var cameras = document.getElementsByClassName("cctv-camera");
 

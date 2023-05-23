@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.http import Http404, StreamingHttpResponse, HttpResponseServerError, JsonResponse
-from django.utils.decorators import method_decorator, gzip
+from django.utils.decorators import method_decorator
+from django.views.decorators import gzip
 from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
 from account_app.decorators import admin_ownership_required
@@ -15,13 +16,13 @@ from .forms import VideoForm
 from .models import Video
 from yolov5.models.experimental import *
 import subprocess
-
+import json
 
 
 # Create your views here.
 # @login_required
 def main(request):
-    return render(request, 'main.html', {'livefeed_result': livefeed(request)})
+    return render(request, 'main.html')
 
 def settings(request):
     if request.method == 'POST':
@@ -109,93 +110,105 @@ def video_detail(request, fileNo):
     video = get_object_or_404(Video, pk=fileNo)
     return render(request, 'video_detail.html', {'video': video})
 
+def yolov5_webcam(request):
+    return render(request, 'yolov5_webcam.html')
 
-class VideoCamera(object):
-
-    def __init__(self):
-        self.video = cv2.VideoCapture(0)
-        self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
-        self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
-        (self.grabbed, self.frame) = self.video.read()
-
-
-        # Yolov5m model load
-        self.model = torch.hub.load('ultralytics/yolov5', 'custom', path='safezone_app/best.pt', force_reload=True)
-        self.model.eval()
-
-        threading.Thread(target=self.update, args=()).start()
-
-    def __del__(self):
-        self.video.release()
-
-    def get_frame(self):
-        image = self.frame
-        _, jpeg = cv2.imencode('.jpg', image)
-        return jpeg.tobytes()
-
-    def update(self):
-        while True:
-            (self.grabbed, self.frame) = self.video.read()
-
-            # 이미지 전처리
-            image_pil = Image.fromarray(cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB))  # OpenCV 이미지를 PIL 이미지로 변환
-
-            transform = transforms.Compose([
-                transforms.Resize((224, 224)),
-                transforms.ToTensor(),
-                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-            ])
-            image = transform(image_pil)
-            image = image.unsqueeze(0)
-
-            # 추론 수행
-            results = self.model(image)
-            boxes = results[0, :, :4].detach().cpu().numpy()  # 경계 상자 좌표 추출
-            confidences = results[0, :, 4].detach().cpu().numpy()  # 객체의 신뢰도 점수 추출
-            class_labels = results[0, :, 5].detach().cpu().numpy()  # 클래스 레이블 추출
-
-            predictions = []
-            # 경계 상자와 클래스 레이블을 웹캠 화면에 표시
-            for box, confidence, class_label in zip(boxes, confidences, class_labels):
-                x1, y1, x2, y2 = map(int, box)  # 경계 상자 좌표 추출
-
-                # 경계 상자 그리기
-                cv2.rectangle(self.frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
-
-                # 클래스 레이블과 신뢰도 점수 표시
-                text = f'{class_label}: {confidence:.2f}'
-                cv2.putText(self.frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
-
-                predictions.append({
-                    'class_label': class_label,
-                    'confidence': confidence.item()
-                })
-            # 결과를 JSON 형식으로 반환
-            output = {'predictions': predictions}
-
-            # JSON 응답을 처리하기 위해 JsonResponse 사용
-            return JsonResponse(output)
-
-
-
-def gen(camera):
-    while True:
-        frame = camera.get_frame()
-        yield(b'--frame\r\n'
-              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-
-@csrf_exempt
-def livefeed(request):
-    try:
-        cam = VideoCamera()
-        return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
-    except Exception as e:
-        print(e)
-        return HttpResponseServerError()
-    
 
 def run_yolov5_webcam(request):
-    command = 'python C:/Users/Jinsan/Desktop/YolosafezoneAI/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
-    result = subprocess.run(command, shell=True, capture_output=True, text=True)
-    output = result.stdout
-    return render(request, 'yolov5_webcam.html', {'output': output})
+    if request.method == 'POST':
+        command = 'python C:/Users/Jinsan/Desktop/YolosafezoneAI/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+
+        # detect.py 실행을 중지하는지 확인
+        if 'stop_flag' in request.POST and request.POST['stop_flag'] == 'true':
+            return JsonResponse({'message': 'Detection stopped.'})
+
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        output = result.stdout
+        time.sleep(5)
+        return redirect('yolov5_webcam')
+
+    return JsonResponse({'message': 'Invalid request.'})
+#class VideoCamera(object):
+#
+#    def __init__(self):
+#        self.video = cv2.VideoCapture(0)
+#        self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
+#        self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
+#        (self.grabbed, self.frame) = self.video.read()
+#
+#
+#        # Yolov5m model load
+#        self.model = torch.hub.load('ultralytics/yolov5', 'custom', path='safezone_app/best.pt', force_reload=True)
+#        self.model.eval()
+#
+#        threading.Thread(target=self.update, args=()).start()
+#
+#    def __del__(self):
+#        self.video.release()
+#
+#    def get_frame(self):
+#        image = self.frame
+#        _, jpeg = cv2.imencode('.jpg', image)
+#        return jpeg.tobytes()
+#
+#    def update(self):
+#        while True:
+#            (self.grabbed, self.frame) = self.video.read()
+#
+#            # 이미지 전처리
+#            image_pil = Image.fromarray(cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB))  # OpenCV 이미지를 PIL 이미지로 변환
+#
+#            transform = transforms.Compose([
+#                transforms.Resize((224, 224)),
+#                transforms.ToTensor(),
+#                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+#            ])
+#            image = transform(image_pil)
+#            image = image.unsqueeze(0)
+#
+#            # 추론 수행
+#            results = self.model(image)
+#            boxes = results[0, :, :4].detach().cpu().numpy()  # 경계 상자 좌표 추출
+#            confidences = results[0, :, 4].detach().cpu().numpy()  # 객체의 신뢰도 점수 추출
+#            class_labels = results[0, :, 5].detach().cpu().numpy()  # 클래스 레이블 추출
+#
+#            predictions = []
+#            # 경계 상자와 클래스 레이블을 웹캠 화면에 표시
+#            for box, confidence, class_label in zip(boxes, confidences, class_labels):
+#                x1, y1, x2, y2 = map(int, box)  # 경계 상자 좌표 추출
+#
+#                # 경계 상자 그리기
+#                cv2.rectangle(self.frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
+#
+#                # 클래스 레이블과 신뢰도 점수 표시
+#                text = f'{class_label}: {confidence:.2f}'
+#                cv2.putText(self.frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+#
+#                predictions.append({
+#                    'class_label': class_label,
+#                    'confidence': confidence.item()
+#                })
+#            # 결과를 JSON 형식으로 반환
+#            output = {'predictions': predictions}
+#
+#            # JSON 응답을 처리하기 위해 JsonResponse 사용
+#            return JsonResponse(output)
+#
+#
+#
+#def gen(camera):
+#    while True:
+#        frame = camera.get_frame()
+#        yield(b'--frame\r\n'
+#              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+#
+#@csrf_exempt
+#def livefeed(request):
+#    try:
+#        cam = VideoCamera()
+#        return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
+#    except Exception as e:
+#        print(e)
+#        return HttpResponseServerError()
+    
+
