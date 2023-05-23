@@ -15,7 +15,7 @@ from account_app.decorators import admin_ownership_required
 
 
 # Create your views here.
-@login_required
+# @login_required
 def main(request):
     return render(request, 'main.html', {'livefeed_result': livefeed(request)})
 

@@ -238,17 +238,8 @@
 
         .btn-settings,
         .btn-save,
-        .btn-video {
-            margin-right: 10px;
-            background-color: #0f1020;
-            border: 0.5px solid #ff6800;
-            color: #ff6800;
-            margin-bottom: 20px;
-        }
-
-        .btn-settings,
-        .btn-save,
-        .btn-video {
+        .btn-video,
+        .btn-webcam {
             margin-right: 10px;
             background-color: #0f1020;
             border: 0.5px solid #ff6800;
@@ -258,7 +249,8 @@
 
         .btn-settings:hover,
         .btn-save:hover,
-        .btn-video:hover {
+        .btn-video:hover,
+        .btn-webcam:hover {
             background-color: #ff6800;
             border: 0.5px solid #0f1020;
             color: #0f1020;
@@ -266,7 +258,8 @@
 
         .btn-settings:active,
         .btn-save:active,
-        .btn-video:active {
+        .btn-video:active,
+        .btn-webcam:active {
             background-color: #0f1020;
             color: #ff6800;
         }
@@ -347,6 +340,7 @@
                         {% csrf_token %}
                         <button class="btn btn-video">Video Upload</button>
                     </form>
+                    <button class="btn btn-webcam" onclick="location.href='#'">WebCam 실시간 인식</button>
                 </div>
             </div>
         </div>
