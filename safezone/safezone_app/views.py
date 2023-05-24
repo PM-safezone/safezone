@@ -113,7 +113,7 @@ def video_detail(request, fileNo):
 def yolov5_webcam(request):
     return render(request, 'yolov5_webcam.html')
 
-
+@csrf_exempt
 def run_yolov5_webcam(request):
     if request.method == 'POST':
         command = 'python C:/Users/Jinsan/Desktop/YolosafezoneAI/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
@@ -124,8 +124,8 @@ def run_yolov5_webcam(request):
 
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         output = result.stdout
-        time.sleep(5)
-        return redirect('yolov5_webcam')
+        time.sleep(2)
+        return render(request, 'run_yolov5_webcam.html')
 
     return JsonResponse({'message': 'Invalid request.'})
 #class VideoCamera(object):

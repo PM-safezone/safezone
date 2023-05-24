@@ -12,41 +12,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <h1>Yolov5 Webcam Detection</h1>
-    <form>
-        {% csrf_token %}
-        <button id="startButton">Start Detection</button>
-    </form>
-    <button id="stopButton" disabled>Stop Detection</button><br>
+
+    <button id="stopButton" disabled>Stop Detection</button>
     <button id="homeButton">Home</button>
     
     <div id="output"></div>
     
 <script>
     $(document).ready(function() {
-        $("#startButton").click(function() {
-            $(this).prop("disabled", true);
-            $("#stopButton").prop("disabled", false);
-            $("#homeButton").prop("disabled", true);
-            $("#output").html("Detection in progress...");
-    
-            $.ajax({
-                url: "/run_yolov5_webcam/",
-                type: "POST",
-                data: {
-                    'start_flag': true,
-                    'csrfmiddlewaretoken' : '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    $("#output").html(response.message);
-                    $("#stopButton").prop("disabled", false);
-                    $("#homeButton").prop("disabled", false);
-                },
-                error: function(xhr) {
-                    $("#output").html("Error: " + xhr.responseText);
-                    $("#startButton").prop("disabled", false);
-                }
-            });
-        });
     
         $("#stopButton").click(function() {
             $(this).prop("disabled", true);
@@ -55,10 +28,9 @@
     
             $.ajax({
                 url: "/yolov5_webcam/",
-                type: "POST",
+                type: "GET",
                 data: {
-                    'stop_flag': true,
-                    'csrfmiddlewaretoken' : '{{ csrf_token }}'
+                    'stop_flag': true
                 },
                 success: function(response) {
                     $("#output").html(response.message);

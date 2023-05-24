@@ -26,5 +26,5 @@ urlpatterns = [
     path('upload_video/', views.upload_video, name='upload_video'),
     path('video_detail/<int:fileNo>/', views.video_detail, name='video_detail'),
     path('yolov5_webcam/', views.yolov5_webcam, name='yolov5_webcam'),
-    path('yolov5_webcam/', views.run_yolov5_webcam, name='run_yolov5_webcam'),
+    path('run_yolov5_webcam/', views.run_yolov5_webcam, name='run_yolov5_webcam'),
 ]
