@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'safezone_app',
     'account_app',  # 추가
     'siteadmin_app',  # 추가
+    'bootstrap4',  # 추가
 ]
 
 MIDDLEWARE = [
