@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('safezone_app.urls')),
     path('accounts/',include('account_app.urls')),
+    path('siteadmins/',include('siteadmin_app.urls')),
 ]
