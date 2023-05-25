@@ -1,3 +1,33 @@
-<div>
-  <img src="{{ siteadmin.image.url }}" alt="">
+<style>
+{#.image-container {#}
+{#  width: 100%;#}
+{#  border-radius: 50%;#}
+{#  overflow: hidden;#}
+{##}
+{#.card-img-top {#}
+{#  width: 100%;#}
+{#  height: 100%;#}
+{#  object-fit: cover;#}
+{#.card-body {#}
+{#  width: 80%;  /* or any value that suits your design */#}
+{#  margin: 0 auto;  /* centers the block if less than 100% wide */#}
+{##}
+{#.card-title, .card-text {#}
+{#  display: block;#}
+{#  max-width: 80%;  /* or any value that suits your design */#}
+{#  margin: 0 auto;  /* centers the block if less than 100% wide */#}
+{##}
+
+</style>
+
+<div class="card">
+    <div class="image-container" style="display: block">
+        <img class="card-img-top" src="{{ siteadmin.image.url }}" alt="Admin Image" width="100%"
+             style="display: block">
+    </div>
+    <div style="display: block">
+        <p>name</p>
+    </div>
+
 </div>
+

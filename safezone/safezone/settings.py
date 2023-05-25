@@ -27,7 +27,7 @@ env = environ.Env(
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(
-    os.path.join(BASE_DIR, '.env'))
+    env_file=os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -131,10 +131,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # 사진 저장을 위해 수정
-
-MEDIA_URL = '/media/' # 사진 저장을 위해 수정
-# 미디어 관리를 위해 Pillow 설치
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -151,3 +147,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy('safezone_app:main') # mainpage 등록
 LOGOUT_REDIRECT_URL = reverse_lazy('account_app:login') # 로그아웃시 로그인 페이지로 이동하도록 설정
+
+MEDIA_URL = '/media/' # 사진 저장을 위해 수정
+# 미디어 관리를 위해 Pillow 설치
+MEDIA_ROOT = os.path.join(
+    BASE_DIR, 'media/',
+) # 사진 저장을 위해 수정
+
