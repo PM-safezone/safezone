@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="82e8f9d1-a3ca-424d-ab01-5a3499ade196" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/DBquery" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yolov5 사용법.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/decorators.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/templates/account_app/create_admin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/templates/account_app/create_site_admin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/templates/account_app/delete_admin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/templates/account_app/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/templates/account_app/profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/templates/account_app/update_admin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/account_app/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/SMS_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/migrations/0002_alter_video_regdate_alter_video_title.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/migrations/0003_alter_setting_alarmmode_delete_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/manregister.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/settings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/signin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/sitemanregister.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/test1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/testpage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/upload_video.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/video_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/views.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="moongi" />
+                    <option name="lastUsedInstant" value="1684484076" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1684484075" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Q0E43INTJXMUTezWi25wZWaOnC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;moongi&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Project_by_me&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="safezone" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/safezone" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="software.aws.toolkits.jetbrains.core.execution.PythonAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/safezone/manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.manage" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="82e8f9d1-a3ca-424d-ab01-5a3499ade196" name="변경" comment="" />
+      <created>1684481904604</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684481904604</updated>
+      <workItem from="1684481906703" duration="3727000" />
+      <workItem from="1684485810995" duration="360000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/safezone$manage.coverage" NAME="manage 커버리지 결과" MODIFIED="1684485330608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/safezone" />
+  </component>
+</project>
