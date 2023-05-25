@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>Pi Video Surveillance</h1>
+    <h1 id="count">0</h1>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <h1>Yolov5 Webcam Detection</h1>
@@ -17,10 +18,9 @@
     <button id="homeButton">Home</button>
     
     <div id="output"></div>
-    
 <script>
     $(document).ready(function() {
-    
+        
         $("#stopButton").click(function() {
             $(this).prop("disabled", true);
             $("#homeButton").prop("disabled", false);
@@ -46,6 +46,7 @@
         $("#homeButton").click(function() {
             window.location.href = "/";
         });
+
     });
 </script>
 </body>

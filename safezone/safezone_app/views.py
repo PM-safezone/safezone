@@ -7,8 +7,7 @@ from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
 from account_app.decorators import admin_ownership_required
 import cv2
-import threading
-import torch
+import os
 from torchvision import transforms
 from PIL import Image
 import time
@@ -116,44 +115,27 @@ def yolov5_webcam(request):
 @csrf_exempt
 def run_yolov5_webcam(request):
     if request.method == 'POST':
-        command = 'python C:/Users/Jinsan/Desktop/YolosafezoneAI/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
-
+        
+        command = 'python C:\Users\leeyo\Project\safezone\safezone\safezone_app\yolov5 --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        try:
+            subprocess.run(command, shell=True, check=True)
+            return HttpResponse("Detection completed successfully.")
+        except subprocess.CalledProcessError as e:
+            return HttpResponse(f"Error occurred while running detection: {e}")
         # 웹캠 캡처 객체 생성
         cap = cv2.VideoCapture(0)  # 0은 기본 웹캠을 나타냄
-
-        # 저장할 프레임 수와 프레임 버퍼 초기화
-        max_frames = 300
-        frame_buffer = deque(maxlen=max_frames)
+        #count = count * 30
+        #start_file_number = count
+        #end_file_number = count + 299
 
         # detect.py 스크립트 실행
-        process = subprocess.Popen(command.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        os.system(command)
 
         # 일정 시간마다 출력 결과 확인
-        while True:
-            output = process.stdout.readline().decode('utf-8').strip()
-            if process.poll() is not None:
-                break
-            
+        
             # 특정 클래스 객체 검출 수 확인
-            num_objects_detected = {'safety_belt_O'  : 0,
-                                    'safety_belt_X'  : 0,
-                                    'safety_shoes_O' : 0, 
-                                    'safety_shoes_X' : 0,
-                                    'safety_helmet_O': 0,
-                                    'safety_helmet_X': 0}
-
-            # 일정 수 이상의 객체가 검출되면 기능 수행
-            for byclass, counts in num_objects_detected.items():
-                if counts >= 5:
-                    # 프레임당 카운트 해서 SMS 호출 로직
-                    print(num_objects_detected)
-
-                    # 프레임 가져오기
-                    ret, frame = cap.read()
-
-                    # 프레임 버퍼에 현재 프레임 추가
-                    frame_buffer.append(frame)
-
+        
+        
         # detect.py 실행을 중지하는지 확인
         if 'stop_flag' in request.POST and request.POST['stop_flag'] == 'true':
             # 웹캠 캡처 객체 해제
@@ -161,7 +143,7 @@ def run_yolov5_webcam(request):
             return JsonResponse({'message': '감지를 중지했습니다.'})
 
         # Subprocess 종료 대기
-        process.communicate()
+        #process.communicate()
 
         # 웹캠 캡처 객체 해제
         cap.release()
