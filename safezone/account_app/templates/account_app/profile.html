@@ -7,7 +7,7 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
-        @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+     @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
         :root {
             --glitched-duration: 1s;
@@ -176,36 +176,64 @@
             background-color: #eaff00;
             color: #0f1020;
         }
+
+        .form-group p,
+        .form-group h2 {
+        /* Apply the desired styles for the output form fields here */
+        /* You can use the same CSS styles or define new styles */
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #eaff00;
+        /* Add any additional styles as needed */
+    }
     </style>
 </head>
 <body>
-    <div class="container">
-        {{ form.as_p }}
-
-        <p>
-            {{ target_user.data_join }}
-        </p>
-        <h2>
-            {{ target_user.username }}
+{#    <div class="form-container">#}
+{#        <div class="form-field">#}
+{#            <label for="username">아이디</label>#}
+{#           {{ target_user.username }}#}
+{#        </div>#}
+{##}
+{#        <p>#}
+{#            {{ target_user.data_join }}#}
+{#        </p>#}
+{#        <h2>#}
+{#            {{ target_user.username }}#}
 {#            todo DB 저장은되는데 테이블이 달라서 조회가 안되나.. 조회가 안됨 - user 는 조회안되는데 , target_user 는 조회됨 차이가 뭐야.#}
-            {{ target_user.management_locations }}
-            {{ target_user.phone }}
-            {{ target_user.email }}
-        </h2>
+{#            {{ target_user.management_locations }}#}
+{#            {{ target_user.phone }}#}
+{#            {{ target_user.email }}#}
+{#        </h2>#}
+    <div class="container">
+        <form action="{% url 'account_app:create' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+               <h1>관리자 프로필</h1>
+               {{ form.as_p }}
 
-        {% if target_user.pk == request.user.pk %}
-        <a href="{% url 'account_app:update' pk=user.pk %}">
-            <p>
-                프로필수정
-            </p>
-        </a>
-          <a href="{% url 'account_app:delete' pk=user.pk %}">
-            <p>
-                관리자삭제
-            </p>
-        </a>
-        {% endif %}
-
+                {% if target_user.pk == request.user.pk %}
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-register">
+                        <a href="{% url 'account_app:update' pk=user.pk %}">
+                            <p>
+                                프로필수정
+                            </p>
+                        </a>
+                    </button>
+                    <button type="submit" class="btn btn-register">
+                        <a href="{% url 'account_app:delete' pk=user.pk %}">
+                            <p>
+                                관리자삭제
+                            </p>
+                        </a>
+                    </button>
+                </div>
+                 {% endif %}
+            </div>
+        </form>
     </div>
 </body>
 </html>

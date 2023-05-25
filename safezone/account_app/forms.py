@@ -39,3 +39,24 @@ class AdminUpdateForm(CreateAdminForm):
 		super().__init__(*args, **kwargs)
 
 		self.fields['username'].disabled = True
+
+	help_texts = {
+		'username': None,
+		'password1': None,
+		'password2': None,
+		'email': None,
+	}
+
+
+class AdminProfileForm(CreateAdminForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+		self.fields['username'].disabled = True
+	class Meta:
+		model = UserModel
+		fields = '__all__'
+		exclude = ['password1', 'password2']
+
+
+

@@ -4,4 +4,11 @@
 # Base ------------------------------------------------------------------------
 Django == 4.1.5
 django-environ
+Pillow
+torchvision
+mysqlclient
+django-bootstrap4
+opencv-python
+pytorch-lightning
+yolov5
 # pip install --upgrade environ
