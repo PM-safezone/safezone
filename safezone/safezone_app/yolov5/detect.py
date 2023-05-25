@@ -279,14 +279,17 @@ def run(
                 if detect_deque_val: # deque에 값이 있을때
                     for val in detect_deque_val: # deque의 값이 리스트이기때문에 for문 추가
                         count[str(val)] += 1 # deque의 값에 해당하는 클래스를 count +1 
-
+        
         for count_index in count: # dictionary 탐색 시작        
-            if count[count_index] >= 70:  # dictionary 값중 70이 넘는 값이 있다면
+            if count[count_index] >= 30:  # dictionary 값중 70이 넘는 값이 있다면
                 # sms 발송하기
                 print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
                 # SMS_data['content'] = count_index + "번 클래스가 70프레임 발견되었습니다."              
                 # res = requests.post(SMS_url+SMS_uri,headers=header,data=json.dumps(SMS_data))
-                # print(res.json())
+                # print(res.json())                
+                for remove_deque in detect_deque:
+                    if int(count_index) in remove_deque:
+                        remove_deque.remove(int(count_index))
             count[count_index] = 0 # dictionary 초기화
 
         # Print time (inference-only)

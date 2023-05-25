@@ -5,9 +5,15 @@ from collections import deque
 
 
 deque3 = deque(maxlen=70)
-deque2 = deque([1, 2, 3])
+deque2 = deque([[], [1,2], [3,4],[1,2,3]])
 for i in deque2:
     print(i)
+
+for remove_deque in deque2:
+    if 2 in remove_deque:
+        remove_deque.remove(2)
+
+print(deque2)
 
 
 
