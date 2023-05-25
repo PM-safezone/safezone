@@ -1,8 +1,0 @@
-
-lpython:S1192E"HDefine a constant instead of duplicating this literal 'videos/' 4 times.( à£ùÿÿÿÿ8Ï¸Û—ƒ1
-_python:S2208"GImport only needed names or import the module and then use its members.(ÏÏÍì
-Gpython:S1172f"/Remove the unused function parameter "request".(±À¾ò
-ipython:S117f"RRename this parameter "fileNo" to match the regular expression ^[_a-z][a-z0-9_]*$.(±À¾ò
-Fpython:S1481g")Remove the unused local variable "video".(ª×Òñÿÿÿÿÿ
-ipython:S117h"RRename this parameter "fileNo" to match the regular expression ^[_a-z][a-z0-9_]*$.(±À¾ò
-Jpython:S1751Œ"1Refactor this loop to do more than one iteration.(ğš×—
