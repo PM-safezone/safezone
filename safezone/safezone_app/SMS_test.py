@@ -13,7 +13,7 @@ access_key = "oDgbh0ZJsFZJU4B02NSP"
 
 
 url = "https://sens.apigw.ntruss.com"
-uri = "/sms/v2/services/ncp:sms:kr:308300847858:safezone/messages"
+uri = "/sms/v2/services/ncp:sms:kr:308300814920:safezone/messages"
 
 def make_signature():
     secret_key = "kcdWYdxcH1Y0FwwzIl980FLz6ZDTV2DH15fivP2Z"
