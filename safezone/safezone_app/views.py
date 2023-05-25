@@ -116,7 +116,7 @@ def yolov5_webcam(request):
 def run_yolov5_webcam(request):
     if request.method == 'POST':
         
-        command = 'python C:\Users\leeyo\Project\safezone\safezone\safezone_app\yolov5 --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/safezone_app/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
         try:
             subprocess.run(command, shell=True, check=True)
             return HttpResponse("Detection completed successfully.")
