@@ -1,7 +1,0 @@
-
-epython:S1192d"HDefine a constant instead of duplicating this literal 'last.pt' 3 times.(•ßîàùÿÿÿÿ
-Lpython:S1066M"/Merge this if statement with the enclosing one.(ŸÁþØûÿÿÿÿ
-apython:S3358E"IExtract this nested conditional expression into an independent statement.(ë˜¥»
-`python:S3358G"IExtract this nested conditional expression into an independent statement.(²ï‚}
-rpython:S1186ˆ"YAdd a nested comment explaining why this method is empty, or complete the implementation.(¬ä½í
-Vpython:S5754¡"8Catch a more specific exception or reraise the exception(ê¥Ð…úÿÿÿÿ

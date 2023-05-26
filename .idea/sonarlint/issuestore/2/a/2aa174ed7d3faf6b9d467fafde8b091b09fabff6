@@ -1,10 +1,0 @@
-
-apython:S5797¼"HReplace this expression; used as a condition it will always be constant.(•øà 
-Hpython:S5806s"+Rename this variable; it shadows a builtin.(·æúşÿÿÿÿ
-®python:S1515š"”Add a parameter to the parent lambda function and use variable "fn" as its default value; The value of "fn" might change at the next loop iteration.(µ€Ø¦
-Dpython:S5806ì"+Rename this variable; it shadows a builtin.(¤À
-Cpython:S5806¶"+Rename this variable; it shadows a builtin.(¸Å²f
-Ipython:S5806Ò"+Rename this variable; it shadows a builtin.(½óú§ûÿÿÿÿ
-Vpython:S112…">Replace this generic exception class with a more specific one.(©‘ïü
-gpython:S3358¬"IExtract this nested conditional expression into an independent statement.(óÂöúÿÿÿÿ
-Ipython:S5806õ"+Rename this variable; it shadows a builtin.(àŒæØıÿÿÿÿ

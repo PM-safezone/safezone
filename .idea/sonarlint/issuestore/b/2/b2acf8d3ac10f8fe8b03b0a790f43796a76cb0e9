@@ -1,8 +1,0 @@
-
-ipython:S1192ß"KDefine a constant instead of duplicating this literal 'config.txt' 3 times.(áš‰ìşÿÿÿÿ
-apython:S33585"IExtract this nested conditional expression into an independent statement.(¢¯ìŠ
-upython:S117‹"XRename this local variable "Binding" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÀŠ¼Èıÿÿÿÿ
-ypython:S117Æ"\Rename this local variable "Interpreter" to match the regular expression ^[_a-z][a-z0-9_]*$.(³Âƒ©ÿÿÿÿÿ
-Dpython:S5806¶"+Rename this variable; it shadows a builtin.(Ëéú 
-epython:S1226†"LIntroduce a new variable or use its initial value before reassigning 'self'.(øğÚ
-Dpython:S5806ó"+Rename this variable; it shadows a builtin.(êº¹
