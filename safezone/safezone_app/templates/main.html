@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
+    <script src="https://vjs.zencdn.net/7.15.4/video.js"></script>  <!--Video.js--> 
+    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" /> <!--Video.js--> 
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
@@ -275,7 +277,10 @@
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+1" alt="CCTV 1">
+                    
+                    <video id="my-video" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    
+                    <!--<img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+1" alt="CCTV 1">-->
                     <div class="camera-name">CCTV-1</div>
                 </div>
                 <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
@@ -351,6 +356,16 @@
 </main>
 
 <script>
+    // JW Player 설정
+    var player = videojs('my-video', {
+        sources: [{
+          src: 'http://210.99.70.120:1935/live/cctv005.stream/playlist.m3u8',
+          type: 'application/x-mpegURL'
+        }],
+        width: '300px',
+        height: '300px',
+        autoplay: true
+      });
     // AJAX 요청 보내기
     function sendRequest() {
       $.ajax({
