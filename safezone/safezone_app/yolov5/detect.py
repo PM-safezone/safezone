@@ -188,7 +188,7 @@ def run(
 
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # im.jpg
-            txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # im.txt
+            txt_path = str(save_dir / 'log' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # im.txt
             s += '%gx%g ' % im.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             imc = im0.copy() if save_crop else im0  # for save_crop
@@ -204,14 +204,20 @@ def run(
                     # count[str(int(c))] += 1 # 검출된 클래스 개수 늘리기
                     frame_string += (str(int(c)) + " ") # 검출된 클래스 추가하기       
 
+                log_file = str(save_dir / 'labels' / p.stem) + 'log_file.txt'
                 # Write results
-                for *xyxy, conf, cls in reversed(det):                    
+                object_counts = []
+                for *xyxy, conf, cls in reversed(det):
+                    object_counts.append(cls)
                     if save_txt:  # Write to file
                         xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
-                        with open(f'{txt_path}.txt', 'a') as f:
-                            f.write(('%g ' * len(line)).rstrip() % line + '\n')
-
+                        with open(log_file, 'a') as f:  # 프레임 로그를 파일에 추가
+                            for frame_num, cls in enumerate(object_counts, start=1):
+                                f.write(f'{frame_num}: {int(cls)}\n')
+                    #with open(f'{txt_path}.txt', 'a') as f:
+                    #    f.write(('%g ' * len(line)).rstrip() % line + '\n')    
+                    
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')

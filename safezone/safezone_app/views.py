@@ -17,10 +17,12 @@ from yolov5.models.experimental import *
 import subprocess
 import json
 from collections import deque
-
+import base64
 # Create your views here.
 # @login_required
 def main(request):
+    #rtsp_url = 'rtsp://210.99.70.120:1935/live/cctv001.stream'
+    #display_rtsp_video(rtsp_url)
     return render(request, 'main.html')
 
 def settings(request):
@@ -103,8 +105,7 @@ def upload_video(request):
 
     return render(request, 'upload_video.html', {'form': form})
 
-def video_detail(request, fileNo):
-    video = get_object_or_404(Video, pk=fileNo)
+
 def video_detail(request, fileNo):
     video = get_object_or_404(Video, pk=fileNo)
     return render(request, 'video_detail.html', {'video': video})
@@ -116,14 +117,14 @@ def yolov5_webcam(request):
 def run_yolov5_webcam(request):
     if request.method == 'POST':
         
-        command = 'python D:\Project_by_me\safezone\safezone\safezone_app\yolov5\detect.py --weights D:\Project_by_me\model\best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/safezone_app/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
         try:
             subprocess.run(command, shell=True, check=True)
             return HttpResponse("Detection completed successfully.")
         except subprocess.CalledProcessError as e:
             return HttpResponse(f"Error occurred while running detection: {e}")
         # 웹캠 캡처 객체 생성
-        cap = cv2.VideoCapture(0)  # 0 은 기본 웹캠을 나타냄
+        cap = cv2.VideoCapture(0)  # 0은 기본 웹캠을 나타냄
         #count = count * 30
         #start_file_number = count
         #end_file_number = count + 299
@@ -142,8 +143,6 @@ def run_yolov5_webcam(request):
             cap.release()
             return JsonResponse({'message': '감지를 중지했습니다.'})
 
-        # Subprocess 종료 대기
-        #process.communicate()
 
         # 웹캠 캡처 객체 해제
         cap.release()
@@ -174,51 +173,6 @@ def run_yolov5_webcam(request):
 #        _, jpeg = cv2.imencode('.jpg', image)
 #        return jpeg.tobytes()
 #
-#    def update(self):
-#        while True:
-#            (self.grabbed, self.frame) = self.video.read()
-#
-#            # 이미지 전처리
-#            image_pil = Image.fromarray(cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB))  # OpenCV 이미지를 PIL 이미지로 변환
-#
-#            transform = transforms.Compose([
-#                transforms.Resize((224, 224)),
-#                transforms.ToTensor(),
-#                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-#            ])
-#            image = transform(image_pil)
-#            image = image.unsqueeze(0)
-#
-#            # 추론 수행
-#            results = self.model(image)
-#            boxes = results[0, :, :4].detach().cpu().numpy()  # 경계 상자 좌표 추출
-#            confidences = results[0, :, 4].detach().cpu().numpy()  # 객체의 신뢰도 점수 추출
-#            class_labels = results[0, :, 5].detach().cpu().numpy()  # 클래스 레이블 추출
-#
-#            predictions = []
-#            # 경계 상자와 클래스 레이블을 웹캠 화면에 표시
-#            for box, confidence, class_label in zip(boxes, confidences, class_labels):
-#                x1, y1, x2, y2 = map(int, box)  # 경계 상자 좌표 추출
-#
-#                # 경계 상자 그리기
-#                cv2.rectangle(self.frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
-#
-#                # 클래스 레이블과 신뢰도 점수 표시
-#                text = f'{class_label}: {confidence:.2f}'
-#                cv2.putText(self.frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
-#
-#                predictions.append({
-#                    'class_label': class_label,
-#                    'confidence': confidence.item()
-#                })
-#            # 결과를 JSON 형식으로 반환
-#            output = {'predictions': predictions}
-#
-#            # JSON 응답을 처리하기 위해 JsonResponse 사용
-#            return JsonResponse(output)
-#
-#
-#
 #def gen(camera):
 #    while True:
 #        frame = camera.get_frame()
@@ -234,4 +188,31 @@ def run_yolov5_webcam(request):
 #        print(e)
 #        return HttpResponseServerError()
     
-
+def display_rtsp_video(rtsp_url):
+    video_capture = cv2.VideoCapture(rtsp_url)
+    
+    while True:
+        ret, frame = video_capture.read()
+        if not ret:
+            break
+        
+        # 비디오 프레임을 <video> 태그에 표시
+        ret, buffer = cv2.imencode('.jpg', frame)
+        video_data = base64.b64encode(buffer)
+        video_data_uri = 'data:image/jpeg;base64,' + video_data.decode('utf-8')
+        
+        # JavaScript를 사용하여 <video> 태그의 src를 업데이트
+        js_code = f"document.getElementById('videoPlayer').src = '{video_data_uri}';"
+        js_code += "document.getElementById('videoPlayer').play();"
+        # js_code를 WebSocket 또는 Ajax를 통해 웹 페이지로 전송하거나, Django의 Template에 넘겨준 뒤 실행
+        
+        # 이미지를 <img> 태그에 표시
+        ret, buffer = cv2.imencode('.jpg', frame)
+        image_data = base64.b64encode(buffer)
+        image_data_uri = 'data:image/jpeg;base64,' + image_data.decode('utf-8')
+        
+        # JavaScript를 사용하여 <img> 태그의 src를 업데이트
+        js_code = f"document.getElementById('imageDisplay').src = '{image_data_uri}';"
+        # js_code를 WebSocket 또는 Ajax를 통해 웹 페이지로 전송하거나, Django의 Template에 넘겨준 뒤 실행
+    
+    video_capture.release()
