@@ -125,7 +125,9 @@ def run_yolov5_webcam(request):
             return HttpResponse(f"Error occurred while running detection: {e}")
         # 웹캠 캡처 객체 생성
         cap = cv2.VideoCapture(0)  # 0은 기본 웹캠을 나타냄
-
+        #count = count * 30
+        #start_file_number = count
+        #end_file_number = count + 299
 
         # detect.py 스크립트 실행
         os.system(command)
