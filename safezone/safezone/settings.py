@@ -25,7 +25,7 @@ env = environ.Env(
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 environ.Env.read_env(
-    os.path.join(BASE_DIR, '.env'))
+    env_file=os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'safezone_app',
-    'account_app', # 추가
+    'account_app',  # 추가
+    'siteadmin_app',  # 추가
+    'bootstrap4',  # 추가
 ]
 
 MIDDLEWARE = [
@@ -67,7 +69,7 @@ ROOT_URLCONF = 'safezone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # 추가
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr' #수정
 
 TIME_ZONE = 'Asia/Seoul'
 
@@ -128,14 +130,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = os.path.join(BASE_DIR, '')
-
-MEDIA_URL = '/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [BASE_DIR/"static"]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -144,3 +146,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy('safezone_app:main') # mainpage 등록
 LOGOUT_REDIRECT_URL = reverse_lazy('account_app:login') # 로그아웃시 로그인 페이지로 이동하도록 설정
+
+MEDIA_URL = '/media/' # 사진 저장을 위해 수정
+# 미디어 관리를 위해 Pillow 설치
+MEDIA_ROOT = os.path.join(
+    BASE_DIR, 'media/',
+) # 사진 저장을 위해 수정
+

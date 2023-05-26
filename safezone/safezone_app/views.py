@@ -116,14 +116,14 @@ def yolov5_webcam(request):
 def run_yolov5_webcam(request):
     if request.method == 'POST':
         
-        command = 'python C:\Users\leeyo\Project\safezone\safezone\safezone_app\yolov5 --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        command = 'python D:\Project_by_me\safezone\safezone\safezone_app\yolov5\detect.py --weights D:\Project_by_me\model\best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
         try:
             subprocess.run(command, shell=True, check=True)
             return HttpResponse("Detection completed successfully.")
         except subprocess.CalledProcessError as e:
             return HttpResponse(f"Error occurred while running detection: {e}")
         # 웹캠 캡처 객체 생성
-        cap = cv2.VideoCapture(0)  # 0은 기본 웹캠을 나타냄
+        cap = cv2.VideoCapture(0)  # 0 은 기본 웹캠을 나타냄
         #count = count * 30
         #start_file_number = count
         #end_file_number = count + 299
