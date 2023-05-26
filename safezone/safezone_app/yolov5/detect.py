@@ -155,7 +155,7 @@ def run(
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
     count = {'0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0, '5' : 0} # detecting count     
     frame = 1 # 프레임별 클래스 검색하기 위한 초기화
-    detect_deque = deque(maxlen=70)
+    detect_deque = deque(maxlen=300)
     for path, im, im0s, vid_cap, s in dataset:        
         frame_string = str(frame) + ":" # 프레임별 클래스 검색하기 위한 문자열 초기화
         with dt[0]:
@@ -255,7 +255,7 @@ def run(
                     vid_writer[i].write(im0) 
 
             # deque 만들기           
-            if len(detect_deque) < 70: # deque 사이즈가 70이 안되면 
+            if len(detect_deque) < 300: # deque 사이즈가 300이 안되면 
                 detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 무조건 append            
             else: # deque 사이즈가 70이 넘으면                 
                 detect_deque.popleft() # 선입선출
@@ -274,22 +274,22 @@ def run(
         #     # else:
         #     #     count[count_index] = 0 
         
-        if len(detect_deque) == 70: # deque 사이즈가 70이면   
+        if len(detect_deque) == 300: # deque 사이즈가 300이면   
             for detect_deque_val in detect_deque: # deque 탐색 시작
                 if detect_deque_val: # deque에 값이 있을때
                     for val in detect_deque_val: # deque의 값이 리스트이기때문에 for문 추가
                         count[str(val)] += 1 # deque의 값에 해당하는 클래스를 count +1 
         
         for count_index in count: # dictionary 탐색 시작        
-            if count[count_index] >= 30:  # dictionary 값중 70이 넘는 값이 있다면
+            if count[count_index] >= 240:  # dictionary 값중 240이 넘는 값이 있다면
                 # sms 발송하기
                 print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
                 # SMS_data['content'] = count_index + "번 클래스가 70프레임 발견되었습니다."              
                 # res = requests.post(SMS_url+SMS_uri,headers=header,data=json.dumps(SMS_data))
                 # print(res.json())                
                 for remove_deque in detect_deque:
-                    if int(count_index) in remove_deque:
-                        remove_deque.remove(int(count_index))
+                    if remove_deque:
+                        remove_deque.clear()
             count[count_index] = 0 # dictionary 초기화
 
         # Print time (inference-only)

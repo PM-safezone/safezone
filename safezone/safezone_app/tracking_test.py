@@ -10,8 +10,8 @@ for i in deque2:
     print(i)
 
 for remove_deque in deque2:
-    if 2 in remove_deque:
-        remove_deque.remove(2)
+    if remove_deque:
+        remove_deque.clear()
 
 print(deque2)
 
