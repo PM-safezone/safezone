@@ -82,7 +82,6 @@ venv/
 
 db.sqlight3
 
-../.idea/*
-.idea/*
+../.idea/
 
 __pycache__/
