@@ -1,0 +1,8 @@
+
+dpython:S2208"GImport only needed names or import the module and then use its members.(Ş†–çùÿÿÿÿ
+dpython:S2208"GImport only needed names or import the module and then use its members.(º’¬ßûÿÿÿÿ
+apython:S3358O"IExtract this nested conditional expression into an independent statement.(Òµñö
+apython:S3358j"IExtract this nested conditional expression into an independent statement.(™ë‘Á
+bpython:S3358"IExtract this nested conditional expression into an independent statement.(˜¯Ú£
+epython:S1226™"LIntroduce a new variable or use its initial value before reassigning 'self'.(øğÚ
+Mpython:S1135Ì"4Complete the task associated to this "TODO" comment.(ÀÂÿ

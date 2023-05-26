@@ -1,0 +1,11 @@
+
+fpython:S1192k"IDefine a constant instead of duplicating this literal '.mlmodel' 3 times.(±† õùÿÿÿÿ
+cpython:S1192h"FDefine a constant instead of duplicating this literal '.onnx' 4 times.(¤ÛÃ·úÿÿÿÿ
+~python:S101P"bRename class "iOSModel" to match the regular expression ^_?([A-Z_][a-zA-Z0-9]*|[a-z_][a-z0-9_]*)$.(ş¼ÛËøÿÿÿÿ
+gpython:S3358"IExtract this nested conditional expression into an independent statement.(¡Ç¾¼ıÿÿÿÿ
+gpython:S3358Ü"IExtract this nested conditional expression into an independent statement.(á»±ôúÿÿÿÿ
+gpython:S107"JFunction "run" has 22 parameters, which is greater than the 13 authorized.(‘¦„×üÿÿÿÿ
+Dpython:S5806¬"+Rename this variable; it shadows a builtin.(Ã‹…
+Ipython:S5806ı"+Rename this variable; it shadows a builtin.(Ø×Î“şÿÿÿÿ
+gpython:S3358ı"IExtract this nested conditional expression into an independent statement.(Ø×Î“şÿÿÿÿ
+gpython:S3358€"IExtract this nested conditional expression into an independent statement.(ª£‚°úÿÿÿÿ

@@ -4,7 +4,170 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82e8f9d1-a3ca-424d-ab01-5a3499ade196" name="변경" comment="" />
+    <list default="true" id="82e8f9d1-a3ca-424d-ab01-5a3499ade196" name="변경" comment="test">
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/safezone.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log_file.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/log_file.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/templates/run_yolov5_webcam.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/templates/yolov5_webcam.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/tracking_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/ISSUE_TEMPLATE/bug-report.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/ISSUE_TEMPLATE/config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/ISSUE_TEMPLATE/feature-request.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/ISSUE_TEMPLATE/question.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/dependabot.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/workflows/ci-testing.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/workflows/codeql-analysis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/workflows/docker.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/workflows/greetings.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/workflows/links.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/workflows/stale.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.github/workflows/translate-readme.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/.pre-commit-config.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/CITATION.cff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/README.zh-CN.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/benchmarks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/classify/predict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/classify/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/classify/tutorial.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/classify/val.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/Argoverse.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/GlobalWheat2020.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/ImageNet.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/Objects365.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/SKU-110K.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/VOC.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/VisDrone.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/coco.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/coco128-seg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/coco128.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/hyps/hyp.Objects365.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/hyps/hyp.VOC.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/hyps/hyp.no-augmentation.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/hyps/hyp.scratch-high.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/hyps/hyp.scratch-low.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/hyps/hyp.scratch-med.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/images/bus.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/images/zidane.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/scripts/download_weights.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/scripts/get_coco.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/scripts/get_coco128.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/scripts/get_imagenet.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/data/xView.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/detect.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/export.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/hubconf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/common.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/experimental.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/anchors.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov3-spp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov3-tiny.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov3.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5-bifpn.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5-fpn.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5-p2.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5-p34.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5-p6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5-p7.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5-panet.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5l6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5m6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5n6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5s-LeakyReLU.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5s-ghost.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5s-transformer.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5s6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/hub/yolov5x6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/segment/yolov5l-seg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/segment/yolov5m-seg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/segment/yolov5n-seg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/segment/yolov5s-seg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/segment/yolov5x-seg.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/tf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/yolo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/yolov5l.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/yolov5m.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/yolov5n.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/yolov5s.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/models/yolov5x.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/segment/predict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/segment/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/segment/tutorial.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/segment/val.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/setup.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/train.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/tutorial.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/activations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/augmentations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/autoanchor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/autobatch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/aws/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/aws/mime.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/aws/resume.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/aws/userdata.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/callbacks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/dataloaders.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/docker/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/docker/Dockerfile-arm64" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/docker/Dockerfile-cpu" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/downloads.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/flask_rest_api/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/flask_rest_api/example_request.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/flask_rest_api/restapi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/general.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/google_app_engine/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/google_app_engine/additional_requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/google_app_engine/app.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/clearml/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/clearml/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/clearml/clearml_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/clearml/hpo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/comet/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/comet/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/comet/comet_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/comet/hpo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/wandb/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loggers/wandb/wandb_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/loss.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/metrics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/plots.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/segment/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/segment/augmentations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/segment/dataloaders.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/segment/general.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/segment/loss.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/segment/metrics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/segment/plots.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/torch_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/utils/triton.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/safezone/safezone_app/yolov5/val.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/safezone/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/safezone/safezone/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/SMS_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/safezone/safezone_app/SMS_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/safezone/safezone_app/templates/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/templates/upload_video.html" beforeDir="false" afterPath="$PROJECT_DIR$/safezone/safezone_app/templates/upload_video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/safezone/safezone_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/safezone/safezone_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/safezone/safezone_app/views.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,12 +197,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1685066635" />
+                    <option name="branchName" value="moongi" />
+                    <option name="lastUsedInstant" value="1685066764" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="moongi" />
-                    <option name="lastUsedInstant" value="1684484076" />
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1685066635" />
                   </RecentBranch>
                 </list>
               </option>
@@ -56,25 +219,26 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;G:/다른 컴퓨터/로컬디스크(D)/Project_by_me/safezone&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "moongi 병합 중",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "G:/다른 컴퓨터/로컬디스크(D)/Project_by_me/safezone",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="safezone" />
@@ -124,6 +288,7 @@
       <workItem from="1684986929028" duration="8921000" />
       <workItem from="1685066554437" duration="96000" />
       <workItem from="1685066676007" duration="38000" />
+      <workItem from="1685066737676" duration="339000" />
     </task>
     <servers />
   </component>
@@ -140,6 +305,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/safezone$manage.coverage" NAME="manage 커버리지 결과" MODIFIED="1684485330608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/safezone" />

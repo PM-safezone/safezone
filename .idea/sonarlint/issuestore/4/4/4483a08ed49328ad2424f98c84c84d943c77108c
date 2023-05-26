@@ -1,0 +1,15 @@
+
+Mpython:S1066ƒ"/Merge this if statement with the enclosing one.(±÷Ôüÿÿÿÿ
+Mpython:S1066Ò"/Merge this if statement with the enclosing one.(·´£óıÿÿÿÿ
+tpython:S5713"WRemove this redundant Exception class; it derives from another which is already caught.(Å¥æëûÿÿÿÿ
+6python:S3626¿"Remove this redundant return.(ÙãŞŸ
+Kpython:S1172Ğ"2Remove the unused function parameter "best_model".(¯½ãæ
+Epython:S1172ô"-Remove the unused function parameter "shape".(¹£ƒ2
+Epython:S1172ô"-Remove the unused function parameter "image".(¹£ƒ2
+6python:S3626"Remove this redundant return.(ÙãŞŸ
+6python:S3626Ú"Remove this redundant return.(ÙãŞŸ
+bpython:S5632ë"IChange this code so that it raises an object deriving from BaseException.(Š‰†ä
+6python:S3626†"Remove this redundant return.(ÙãŞŸ
+6python:S3626‘"Remove this redundant return.(ÙãŞŸ
+6python:S3626›"Remove this redundant return.(ÙãŞŸ
+6python:S3626Î"Remove this redundant return.(ÙãŞŸ

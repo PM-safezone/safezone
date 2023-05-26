@@ -1,0 +1,4 @@
+
+cpython:S11925"KDefine a constant instead of duplicating this literal 'yolov5s.pt' 3 times.(È±è²
+jpython:S11928"RDefine a constant instead of duplicating this literal 'data/coco128.yaml' 3 times.(÷æœõ
+Dpython:S1172;",Remove the unused function parameter "test".(Èù²Ì

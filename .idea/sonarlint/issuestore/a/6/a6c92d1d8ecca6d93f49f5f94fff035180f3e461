@@ -1,0 +1,6 @@
+
+hpython:S1542"PRename function "smooth_BCE" to match the regular expression ^[a-z_][a-z0-9_]*$.(Óáæ
+epython:S116r"NRename this field "BCEobj" to match the regular expression ^[_a-z][_a-z0-9]*$.(ã»øç
+epython:S116r"NRename this field "BCEcls" to match the regular expression ^[_a-z][_a-z0-9]*$.(ã»øç
+npython:S117d"WRename this local variable "BCEcls" to match the regular expression ^[_a-z][a-z0-9_]*$.(¢ï
+spython:S117e"WRename this local variable "BCEobj" to match the regular expression ^[_a-z][a-z0-9_]*$.(áÅÉşøÿÿÿÿ
