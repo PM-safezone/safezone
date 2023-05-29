@@ -101,7 +101,13 @@ def upload_video(request):
     else:
         form = VideoForm()                                          # POST 아니면 화면 다시 띄우기
 
-    return render(request, 'upload_video.html', {'form': form})
+    return render(request, 'upload_video.html', fileNo=video.fileNo)
+
+def video(request):
+    return render(request, 'upload_video.html')
+
+def video_analyze(request):    
+    return render(request, 'video_analyze.html')
 
 def video_detail(request, fileNo):
     video = get_object_or_404(Video, pk=fileNo)
@@ -116,7 +122,7 @@ def yolov5_webcam(request):
 def run_yolov5_webcam(request):
     if request.method == 'POST':
         
-        command = 'python C:\Users\leeyo\Project\safezone\safezone\safezone_app\yolov5 --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        command = 'python C:/Users/leeyo/Project/safezone/safezone/safezone_app/yolov5 --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
         try:
             subprocess.run(command, shell=True, check=True)
             return HttpResponse("Detection completed successfully.")
