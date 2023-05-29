@@ -17,10 +17,12 @@ from yolov5.models.experimental import *
 import subprocess
 import json
 from collections import deque
-
+import base64
 # Create your views here.
 # @login_required
 def main(request):
+    #rtsp_url = 'rtsp://210.99.70.120:1935/live/cctv001.stream'
+    #display_rtsp_video(rtsp_url)
     return render(request, 'main.html')
 
 def settings(request):
@@ -49,14 +51,6 @@ def settings(request):
     
     return render(request, 'settings.html')
     
-# account_app 에서 대체
-# class CustomLoginView(LoginView):
-#     template_name = 'testpage.html'
-#     authentication_form = LoginForm
-    
-# def login(request):
-#     return render(request, 'testpage.html')
-
 
 
 def upload_video(request):
@@ -109,8 +103,7 @@ def video(request):
 def video_analyze(request):    
     return render(request, 'video_analyze.html')
 
-def video_detail(request, fileNo):
-    video = get_object_or_404(Video, pk=fileNo)
+
 def video_detail(request, fileNo):
     video = get_object_or_404(Video, pk=fileNo)
     return render(request, 'video_detail.html', {'video': video})
@@ -148,8 +141,6 @@ def run_yolov5_webcam(request):
             cap.release()
             return JsonResponse({'message': '감지를 중지했습니다.'})
 
-        # Subprocess 종료 대기
-        #process.communicate()
 
         # 웹캠 캡처 객체 해제
         cap.release()
@@ -157,87 +148,61 @@ def run_yolov5_webcam(request):
         return render(request, 'run_yolov5_webcam.html')
 
     return JsonResponse({'message': '잘못된 요청입니다.'})
-#class VideoCamera(object):
-#
-#    def __init__(self):
-#        self.video = cv2.VideoCapture(0)
-#        self.video.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
-#        self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
-#        (self.grabbed, self.frame) = self.video.read()
-#
-#
-#        # Yolov5m model load
-#        self.model = torch.hub.load('ultralytics/yolov5', 'custom', path='safezone_app/best.pt', force_reload=True)
-#        self.model.eval()
-#
-#        threading.Thread(target=self.update, args=()).start()
-#
-#    def __del__(self):
-#        self.video.release()
-#
-#    def get_frame(self):
-#        image = self.frame
-#        _, jpeg = cv2.imencode('.jpg', image)
-#        return jpeg.tobytes()
-#
-#    def update(self):
-#        while True:
-#            (self.grabbed, self.frame) = self.video.read()
-#
-#            # 이미지 전처리
-#            image_pil = Image.fromarray(cv2.cvtColor(self.frame, cv2.COLOR_BGR2RGB))  # OpenCV 이미지를 PIL 이미지로 변환
-#
-#            transform = transforms.Compose([
-#                transforms.Resize((224, 224)),
-#                transforms.ToTensor(),
-#                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
-#            ])
-#            image = transform(image_pil)
-#            image = image.unsqueeze(0)
-#
-#            # 추론 수행
-#            results = self.model(image)
-#            boxes = results[0, :, :4].detach().cpu().numpy()  # 경계 상자 좌표 추출
-#            confidences = results[0, :, 4].detach().cpu().numpy()  # 객체의 신뢰도 점수 추출
-#            class_labels = results[0, :, 5].detach().cpu().numpy()  # 클래스 레이블 추출
-#
-#            predictions = []
-#            # 경계 상자와 클래스 레이블을 웹캠 화면에 표시
-#            for box, confidence, class_label in zip(boxes, confidences, class_labels):
-#                x1, y1, x2, y2 = map(int, box)  # 경계 상자 좌표 추출
-#
-#                # 경계 상자 그리기
-#                cv2.rectangle(self.frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
-#
-#                # 클래스 레이블과 신뢰도 점수 표시
-#                text = f'{class_label}: {confidence:.2f}'
-#                cv2.putText(self.frame, text, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
-#
-#                predictions.append({
-#                    'class_label': class_label,
-#                    'confidence': confidence.item()
-#                })
-#            # 결과를 JSON 형식으로 반환
-#            output = {'predictions': predictions}
-#
-#            # JSON 응답을 처리하기 위해 JsonResponse 사용
-#            return JsonResponse(output)
-#
-#
-#
-#def gen(camera):
-#    while True:
-#        frame = camera.get_frame()
-#        yield(b'--frame\r\n'
-#              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-#
-#@csrf_exempt
-#def livefeed(request):
-#    try:
-#        cam = VideoCamera()
-#        return StreamingHttpResponse(gen(cam), content_type="multipart/x-mixed-replace;boundary=frame")
-#    except Exception as e:
-#        print(e)
-#        return HttpResponseServerError()
-    
 
+
+from .CCTV import VideoCamera, gen, video_feed
+
+#def webcam_feed(request):
+#    return StreamingHttpResponse(gen(IPWebCam()), content_type='multipart/x-mixed-replace; boundary=frame')
+
+
+# --------------- 기능 테스트 진행중 -------------------- #
+@gzip.gzip_page
+def livefe(request):
+    try:
+        cam = VideoCamera()
+        
+        return StreamingHttpResponse(gen(cam))
+    except:  # This is bad!
+        pass
+
+def find_camera(id):
+    cameras = ['rtsp://210.99.70.120:1935/live/cctv001.stream',
+    'rtsp://210.99.70.120:1935/live/cctv002.stream',
+    'rtsp://210.99.70.120:1935/live/cctv003.stream',
+    'rtsp://210.99.70.120:1935/live/cctv004.stream',
+    'rtsp://210.99.70.120:1935/live/cctv005.stream',
+    'rtsp://210.99.70.120:1935/live/cctv006.stream',
+    'rtsp://210.99.70.120:1935/live/cctv007.stream',
+    'rtsp://210.99.70.120:1935/live/cctv008.stream']
+    return cameras[int(id)]
+
+
+def gen_frames(camera_id):
+     
+    cam = find_camera(camera_id)
+    cap=  cv2.VideoCapture(cam)
+    
+    while True:
+        # for cap in caps:
+        # # Capture frame-by-frame
+        success, frame = cap.read()  # read the camera frame
+        if not success:
+            break
+        else:
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+
+
+
+def video_feed(id):
+   
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return StreamingHttpResponse(gen_frames(id),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+def index():
+    return render('main.html')

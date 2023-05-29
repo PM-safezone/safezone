@@ -5,10 +5,10 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 
-from account_app.forms import CreateAdminForm, AdminUpdateForm
+from account_app.forms import CreateAdminForm, AdminUpdateForm, AdminDetailForm
 from account_app.models import UserModel
 from account_app.decorators import admin_ownership_required
-
+from django.views.generic.edit import FormMixin
 
 # Create your views here.
 has_ownership = [admin_ownership_required, login_required]
@@ -21,8 +21,14 @@ class CreateAdminView(CreateView):
 	template_name = 'account_app/create_admin.html'
 
 
-class AdminProfileView(DetailView):
+# class AdminProfileView(DetailView):
+# 	model = UserModel
+# 	context_object_name = 'target_user'
+# 	template_name = 'account_app/profile.html'
+
+class AdminProfileView(UpdateView):
 	model = UserModel
+	form_class = AdminDetailForm
 	context_object_name = 'target_user'
 	template_name = 'account_app/profile.html'
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>mypage</title>
+    <title>관리자 등록</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
@@ -180,23 +180,18 @@
 </head>
 <body>
     <div class="container">
-        <div class="form-group">
-            <h1>관리자 정보</h1>
-            {{ form.as_p }}
+        <form action="{% url 'siteadmin_app:create' %}" method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <h1>현장 관리자 등록</h1>
+                {{ form.as_p }}
 
-            {% if target_user.pk == request.user.pk %}
-            <a href="{% url 'account_app:update' pk=user.pk %}">
-                <p>
-                    프로필수정
-                </p>
-            </a>
-              <a href="{% url 'account_app:delete' pk=user.pk %}">
-                <p>
-                    관리자삭제
-                </p>
-            </a>
-            {% endif %}
-        </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-register">등록</button>
+                </div>
+            </div>
+        </form>
     </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

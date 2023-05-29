@@ -4,3 +4,5 @@
 # Base ------------------------------------------------------------------------
 Django == 4.1.5
 django-environ
+django-bootstrap4
+Pillow
