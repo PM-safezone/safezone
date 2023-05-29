@@ -9,9 +9,7 @@
     <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
     <title>Pi Video Surveillance</title>
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
-    
+
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
@@ -39,7 +37,6 @@
             font-family: 'nanumsquare', sans-serif;
             font-size: 16px;
             line-height: 1.5;
-            color: #eaff00;
         }
 
         h1 {
@@ -47,7 +44,7 @@
             font-size: 3rem;
             font-weight: bold;
             color: #eaff00;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         h1:after {
@@ -61,30 +58,13 @@
 
         .form-container {
             margin-top: 500px;
-            max-width: 1000px;
+            max-width: 500px;
             margin: 100px auto;
             padding: 50px;
             background-color: #0f1020;
             box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
             border-radius: 5px;
             border: 2px solid #eaff00;
-        }
-
-        .WebCam {
-            margin: auto;
-            margin-top: 50px;
-            border: 1px solid #eaff00;
-            border-radius: 10px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .WebCam img {
-            max-width: 100%;
-            max-height: 100%;
         }
 
         .btn {
@@ -94,60 +74,76 @@
         .btn-container {
             margin-top: 30px;
             display: flex;
-            justify-content: right;
+            justify-content: left;
         }
        
         .btn-start {
-            margin-right: 10px;
             background-color: #eaff00;
             border: 0.5px solid #0f1020;
             color: #0f1020;
+            margin-top: 50px;
             margin-bottom: 30px;
+            margin-left: 10px;
+            margin-right: 110px;
         }
 
         .btn-stop {
-            margin-right: 540px;
             background-color: #0f1020;
             border: 0.5px solid #eaff00;
             color: #eaff00;
+            margin-top: 50px;
             margin-bottom: 30px;
         }
 
+        .prompt-box {
+            margin-top: 30px;
+            max-width: 400px;
+            margin-bottom: 80px;
+            padding: 10px;
+            font-size: 13px;
+            background-color: #0f1020;
+            border: 1px solid #eaff00;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #status-label {
+            margin-right: 5px;
+            color: #eaff00;
+        }
+
         #output {
-            position: absolute;
-            top: 790px;
-            right: 400px;
+            text-align: right;
+            flex-grow: 1;
+            color: #eaff00;
         }
     </style>
 </head>
 <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
 
     <div class="form-container">
-        <h1>YOLOv5 Webcam Detection</h1>
-        
-        <div class="WebCam" id="WebCam">
-            
-            <img src="https://dummyimage.com/750x500/000/fff.png&text=++WebCam" alt="WebCam">
-        </div>
-        
+        <h1>YOLOv5 <br> Webcam Detection</h1>
+
         <div class="btn-container">
             <form method='POST'>
                 {% csrf_token %}
                 <button class="btn btn-start" id="startButton" onclick="toggleButton('startButton', 'stopButton')">Start Detection</button>
             </form>
             <button class="btn btn-stop" id="stopButton" onclick="toggleButton('stopButton', 'startButton')" disabled>Stop Detection</button><br>
-            <button class="fa-solid fa-house" style="color: #eaff00; background-color: transparent; border: none; font-size: 30px; position: absolute; top: 130px; left: 1150px;" id="homeButton"></button>
-
         </div>
-        
-        <div id="output"></div>
+
+        <button class="fa-solid fa-house" style="color: #eaff00; background-color: transparent; border: none; font-size: 30px; position: absolute; top: 500px; right: 515px;" id="homeButton"></button>
+
+        <div class="prompt-box">
+            <span id="status-label">Status : </span>
+            <span id="output" style="float: right;"></span>
+            
+        </div>
         
     </div>
     
 <script>
-    
     function toggleButton(activeButtonId, inactiveButtonId) {
         var activeButton = document.getElementById(activeButtonId);
         var inactiveButton = document.getElementById(inactiveButtonId);
@@ -196,11 +192,11 @@
                     $("#homeButton").prop("disabled", false);
                 },
                 error: function(xhr) {
-                    $("#output").html("Error: " + xhr.responseText);
+                    $("#output").html(xhr.responseText);
                     $("#startButton").prop("disabled", false);
                 }
             });
-        });
+        }); // Status
     
         $("#stopButton").click(function() {
             $(this).prop("disabled", true);
@@ -219,7 +215,7 @@
                     $("#startButton").prop("disabled", false);
                 },
                 error: function(xhr) {
-                    $("#output").html("Error: " + xhr.responseText);
+                    $("#output").html(xhr.responseText);
                     $("#startButton").prop("disabled", false);
                 }
             });
@@ -234,4 +230,3 @@
 </script>
 </body>
 </html>
-
