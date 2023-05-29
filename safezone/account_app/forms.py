@@ -39,3 +39,13 @@ class AdminUpdateForm(CreateAdminForm):
 		super().__init__(*args, **kwargs)
 
 		self.fields['username'].disabled = True
+
+
+class AdminDetailForm(AdminUpdateForm):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		del self.fields['password1']
+		del self.fields['password2']
+
+		for field in self.fields:
+			self.fields[field].disabled = True

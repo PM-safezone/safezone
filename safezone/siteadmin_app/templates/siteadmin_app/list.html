@@ -10,7 +10,7 @@
           height: 500px;
           background-color: antiquewhite;
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           border-radius: 1rem;
@@ -19,6 +19,23 @@
           width: 100%;
           border-radius: 1rem;
         }
+        a {
+            color: inherit;    /* 현재 색상을 상속받음 (클릭 시 색상 변경 방지) */
+            text-decoration: none;    /* 밑줄 제거 */
+        }
+
+        a:visited {
+            color: inherit;    /* 방문한 링크의 색상 변경 방지 */
+        }
+
+        a:hover {
+            color: inherit;    /* 마우스 오버 시 색상 변경 방지 */
+        }
+
+        a:active {
+            color: inherit;    /* 활성화된 링크 (클릭 시) 색상 변경 방지 */
+        }
+
     </style>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>

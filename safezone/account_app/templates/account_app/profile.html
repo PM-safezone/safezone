@@ -180,32 +180,23 @@
 </head>
 <body>
     <div class="container">
-        {{ form.as_p }}
+        <div class="form-group">
+            <h1>관리자 정보</h1>
+            {{ form.as_p }}
 
-        <p>
-            {{ target_user.data_join }}
-        </p>
-        <h2>
-            {{ target_user.username }}
-{#            todo DB 저장은되는데 테이블이 달라서 조회가 안되나.. 조회가 안됨 - user 는 조회안되는데 , target_user 는 조회됨 차이가 뭐야.#}
-            {{ target_user.management_locations }}
-            {{ target_user.phone }}
-            {{ target_user.email }}
-        </h2>
-
-        {% if target_user.pk == request.user.pk %}
-        <a href="{% url 'account_app:update' pk=user.pk %}">
-            <p>
-                프로필수정
-            </p>
-        </a>
-          <a href="{% url 'account_app:delete' pk=user.pk %}">
-            <p>
-                관리자삭제
-            </p>
-        </a>
-        {% endif %}
-
+            {% if target_user.pk == request.user.pk %}
+            <a href="{% url 'account_app:update' pk=user.pk %}">
+                <p>
+                    프로필수정
+                </p>
+            </a>
+              <a href="{% url 'account_app:delete' pk=user.pk %}">
+                <p>
+                    관리자삭제
+                </p>
+            </a>
+            {% endif %}
+        </div>
     </div>
 </body>
 </html>
