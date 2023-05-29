@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
+    <script src="https://vjs.zencdn.net/7.15.4/video.js"></script>  <!--Video.js--> 
+    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" /> <!--Video.js--> 
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
@@ -55,7 +57,7 @@
         }
         
         .cctv-container {
-            width: 50%;
+            width: 55%;
             margin: auto;
             margin-top: 50px;
             margin-left: 5%;
@@ -70,8 +72,8 @@
 
         .cctv-camera {
             display: inline-block;
-            width: calc(33.33% - 2.5%);
-            padding-top: 20%;
+            width: calc(33.3% - 2.5%);
+            height: 170px;
             margin-bottom: 2.5%;
             margin-right: 2.5%;
             background-color: #333;
@@ -85,23 +87,37 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
             border: 2px solid #00eaff;
+            overflow: hidden;
         }
 
         .cctv-camera img {
             border-radius: 10px;
-            position: absolute;
+            /* position: absolute; */
+            transform: translate(-50%, -50%);
+            object-fit: cover;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
         }
 
+        .cctv-camera video {
+            border-radius: 10px;
+            /* position: absolute; */
+            /* transform: translate(-100%, -100%); */
+            object-fit: cover;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+       
         .camera-name {
             color: #00eaff;
             position: absolute;
-            bottom: -22px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 100%;
+            left: 0;
         }
 
         .violation-box {
@@ -275,40 +291,38 @@
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+1" alt="CCTV 1">
-                    <div class="camera-name">CCTV-1</div>
+                    
+                    <video id="my-video" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
+                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
+                    </div>
+                    <!--<img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+1" alt="CCTV 1">-->
                 </div>
+                <div class="camera-name" style="top: 332px; left: 165px;">CCTV-1</div>
+
                 <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+2" alt="CCTV 2">
-                    <div class="camera-name">CCTV-2</div>
+                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+2" alt="CCTV 2"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+3" alt="CCTV 3">
-                    <div class="camera-name">CCTV-3</div>
+                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+3" alt="CCTV 3"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+4" alt="CCTV 4">
-                    <div class="camera-name">CCTV-4</div>
+                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+4" alt="CCTV 4"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+5" alt="CCTV 5">
-                    <div class="camera-name">CCTV-5</div>
+                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+5" alt="CCTV 5"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+6" alt="CCTV 6">
-                    <div class="camera-name">CCTV-6</div>
+                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+6" alt="CCTV 6"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-7" data-area="7" data-visible="7">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+7" alt="CCTV 7">
-                    <div class="camera-name">CCTV-7</div>
+                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+7" alt="CCTV 7"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-8" data-area="8" data-visible="8">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+8" alt="CCTV 8">
-                    <div class="camera-name">CCTV-8</div>
+                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+8" alt="CCTV 8"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-9" data-area="9" data-visible="9">
-                    <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+9" alt="CCTV 9">
-                    <div class="camera-name">CCTV-9</div>
+                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+9" alt="CCTV 9"> -->
                 </div>
             </div>
             <div class="violation-box">
@@ -351,6 +365,16 @@
 </main>
 
 <script>
+    // JW Player 설정
+    var player = videojs('my-video', {
+        sources: [{
+          src: 'http://210.99.70.120:1935/live/cctv005.stream/playlist.m3u8',
+          type: 'application/x-mpegURL'
+        }],
+        width: '240px',
+        height: '166px',
+        autoplay: true
+      });
     // AJAX 요청 보내기
     function sendRequest() {
       $.ajax({
@@ -367,10 +391,26 @@
       });
     }
 
-  // 페이지 로드 시 자동으로 AJAX 요청 보내기
-  $(document).ready(function() {
-    sendRequest();
-  });
+    // 페이지 로드 시 자동으로 AJAX 요청 보내기
+    $(document).ready(function() {
+        sendRequest();
+    });
+
+    function zoomInCamera() {
+        var cameras = document.getElementsByClassName("camera");
+
+        for (var i = 0; i < cameras.length; i++) {
+            cameras[i].addEventListener("click", function() {
+            this.style.width = "100%";
+            this.style.paddingTop = "65%";
+            this.style.marginBottom = "0";
+            this.style.marginRight = "0";
+            this.style.zIndex = "999";
+            });
+        }
+    }
+
+    zoomInCamera();
 
     document.addEventListener("DOMContentLoaded", function () {
         var cameras = document.getElementsByClassName("cctv-camera");
@@ -529,4 +569,5 @@ navigator.mediaDevices.getUserMedia({ video: true })
     console.error("라이브 캠을 가져오는 중 오류가 발생했습니다:", error);
   });
  -->
+
 
