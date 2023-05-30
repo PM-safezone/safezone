@@ -115,13 +115,16 @@ def yolov5_webcam(request):
 def run_yolov5_webcam(request):
     if request.method == 'POST':
         
-        command = 'python C:/Users/leeyo/Project/safezone/safezone/safezone_app/yolov5 --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        #command = '/Users/seoyoobin/Desktop/MLP_AI Engineer Camp/safezone/safezone/safezone_app/yolov5/best.pt'
+        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/safezone_app/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+
         try:
             subprocess.run(command, shell=True, check=True)
             return HttpResponse("Detection completed successfully.")
         except subprocess.CalledProcessError as e:
             return HttpResponse(f"Error occurred while running detection: {e}")
         # 웹캠 캡처 객체 생성
+        
         cap = cv2.VideoCapture(0)  # 0은 기본 웹캠을 나타냄
         #count = count * 30
         #start_file_number = count
@@ -197,12 +200,14 @@ def gen_frames(camera_id):
 
 
 
-def video_feed(id):
+def video_feed(request, id):
    
     """Video streaming route. Put this in the src attribute of an img tag."""
     return StreamingHttpResponse(gen_frames(id),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+                    content_type='multipart/x-mixed-replace; boundary=frame')
 
 
 def index():
     return render('main.html')
+
+

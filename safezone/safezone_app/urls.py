@@ -29,5 +29,5 @@ urlpatterns = [
     path('video_detail/<int:fileNo>/', views.video_detail, name='video_detail'),
     path('yolov5_webcam/', views.yolov5_webcam, name='yolov5_webcam'),
     path('run_yolov5_webcam/', views.run_yolov5_webcam, name='run_yolov5_webcam'),
-    path('video_feed/<int:id>', views.video_feed, name='video_feed'),
+    path('video_feed/<str:id>', views.video_feed, name='video_feed'),
 ]
