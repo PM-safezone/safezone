@@ -55,12 +55,15 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
+import datetime
+import uuid
 from models.common import DetectMultiBackend
 from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
 from utils.general import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
                            increment_path, non_max_suppression, print_args, scale_boxes, strip_optimizer, xyxy2xywh)
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, smart_inference_mode
+
 
 # 문자 알람 관련 signature 만들기
 def make_signature():
@@ -156,7 +159,9 @@ def run(
     count = {'0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0, '5' : 0} # detecting count     
     frame = 1 # 프레임별 클래스 검색하기 위한 초기화
     detect_deque = deque(maxlen=300)
-    for path, im, im0s, vid_cap, s in dataset:        
+    dtime = datetime.datetime.now()
+    for path, im, im0s, vid_cap, s in dataset:
+               
         frame_string = str(frame) + ":" # 프레임별 클래스 검색하기 위한 문자열 초기화
         with dt[0]:
             im = torch.from_numpy(im).to(model.device)
@@ -178,6 +183,7 @@ def run(
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
               
         # Process predictions
+        target_class_ids = [1, 3, 5]
         for i, det in enumerate(pred):  # per image
             seen += 1
             if webcam:  # batch_size >= 1
@@ -202,7 +208,15 @@ def run(
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string                    
                     # count[str(int(c))] += 1 # 검출된 클래스 개수 늘리기
-                    frame_string += (str(int(c)) + " ") # 검출된 클래스 추가하기       
+                    frame_string += (str(int(c)) + " ") # 검출된 클래스 추가하기   
+                    
+                    
+                    #if int(c) in target_class_ids:  # target_class_ids 의 1,3,5 X 들인 것만 체크
+                    #    class_name = names[int(c)]  #
+                    #    class_count = (det[:, 5] == c).sum()
+                    #    for j in range(class_count):
+                    #        filename = f"{save_dir}/detected_{class_name}_{i}_{j}.jpg"  # detected_safety_belt_X_0_0.jpg
+                    #        cv2.imwrite(filename, im0)      # 이미지 파일 제작
 
                 log_file = str(save_dir / 'labels' / p.stem) + 'log_file.txt'
                 # Write results
@@ -253,7 +267,8 @@ def run(
                         save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
                         vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
                     vid_writer[i].write(im0) 
-
+            
+            
             # deque 만들기           
             if len(detect_deque) < 300: # deque 사이즈가 300이 안되면 
                 detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 무조건 append            
@@ -279,16 +294,29 @@ def run(
                 if detect_deque_val: # deque에 값이 있을때
                     for val in detect_deque_val: # deque의 값이 리스트이기때문에 for문 추가
                         count[str(val)] += 1 # deque의 값에 해당하는 클래스를 count +1 
+        filename_prefix = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
         
         for count_index in count: # dictionary 탐색 시작        
             if count[count_index] >= 240:  # dictionary 값중 240이 넘는 값이 있다면
+                i += 1
                 # sms 발송하기
                 print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
                 # SMS_data['content'] = count_index + "번 클래스가 70프레임 발견되었습니다."              
                 # res = requests.post(SMS_url+SMS_uri,headers=header,data=json.dumps(SMS_data))
-                # print(res.json())                
+                # print(res.json()) 
+                if int(c) in target_class_ids:          # target_class_ids : 1, 3, 5 shoes_X, helmet_X, belt_X 세가지 검출
+                    class_name = names[int(c)]          # class_name에 이름 넣어서 표시
+                    class_count = (det[:, 5] == c).sum()# 검출을 했을시 동작 시킬 파트
+                    for j in range(class_count):
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")   # 현재 시간 타임 스탬프
+                        unique_id = str(uuid.uuid4().hex[:6])                           # 파일 고유 번호 
+                        filename = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.jpg" # 파일 네임 폼
+                        print(f"detected_{class_name}_{i}_{timestamp}_{unique_id}.jpg 생성")
+                        cv2.imwrite(filename, im0)                                      # EX : detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.jpg
+
+                      
                 for remove_deque in detect_deque:
-                    if remove_deque:
+                    if remove_deque:  
                         remove_deque.clear()
             count[count_index] = 0 # dictionary 초기화
 

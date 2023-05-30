@@ -292,7 +292,7 @@
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
                     
-                    <video id="my-video" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
@@ -301,15 +301,31 @@
                 <div class="camera-name" style="top: 332px; left: 165px;">CCTV-1</div>
 
                 <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
+                    <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
+                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
+                    </div>
                     <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+2" alt="CCTV 2"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
+                    <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
+                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
+                    </div>
                     <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+3" alt="CCTV 3"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
+                    <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
+                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
+                    </div>
                     <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+4" alt="CCTV 4"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
+                    <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
+                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
+                    </div>
                     <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+5" alt="CCTV 5"> -->
                 </div>
                 <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
@@ -366,15 +382,51 @@
 
 <script>
     // JW Player 설정
-    var player = videojs('my-video', {
+    var player = videojs('my-video1', {
         sources: [{
-          src: 'http://210.99.70.120:1935/live/cctv005.stream/playlist.m3u8',
+          src: 'http://210.99.70.120:1935/live/cctv001.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
         width: '240px',
         height: '166px',
         autoplay: true
       });
+    var player = videojs('my-video2', {
+      sources: [{
+        src: 'http://210.99.70.120:1935/live/cctv002.stream/playlist.m3u8',
+        type: 'application/x-mpegURL'
+      }],
+      width: '240px',
+      height: '166px',
+      autoplay: true
+    });
+    var player = videojs('my-video3', {
+        sources: [{
+          src: 'http://210.99.70.120:1935/live/cctv003.stream/playlist.m3u8',
+          type: 'application/x-mpegURL'
+        }],
+        width: '240px',
+        height: '166px',
+        autoplay: true
+      });
+    var player = videojs('my-video4', {
+      sources: [{
+        src: 'http://210.99.70.120:1935/live/cctv004.stream/playlist.m3u8',
+        type: 'application/x-mpegURL'
+      }],
+      width: '240px',
+      height: '166px',
+      autoplay: true
+    });
+    var player = videojs('my-video5', {
+      sources: [{
+        src: 'http://210.99.70.120:1935/live/cctv005.stream/playlist.m3u8',
+        type: 'application/x-mpegURL'
+      }],
+      width: '240px',
+      height: '166px',
+      autoplay: true
+    });
     // AJAX 요청 보내기
     function sendRequest() {
       $.ajax({
