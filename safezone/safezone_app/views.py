@@ -5,6 +5,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators import gzip
 from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import FileSystemStorage, default_storage
+from django.core.files.base import ContentFile
 from account_app.decorators import admin_ownership_required
 import cv2
 import os
@@ -97,11 +99,28 @@ def upload_video(request):
 
     return render(request, 'upload_video.html', fileNo=video.fileNo)
 
-def video(request):
+def video(request):    
     return render(request, 'upload_video.html')
 
-def video_analyze(request):    
-    return render(request, 'video_analyze.html')
+def video_analyze(request): 
+    if request.method == 'POST':
+        video_file = request.FILES['video_file']
+        upload = default_storage.save(video_file.name,ContentFile(video_file.read()))
+
+        command = 'python C:/Users/leeyo/Project/safezone/safezone/media/yolov5/detect.py --source C:/Users/leeyo/Project/safezone/safezone/media/' + video_file.name + ' --weights C:/Users/leeyo/Project/safezone/safezone/media/yolov5/runs/train/yolov5s_third/weights/best.pt --exist-ok'
+        print(command)
+        try:
+            subprocess.run(command, shell=True, check=True)            
+        except subprocess.CalledProcessError as e:
+            print(e)
+
+        detect_video_file = '/media/yolov5/runs/detect/exp/'+video_file.name
+        detect_txt_file = 'C:/Users/leeyo/Project/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
+        f = open(detect_txt_file,'r')
+        text_data = f.read()
+        f.close()
+        return render(request,'video_analyze.html',{'video_filename':detect_video_file,'text_data':text_data})
+    return render(request, 'video_analyze.html')  
 
 
 def video_detail(request, fileNo):
