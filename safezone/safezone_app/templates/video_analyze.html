@@ -75,7 +75,7 @@
         .form-group {
             margin-top: 500px;
             max-width: 500px;
-            margin: 100px auto;
+            margin: 100px 0px auto;
             padding: 50px;
             background-color: #0f1020;
             box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
@@ -106,13 +106,7 @@
 
         .btn {
             font-size: 16px;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: right;
-            margin-right: -10px;
-        }
+        }        
 
         .btn-analyze {
             margin-right: 10px;
@@ -145,31 +139,8 @@
         .control-input {
             visibility: hidden;
             position: absolute;
-        }
+        }      
 
-        .control-label {
-            line-height: 35px;
-            border-radius: 3px;
-            border: 0.5px solid #eaff00;
-            background-color: #0f1020;
-            color: eaff00;
-            text-align: center;
-            height: 35px;
-            width: 110px;
-            cursor: pointer;
-        }
-
-        .control-label:hover {
-            background-color: #eaff00;
-            border: 0.5px solid #0f1020;
-            color: #0f1020;
-        }
-
-        .control-label:active {
-            background-color: #0f1020;
-            color: #eaff00;
-        }
-        
         .prompt-box {
             margin-top: 30px;
             max-width: 400px;
@@ -196,27 +167,36 @@
             flex-grow: 1;
         }
 
-        .dashed-line {
-            border-style: dashed;
+        .violation-box {
+            padding: 20px;
+            margin-right: 5%;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
+            border: 2px solid #00eaff;
+            border-radius: 10px;
+            position: absolute;
+            top: 133px;
+            right: 30px;
+            width: 400px;
+            height: auto;
             margin-top: 30px;
-            margin-bottom: 80px;
         }
+
+        .violation-content {
+            width: 100%;
+            height: 240px;
+            resize: none;
+            color: #0f1020;
+        }
+
         </style>
 </head>
 <body>
     <div class="container">
-        <form action="{% url 'safezone_app:video_analyze' %}" method="POST">        
-            {% csrf_token %}
+        <form>        
+            <!-- {% csrf_token %} -->
 
-            <div class="form-group">
-                <h1>영상 업로드</h1>
-
-                <div class="custom-file">
-                    <input type="file" class="control-input" id="video_file" name="video_file" onchange="previewVideo()">
-                    <label class="control-label" for="video_file">Select Video</label>
-                </div>
-                <p id="file_message">선택된 파일이 없습니다.</p>
-
+            <div class="form-group">                
                 <div id="video_preview_container">
                     <div style="position: relative; padding-bottom: 56.25%; height: 0;">
                         <video id="video_preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls></video>
@@ -226,75 +206,18 @@
                 <div class="prompt-box" id="filename-box">
                     <span id="filename-label">파일 이름 : </span>
                     <span id="filename"></span>
-                </div>
-                
-                <div class="btn-container">
-                    <button class="btn btn-analyze">영상 분석하기</button>
-                </div>
+                </div>    
             </div>
-        </form>
 
-        <div class="uploaded-videos">
-            <hr class="dashed-line">
-            <h2 class="section-title">업로드된 영상 목록</h2>
-            
-        </div>
+            <div class="violation-box">                
+                <div class="text_container">
+                    <textarea id="violation-content" class="violation-content" rows="5"></textarea>
+                </div>  
+            </div>
+        </form>        
     </div>
-        <!-- 서버에서 저장된 비디오 파일 경로
-    {% if video_path %}
-        <div class="embed-responsive embed-responsive-21by9">
-            <iframe class="embed-responsive-item" src="{{ video_path }}" allowfullscreen></iframe>
-        </div>
-    
-        <video controls>
-            <source src="{{ video_path }}" type="video/mp4">
-    
-            Your browser does not support the video tag.
-        </video>
-    {% else %}
-        <p>No video available.</p>
-    {% endif %} -->
-
-<!-- Bootstrap JS -->
-<script>
-    function previewVideo() {
-        var fileInput = document.getElementById('video_file');
-        var videoPreviewContainer = document.getElementById('video_preview_container');
-        var videoPreview = document.getElementById('video_preview');
-        var fileMessage = document.getElementById('file_message');
-        var filenameBox = document.getElementById('filename');
-
-        if (fileInput.files && fileInput.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                var file = fileInput.files[0];
-                var fileName = file.name;
-                var fileType = file.type;
-
-                if (fileType !== 'video/mp4') {
-                    fileMessage.innerText = 'mp4 외 파일 형식은 지원하지 않습니다.';
-                    fileMessage.style.color = '#eaff00';
-                    fileMessage.style.fontSize = '13px';
-                    filenameBox.innerText = fileName;
-                } else {
-                    videoPreview.src = e.target.result;
-                    videoPreviewContainer.style.display = 'block';
-                    fileMessage.style.display = 'none';
-                    filenameBox.innerText = fileName;
-                }
-            }
-
-            reader.readAsDataURL(fileInput.files[0]);
-        } else {
-            videoPreviewContainer.style.display = 'block';
-            fileMessage.style.display = 'none';
-            // filenameBox.innerText = '';
-        }
-    }
-
-
-
+        
+<script>    
 
 </script>
 

@@ -366,7 +366,7 @@
                 <div class="button-container">
                     <button class="btn btn-settings" onclick="location.href='settings.html'">Settings</button>
                     <button class="btn btn-save">Save File</button>
-                    <form action="{% url 'safezone_app:upload_video' %}" method="POST">
+                    <form action="{% url 'safezone_app:video' %}" method="POST">
                         {% csrf_token %}
                         <button class="btn btn-video">Video Upload</button>
                     </form>

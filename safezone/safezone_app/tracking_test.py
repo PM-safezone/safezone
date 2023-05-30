@@ -1,22 +1,15 @@
 # tracking
 
-import subprocess
-from collections import deque
+import requests
 
+discord = "https://discord.com/api/webhooks/1112547580702888066/vE27sKAJFlsHgR4v-shbzPKRK7CYJBqp3e3sk6f1OUJx0bdtTvcgjnaQVAq5yIMe0HU3"
 
-deque3 = deque(maxlen=70)
-deque2 = deque([[], [1,2], [3,4],[1,2,3]])
-for i in deque2:
-    print(i)
+discord_headers={
+    'Content-Type':'application/json'
+}
 
-for remove_deque in deque2:
-    if remove_deque:
-        remove_deque.clear()
-
-print(deque2)
-
-
-
+discord_data = '{"content":"discord test"}'
+response = requests.post(discord, headers=discord_headers, data=discord_data)
 # count = {'0' : 1, '1' : 2, '2' : 0, '3' : 0, '4' : 5, '5' : 0}
 # string_test = '17:1 2 4 '
 # string_test_split = string_test.split(':')[1].split(' ')

@@ -95,7 +95,13 @@ def upload_video(request):
     else:
         form = VideoForm()                                          # POST 아니면 화면 다시 띄우기
 
-    return render(request, 'upload_video.html', {'form': form})
+    return render(request, 'upload_video.html', fileNo=video.fileNo)
+
+def video(request):
+    return render(request, 'upload_video.html')
+
+def video_analyze(request):    
+    return render(request, 'video_analyze.html')
 
 
 def video_detail(request, fileNo):
