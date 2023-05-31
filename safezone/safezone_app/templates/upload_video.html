@@ -205,7 +205,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="{% url 'safezone_app:video_analyze' %}" method="POST">        
+        <form action="{% url 'safezone_app:video_analyze' %}" method="POST" enctype="multipart/form-data">        
             {% csrf_token %}
 
             <div class="form-group">
@@ -229,7 +229,7 @@
                 </div>
                 
                 <div class="btn-container">
-                    <button class="btn btn-analyze">영상 분석하기</button>
+                    <input type="submit" value="영상 분석하기" class="btn btn-analyze">
                 </div>
             </div>
         </form>

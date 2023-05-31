@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.urls import path
 from safezone_app import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 # 모듈 불러오는 방식 변경
 # safezone app 이름 등록
 # url 사용할때 {% url 'video_detail' %} X
@@ -29,5 +32,5 @@ urlpatterns = [
     path('video_detail/<int:fileNo>/', views.video_detail, name='video_detail'),
     path('yolov5_webcam/', views.yolov5_webcam, name='yolov5_webcam'),
     path('run_yolov5_webcam/', views.run_yolov5_webcam, name='run_yolov5_webcam'),
-    path('video_feed/<str:id>', views.video_feed, name='video_feed'),
+    path('video_feed/<int:id>', views.video_feed, name='video_feed'),
 ]
