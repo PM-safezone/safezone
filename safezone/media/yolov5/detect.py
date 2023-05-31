@@ -160,6 +160,7 @@ def run(
     count = {'0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0, '5' : 0} # detecting count     
     frame = 1 # 프레임별 클래스 검색하기 위한 초기화
     result_frame_string = ''
+    result_frame_string = ''
     detect_deque = deque(maxlen=300)
     prev_frames = deque(maxlen=300)
     for path, im, im0s, vid_cap, s in dataset:
@@ -209,6 +210,8 @@ def run(
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string                    
                     # count[str(int(c))] += 1 # 검출된 클래스 개수 늘리기
+                    frame_string += (str(int(c)) + " ") # 검출된 클래스 추가하기       
+
                     frame_string += (str(int(c)) + " ") # 검출된 클래스 추가하기       
 
                 log_file = str(save_dir / 'labels' / p.stem) + 'log_file.txt'
@@ -369,6 +372,10 @@ def run(
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
+    if alarm == '':
+            save_path_split = save_path.split('.mp4')        
+            with open(f'{save_path_split[0]}.txt', 'w') as f:
+                f.write(f'{result_frame_string}' + '\n')
     if alarm == '':
             save_path_split = save_path.split('.mp4')        
             with open(f'{save_path_split[0]}.txt', 'w') as f:
