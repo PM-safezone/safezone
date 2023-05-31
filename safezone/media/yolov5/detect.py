@@ -55,6 +55,9 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
+import datetime
+import uuid
+import numpy as np
 from models.common import DetectMultiBackend
 from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadScreenshots, LoadStreams
 from utils.general import (LOGGER, Profile, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
@@ -157,8 +160,11 @@ def run(
     count = {'0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0, '5' : 0} # detecting count     
     frame = 1 # 프레임별 클래스 검색하기 위한 초기화
     result_frame_string = ''
+    result_frame_string = ''
     detect_deque = deque(maxlen=300)
-    for path, im, im0s, vid_cap, s in dataset:        
+    prev_frames = deque(maxlen=300)
+    for path, im, im0s, vid_cap, s in dataset:
+               
         frame_string = str(frame) + ":" # 프레임별 클래스 검색하기 위한 문자열 초기화
         with dt[0]:
             im = torch.from_numpy(im).to(model.device)
@@ -206,6 +212,8 @@ def run(
                     # count[str(int(c))] += 1 # 검출된 클래스 개수 늘리기
                     frame_string += (str(int(c)) + " ") # 검출된 클래스 추가하기       
 
+                    frame_string += (str(int(c)) + " ") # 검출된 클래스 추가하기       
+
                 log_file = str(save_dir / 'labels' / p.stem) + 'log_file.txt'
                 # Write results
                 object_counts = []
@@ -237,37 +245,46 @@ def run(
                 cv2.imshow(str(p), im0)
                 cv2.waitKey(1)  # 1 millisecond
 
+            
+            prev_frames.append(cv2.UMat(im0))  # im0를 prev_frames에 추가
             # Save results (image with detections)
-            if save_img:
-                if dataset.mode == 'image':
-                    cv2.imwrite(save_path, im0)
-                else:  # 'video' or 'stream'
-                    if vid_path[i] != save_path:  # new video
-                        vid_path[i] = save_path
-                        if isinstance(vid_writer[i], cv2.VideoWriter):
-                            vid_writer[i].release()  # release previous video writer
-                        if vid_cap:  # video
-                            fps = vid_cap.get(cv2.CAP_PROP_FPS)
-                            w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                            h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                        else:  # stream
-                            fps, w, h = 30, im0.shape[1], im0.shape[0]
-                        save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
-                        vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'x264'), fps, (w, h))
-                    vid_writer[i].write(im0) 
-
-            # deque 만들기  
-            if alarm == 'SMS':         
-                if len(detect_deque) < 300: # deque 사이즈가 300이 안되면 
-                    detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 무조건 append            
-                else: # deque 사이즈가 70이 넘으면                 
-                    detect_deque.popleft() # 선입선출
-                    detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 그다음 append
+            #if save_img:
+            #    if dataset.mode == 'image':
+            #        cv2.imwrite(save_path, im0)
+            #    else:  # 'video' or 'stream'
+            #        if vid_path[i] != save_path:  # new video
+            #            vid_path[i] = save_path
+            #            if isinstance(vid_writer[i], cv2.VideoWriter):
+            #                vid_writer[i].release()  # release previous video writer
+            #            if vid_cap:  # video
+            #                fps = vid_cap.get(cv2.CAP_PROP_FPS)
+            #                w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            #                h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            #            else:  # stream
+            #                fps, w, h = 30, im0.shape[1], im0.shape[0]
+            #            save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
+            #            vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+            #        vid_writer[i].write(im0) 
+            
+            
+            # deque 만들기   
+            if len(prev_frames) < 300: # deque 사이즈가 300이 안되면 
+                prev_frames.append(list(map(int, list(det[:, 5].unique())))) # 무조건 append            
+            else: # deque 사이즈가 70이 넘으면                 
+                prev_frames.popleft() # 선입선출
+                prev_frames.append(list(map(int, list(det[:, 5].unique())))) # 그다음 append 
+                       
+            if len(detect_deque) < 300: # deque 사이즈가 300이 안되면 
+                detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 무조건 append            
+            else: # deque 사이즈가 70이 넘으면                 
+                detect_deque.popleft() # 선입선출
+                detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 그다음 append
 
         # video upload 시 프레임별 클래스 저장
-            frame += 1
-        if alarm == '':
-            result_frame_string += frame_string + '\n'            
+        #     frame += 1 
+        # save_path_split = save_path.split('.mp4')        
+        # with open(f'{save_path_split[0]}.txt', 'a') as f:
+        #     f.write(f'{frame_string}' + '\n')
         
         # frame_string_split = frame_string.split(':')[1].split(' ')
         # for count_index in count:                
@@ -275,29 +292,90 @@ def run(
         #         count[count_index] += 1
         #     # else: # 연속해서 검출이 안될경우 카운트 초기화
         #     #     count[count_index] = 0 
+        
+        if len(detect_deque) == 300: # deque 사이즈가 300이면   
+            for detect_deque_val in detect_deque: # deque 탐색 시작
+                if detect_deque_val: # deque에 값이 있을때
+                    for val in detect_deque_val: # deque의 값이 리스트이기때문에 for문 추가
+                        count[str(val)] += 1 # deque의 값에 해당하는 클래스를 count +1 
+        
+        
+        for count_index in count: # dictionary 탐색 시작        
+            if count[count_index] >= 240:  # dictionary 값중 240이 넘는 값이 있다면
+                i += 1
+                # sms 발송하기
+                print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
+                # SMS_data['content'] = count_index + "번 클래스가 70프레임 발견되었습니다."              
+                # res = requests.post(SMS_url+SMS_uri,headers=header,data=json.dumps(SMS_data))
+                # print(res.json()) 
+                
+                if int(c) in target_class_ids:          # target_class_ids : 1, 3, 5 shoes_X, helmet_X, belt_X 세가지 검출
+                    class_name = names[int(c)]          # class_name에 이름 넣어서 표시
+                    class_count = (det[:, 5] == c).sum()# 검출을 했을시 동작 시킬 파트
+                    for j in range(class_count):
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")   # 현재 시간 타임 스탬프
+                        unique_id = str(uuid.uuid4().hex[:6])                           # 파일 고유 번호 
+                        filename = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.jpg" # 파일 네임 폼
+                        print(f"detected_{class_name}_{i}_{timestamp}_{unique_id}.jpg 생성")
+                        cv2.imwrite(filename, im0)                                      # EX : detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.jpg
+                # 비디오 저장 부분 진행중
+                #videoname = None  # videoname 변수 초기화
+                #vid_writer = []  # vid_writer 리스트 초기화
+                #print(vid_writer)
+#
+                ## vid_writer 리스트 초기화
+                #vid_writer = [None] * len(vid_path)
+                #print(vid_writer)
+                ## videoname이 비어 있지 않을 때만 경로 설정
+                #if videoname is not None and videoname != "":
+                #    save_path = str(Path(videoname).with_suffix('.mp4'))
+                #
+                #if len(vid_path) <= i:
+                #    vid_path.append(save_path)  # Add new video path to the list
+                #    vid_writer.append(None)  # Add a new element to vid_writer list
+                #    print(vid_writer, vid_path, save_path)
+                ## 새로운 비디오를 위한 파일 이름 생성
+                #
+                #videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.mp4"
+                #vid_path[i] = save_path  # Update video path
+                #print(vid_writer, vid_path[i])
+#
+                #if vid_writer is not None:
+                #    vid_writer.release()  # release previous video writer
+                #    print('release previous video writer')
+#
+                #if vid_cap:  # video
+                #    fps = vid_cap.get(cv2.CAP_PROP_FPS)
+                #    w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                #    h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                #else:  # stream
+                #    fps, w, h = 30, im0.shape[1], im0.shape[0]
+#
+                #
+                #vid_writer[i] = cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+                ## 이전 프레임들을 비디오로 저장
+                #for prev_frame in prev_frames:
+                #    frame = prev_frame.copy()
+                #    vid_writer[i].write(frame)
+                #print(f"detected_{class_name}_{i}_{timestamp}_{unique_id} 생성")
 
-        elif alarm == 'SMS':
-            if len(detect_deque) == 300: # deque 사이즈가 300이면   
-                for detect_deque_val in detect_deque: # deque 탐색 시작
-                    if detect_deque_val: # deque에 값이 있을때
-                        for val in detect_deque_val: # deque의 값이 리스트이기때문에 for문 추가
-                            count[str(val)] += 1 # deque의 값에 해당하는 클래스를 count +1 
-            
-            for count_index in count: # dictionary 탐색 시작        
-                if count[count_index] >= 240:  # dictionary 값중 240이 넘는 값이 있다면
-                    # sms 발송하기
-                    print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
-                    # SMS_data['content'] = count_index + "번 클래스가 70프레임 발견되었습니다."              
-                    # res = requests.post(SMS_url+SMS_uri,headers=header,data=json.dumps(SMS_data))
-                    # print(res.json())                
-                    for remove_deque in detect_deque:
-                        if remove_deque:
-                            remove_deque.clear()
-                count[count_index] = 0 # dictionary 초기화
+
+                # 현재 프레임을 비디오로 저장
+                #vid_writer[i].write(im0)
+                #print(f"detected_{class_name}_{i}_{timestamp}_{unique_id} 생성")
+                      
+                for remove_deque in detect_deque:
+                    if remove_deque:  
+                        remove_deque.clear()
+            count[count_index] = 0 # dictionary 초기화
 
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
+    if alarm == '':
+            save_path_split = save_path.split('.mp4')        
+            with open(f'{save_path_split[0]}.txt', 'w') as f:
+                f.write(f'{result_frame_string}' + '\n')
     if alarm == '':
             save_path_split = save_path.split('.mp4')        
             with open(f'{save_path_split[0]}.txt', 'w') as f:
