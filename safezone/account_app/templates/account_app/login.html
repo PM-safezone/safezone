@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
@@ -76,11 +77,11 @@
             border: 2px solid #ffffff;
         }
         
-        .form-container form {
+        /* .form-container form {
             display: flex;
             flex-direction: column;
-            align-items: left;
-        }
+            align-items: center;
+        } */
         
         .form-container label {
             margin-left: 40px;
@@ -93,7 +94,7 @@
         
         .form-container input[type="text"],
         .form-container input[type="password"] {
-            padding: 10px;
+            /* padding: 10px;
             border: none;
             border-radius: 3px;
             margin-left: 40px;
@@ -104,17 +105,27 @@
             color: #0f1020;
             border: 1px solid #0f1020;
             box-shadow: 0px 0px 3px #0f1020(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out; */
+            border-radius: 3px;
+            width: 100%; 
+            padding: 12px 40px; 
+            margin: 8px 0;
+            background-color: #ffffff;
+            display: inline-block; 
+            color: #0e0f37;
+            border: 1px solid #0e0f37; 
+            box-sizing: border-box;
             transition: all 0.3s ease-in-out;
         }
 
         .form-container input[type="password"] {
-            margin-bottom: 50px;
+            margin-bottom: 70px;
         }
         
         .form-container input[type="text"]:focus,
         .form-container input[type="password"]:focus {
             outline: none;
-            color: #0f1020;
+            color: #0e0f37;
             box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
             background-color: #ffffff;
         }
@@ -127,7 +138,7 @@
             color: #fff;
             font-size: 1.1rem;
             font-weight: 500;
-            cursor: pointer;
+            cursor: pointer;ㅅ
             transition: all 0.3s ease-in-out;
         } */
         
@@ -153,12 +164,12 @@
             color: #ffffff;
             margin-bottom: 30px;
             position: absolute;
-            width: 315px;
+            width: 380px;
             font-size: 2rem;
             font-weight: bold;
             height: 50px;
-            left: 90px;
-            top: 500px;
+            left: 57.5px;
+            top: 470px;
         }
 
         .btn-login:hover {
@@ -221,6 +232,33 @@
             color: #5a5a5f;
             font-weight: bold;
         }
+
+        .username-container {
+            position: relative;
+        }
+          
+        .username-container i{
+            position: absolute;
+            left: 13px;
+            top: 25px;
+            font-size: 18px;
+            color: #0e0f37;
+        }
+          
+        .password-container {
+            position: relative;
+        }
+          
+        .password-container i{
+            position: absolute;
+            left: 13px;
+            top: 32px;
+            color: #0e0f37;
+        }
+
+        ::placeholder {
+            color: gray;
+        }
     </style>
 </head>
 <body>
@@ -251,17 +289,32 @@
         <form method="POST">
             {% csrf_token %}
             <!-- {{ form.as_p }} -->
-            <label for="username">아이디</label>
-            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요"><i class="fa-solid fa-user-helmet-safety" style="color: #0f1020;"></i>
+            <!-- <label for="username">아이디</label>
+            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요"><i class="fas fa-user-helmet-safety" style="color: #0f1020;"></i>
             <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
-        
-        <div class="btn-container">
-            <button type="submit" class="btn btn-login">LOGIN</button>
-            <a href="../create" class="register-button">관리자 등록</a>
-            <!-- <button type="button" class="btn btn-register" onclick="location.href='../create'">관리자등록</button> -->
-        </div>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"> -->
+
+            <div class="username-container">
+                <input type="text" 
+                        placeholder="아이디를 입력하세요"
+                        name="uname" required> 
+                <i class="fa-solid fa-helmet-safety"></i>
+            </div>
+              
+            <div class="password-container">
+                <input type="password"
+                        placeholder="비밀번호를 입력하세요"
+                        name="psw" required> 
+                <i class="fa fa-key fa-lg"></i>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" class="btn btn-login">LOGIN</button>
+                <a href="../create" class="register-button">관리자 등록</a>
+                <!-- <button type="button" class="btn btn-register" onclick="location.href='../create'">관리자등록</button> -->
+            </div>
         </form>
     </div>
 </body>
 </html> 
+
