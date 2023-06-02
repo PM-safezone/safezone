@@ -33,4 +33,5 @@ urlpatterns = [
     path('yolov5_webcam/', views.yolov5_webcam, name='yolov5_webcam'),
     path('run_yolov5_webcam/', views.run_yolov5_webcam, name='run_yolov5_webcam'),
     path('video_feed/<int:id>', views.video_feed, name='video_feed'),
+    path('get_log/', views.get_log, name='get_log'),
 ]

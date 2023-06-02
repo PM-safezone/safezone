@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.http import Http404, StreamingHttpResponse, HttpResponseServerError, JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators import gzip
-from django.contrib.auth.views import LoginView
+import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.core.files.storage import FileSystemStorage, default_storage
 from django.core.files.base import ContentFile
@@ -12,9 +12,9 @@ import cv2
 import os
 from torchvision import transforms
 from PIL import Image
-import time
+from django.urls import reverse
 from .forms import VideoForm
-from .models import Video
+from .models import Video, LogEntry
 from yolov5.models.experimental import *
 import subprocess
 import json
@@ -127,15 +127,67 @@ def video_detail(request, fileNo):
     video = get_object_or_404(Video, pk=fileNo)
     return render(request, 'video_detail.html', {'video': video})
 
+num = 0
 def yolov5_webcam(request):
-    return render(request, 'yolov5_webcam.html')
+    log_entries = LogEntry.objects.filter(execution_num=num)
+    if log_entries.exists():
+        log_text = [
+            f"Source: {entry.source}\nEvent Type: {entry.event_type} | Event Time: {entry.event_time}\n"
+            for entry in log_entries
+        ]
+    else:
+        log_text = []
+    return render(request, 'yolov5_webcam.html', {'log_text': log_text})
+
+
+def get_log(request):
+    global num  # num 변수를 전역 변수로 사용
+    num += 1  # num 값 증가
+    if request.method == 'GET':
+        exp_dir = 'C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/runs/detect/'
+        subdirs = [f.path for f in os.scandir(exp_dir) if f.is_dir() and f.name.startswith('exp') and f.name[3:].isdigit()]
+
+        if subdirs:
+            max_exp_dir = max(subdirs, key=lambda x: int(x.split('exp')[-1]))
+            detect_txt_file = os.path.join(max_exp_dir, 'detect_log.txt')
+            print(max_exp_dir)
+            if os.path.exists(detect_txt_file):  # 로그 파일이 존재하는 경우에만 읽어옴
+                with open(detect_txt_file, 'r') as f:
+                    lines = f.readlines()
+                    
+                # DB에 저장할 로그 정보 추출
+                log_entries = []
+                for line in lines:
+                    # 로그 파일에서 필요한 정보 추출
+                    log_data = line.strip().split('|')
+                    event_time_str = log_data[0].strip()  # 이벤트 시간 문자열
+                    event_type = log_data[1].strip()  # 이벤트 유형
+                    print(event_type)
+                    # 이벤트 시간을 datetime 객체로 변환
+                    event_time = datetime.datetime.strptime(event_time_str, '%Y%m%d_%H%M%S')
+                    
+                    # DB에 저장할 로그 엔트리 생성
+                    log_entry = LogEntry(source='webcam', execution_num=num, event_type=event_type, event_time=event_time)
+                    log_entries.append(log_entry)
+                print(log_entry)
+                # DB에 일괄 저장
+                LogEntry.objects.bulk_create(log_entries)
+                
+                log_content = "Log entries saved to the database."
+            else:
+                log_content = ""  # 로그 파일이 없는 경우 빈 문자열로 설정
+        else:
+            log_content = "No exp folders found."
+            
+        return HttpResponse(log_content)
+# Ajax 요청 처리
 
 @csrf_exempt
 def run_yolov5_webcam(request):
     if request.method == 'POST':
         
         #command = '/Users/seoyoobin/Desktop/MLP_AI Engineer Camp/safezone/safezone/safezone_app/yolov5/best.pt'
-        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/safezone_app/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
 
         try:
             subprocess.run(command, shell=True, check=True)

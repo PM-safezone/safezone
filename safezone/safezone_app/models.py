@@ -99,21 +99,22 @@ class Setting(models.Model):
     def __str__(self):
         return f'설정번호: {self.setno}'
     
-class Event(models.Model):
-    Violation_of_safety_rules = (
-        (1, '안전모 미착용'),
-        (2, '안전벨트 미착용'),
-        (3, '안전화 미착용')
-    )
+class LogEntry(models.Model):
+    SOURCE_CHOICES = [
+        ('webcam', 'Webcam'),
+    ]
 
-    eventNo = models.AutoField(primary_key=True, verbose_name='메세지번호')
-    eventtype = models.CharField(choices=Violation_of_safety_rules, max_length=20, verbose_name='위반 종류')
-    eventtime = models.DateTimeField(null=True, blank=True, auto_now_add=True, verbose_name='위반 시간')
+    source = models.CharField(max_length=10, choices=SOURCE_CHOICES)
+    execution_num = models.IntegerField()
+    event_type = models.CharField(max_length=50)
+    event_time = models.DateTimeField()
 
     class Meta:
-        db_table = 'Event'
-        verbose_name = '이벤트'
-        verbose_name_plural = '이벤트'
+        db_table = 'LogEntry'
+        verbose_name = '로그'
+        verbose_name_plural = '로그'
 
     def __str__(self):
-        return f'메세지번호: {self.eventNo}'
+        return f"LogEntry - Source: {self.source}, Execution Num: {self.execution_num}, Event Type: {self.event_type}, Event Time: {self.event_time}"
+    
+    
