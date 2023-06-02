@@ -160,7 +160,6 @@ def run(
     count = {'0' : 0, '1' : 0, '2' : 0, '3' : 0, '4' : 0, '5' : 0} # detecting count     
     frame = 1 # 프레임별 클래스 검색하기 위한 초기화
     result_frame_string = ''
-    result_frame_string = ''
     detect_deque = deque(maxlen=300)
     prev_frames = deque(maxlen=300)
     for path, im, im0s, vid_cap, s in dataset:
@@ -246,7 +245,7 @@ def run(
                 cv2.waitKey(1)  # 1 millisecond
 
             
-            prev_frames.append(cv2.UMat(im0))  # im0를 prev_frames에 추가
+            prev_frames.append(im0)  # im0를 prev_frames에 추가
             # Save results (image with detections)
             #if save_img:
             #    if dataset.mode == 'image':
@@ -299,7 +298,7 @@ def run(
                     for val in detect_deque_val: # deque의 값이 리스트이기때문에 for문 추가
                         count[str(val)] += 1 # deque의 값에 해당하는 클래스를 count +1 
         
-        
+        target_class_ids = [1, 3, 5]
         for count_index in count: # dictionary 탐색 시작        
             if count[count_index] >= 240:  # dictionary 값중 240이 넘는 값이 있다면
                 i += 1
@@ -318,27 +317,68 @@ def run(
                         filename = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.jpg" # 파일 네임 폼
                         print(f"detected_{class_name}_{i}_{timestamp}_{unique_id}.jpg 생성")
                         cv2.imwrite(filename, im0)                                      # EX : detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.jpg
+                
                 # 비디오 저장 부분 진행중
+                videoname = None  # videoname 변수 초기화
+                videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.mp4" #exp folder 하위에 ex :detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.mp4 파일 생성
+                
+                # 이전 비디오 writer 해제
+                for writer in vid_writer:   #이전에 사용했던 vid_writer를 해제 하고 release()를 새로 함
+                    if writer is not None:
+                        writer.release()
+                
+                if vid_cap:  # video
+                    fps = vid_cap.get(cv2.CAP_PROP_FPS)
+                    w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                    h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                else:  # stream
+                    fps, w, h = 30, im0.shape[1], im0.shape[0]
+                
+                # 비디오 writer 초기화
+                vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h)))
+                
+                # 이전 프레임들을 비디오로 저장
+                for prev_frame in prev_frames:
+                    frame = prev_frame.copy()
+                    if isinstance(frame, np.ndarray) and len(frame.shape) == 3:
+                        vid_writer[-1].write(frame)
+                    else:
+                        print(f"Invalid frame format: {type(frame)}, skipping...")
+                
+                print(f"detected_{class_name}_{i}_{timestamp}_{unique_id} 생성")
+                
+                log_text = '' # log_text 초기화
+                logs = f"{save_dir}/detect_log.txt"
+                if int(c) == 1:
+                    log_text = f'{timestamp} | Detected Class : Not worn shoes \n'
+                elif int(c) == 3:
+                    log_text = f'{timestamp} | Detected Class : Not worn Belt \n'
+                elif int(c) == 5:
+                    log_text = f'{timestamp} | Detected Class : Not worn Helmet \n'
+                    
+                with open(logs, 'a', encoding='utf-8') as f:
+                    f.write(log_text)
+                print(f"detected_log 생성 및 쓰기")
+                
+                
+                ## 비디오 저장 부분 진행중
                 #videoname = None  # videoname 변수 초기화
-                #vid_writer = []  # vid_writer 리스트 초기화
-                #print(vid_writer)
-#
+                #videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.mp4"
                 ## vid_writer 리스트 초기화
                 #vid_writer = [None] * len(vid_path)
-                #print(vid_writer)
+                #print(vid_writer, videoname)
                 ## videoname이 비어 있지 않을 때만 경로 설정
-                #if videoname is not None and videoname != "":
+                #if videoname is not None:
                 #    save_path = str(Path(videoname).with_suffix('.mp4'))
-                #
+                #    print(save_path)
                 #if len(vid_path) <= i:
-                #    vid_path.append(save_path)  # Add new video path to the list
-                #    vid_writer.append(None)  # Add a new element to vid_writer list
+                #    vid_path = save_path  # Add new video path to the list
+                #    vid_writer.append(cv2.VideoWriter())  # Add a new element to vid_writer list
                 #    print(vid_writer, vid_path, save_path)
                 ## 새로운 비디오를 위한 파일 이름 생성
                 #
-                #videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.mp4"
-                #vid_path[i] = save_path  # Update video path
-                #print(vid_writer, vid_path[i])
+                #
+        #
 #
                 #if vid_writer is not None:
                 #    vid_writer.release()  # release previous video writer
@@ -352,11 +392,11 @@ def run(
                 #    fps, w, h = 30, im0.shape[1], im0.shape[0]
 #
                 #
-                #vid_writer[i] = cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+                #vid_writer = cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
                 ## 이전 프레임들을 비디오로 저장
                 #for prev_frame in prev_frames:
                 #    frame = prev_frame.copy()
-                #    vid_writer[i].write(frame)
+                #    vid_writer.write(frame)
                 #print(f"detected_{class_name}_{i}_{timestamp}_{unique_id} 생성")
 
 
