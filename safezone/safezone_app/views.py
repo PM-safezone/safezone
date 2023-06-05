@@ -129,16 +129,19 @@ def video_detail(request, fileNo):
 
 num = 0
 def yolov5_webcam(request):
+    global num
+    print(num)
     log_entries = LogEntry.objects.filter(execution_num=num)
+    log_text = ""
     if log_entries.exists():
-        log_text = [
-            f"Source: {entry.source}\nEvent Type: {entry.event_type} | Event Time: {entry.event_time}\n"
-            for entry in log_entries
-        ]
+        text_space = '\n'
+        for entry in log_entries:
+            log_text += f"Source: {entry.source} {text_space} Event Type: {entry.event_type} | Event Time: {entry.event_time} {text_space}" 
+
     else:
         log_text = []
+    print(log_text)
     return render(request, 'yolov5_webcam.html', {'log_text': log_text})
-
 
 def get_log(request):
     global num  # num 변수를 전역 변수로 사용
