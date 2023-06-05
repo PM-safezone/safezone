@@ -58,7 +58,7 @@
 
         .form-container {
             margin-top: 500px;
-            max-width: 500px;
+            max-width: 700px;
             margin: 100px auto;
             padding: 50px;
             background-color: #0f1020;
@@ -143,19 +143,20 @@
         <button id="get_log_btn" onclick="getYolov5WebcamData()">Get Log</button>
 
         <div class="violation-box">
-          <div class="text_container">
-            <textarea id="violation-content" class="violation-content" rows="5">{{ log_text }}</textarea>
-          </div>
+            <div class="text_container">
+                <textarea rows="10" cols="80">{{ log_text }}</textarea>
+            </div>
         </div>
     </div>
 
 
 <script>
-    $(document).ready(function() {
+
+    //$(document).ready(function() {
         // 버튼 클릭 이벤트 처리
-        $("#get_log").on("click", function() {
-            updateLog();  // 로그 업데이트 함수 호출
-        });
+        //$("#get_log").on("click", function() {
+            //updateLog();  // 로그 업데이트 함수 호출
+        //});
     
         // 로그 업데이트 함수
         function updateLog() {
@@ -183,22 +184,28 @@
         document.getElementById("get_log").addEventListener("click", updateLog);
     
         
-    });
+    //});
     // yolov5_webcam 함수
     function getYolov5WebcamData() {
         $.ajax({
           url: '/yolov5_webcam/',
           type: 'GET',
           dataType: 'html',
+          cache: false,
           success: function(data) {
             var logContent = $(data).find(".violation-content").val();
             $("#violation-content").val(logContent);
+            location.reload(); // 페이지 새로고침
           },
           error: function(request, status, error) {
             console.error("An error occurred:", error);
           }
         });
-    }
+      }
+      
+      function updateTextarea(content) {
+        $("#violation-content").val(content); // textarea 업데이트
+      }
     function toggleButton(activeButtonId, inactiveButtonId) {
         var activeButton = document.getElementById(activeButtonId);
         var inactiveButton = document.getElementById(inactiveButtonId);
