@@ -9,7 +9,12 @@
     <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
     <title>Pi Video Surveillance</title>
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    
+    <script>
+      $.ajaxSetup({
+        headers: { "X-CSRFToken": '{{csrf_token}}' }
+      });
+    </script>
+
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
