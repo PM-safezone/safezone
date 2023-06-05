@@ -99,15 +99,15 @@ def upload_video(request):
 
     return render(request, 'upload_video.html', fileNo=video.fileNo)
 
-def video(request):    
+def video(request):
     return render(request, 'upload_video.html')
 
-def video_analyze(request): 
+def video_analyze(request):
     if request.method == 'POST':
         video_file = request.FILES['video_file']
         upload = default_storage.save(video_file.name,ContentFile(video_file.read()))
 
-        command = 'python C:/Users/leeyo/Project/safezone/safezone/media/yolov5/detect.py --source C:/Users/leeyo/Project/safezone/safezone/media/' + video_file.name + ' --weights C:/Users/leeyo/Project/safezone/safezone/media/yolov5/runs/train/yolov5s_third/weights/best.pt --exist-ok'
+        command = 'python /var/www/safezone/safezone/media/yolov5/detect.py --source /var/www/safezone/safezone/media/' + video_file.name + ' --weights /var/www/safezone/safezone/media/yolov5/runs/train/yolov5s_third/weights/best.pt --exist-ok'
         print(command)
         try:
             subprocess.run(command, shell=True, check=True)            
@@ -115,7 +115,7 @@ def video_analyze(request):
             print(e)
 
         detect_video_file = '/media/yolov5/runs/detect/exp/'+video_file.name
-        detect_txt_file = 'C:/Users/leeyo/Project/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
+        detect_txt_file = '/var/www/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
         f = open(detect_txt_file,'r')
         text_data = f.read()
         f.close()
@@ -144,7 +144,7 @@ def get_log(request):
     global num  # num 변수를 전역 변수로 사용
     num += 1  # num 값 증가
     if request.method == 'GET':
-        exp_dir = 'C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/runs/detect/'
+        exp_dir = '/var/www/safezone/safezone/media/yolov5/runs/detect/'
         subdirs = [f.path for f in os.scandir(exp_dir) if f.is_dir() and f.name.startswith('exp') and f.name[3:].isdigit()]
 
         if subdirs:
@@ -155,7 +155,7 @@ def get_log(request):
                 with open(detect_txt_file, 'r') as f:
                     lines = f.readlines()
                     
-                # DB에 저장할 로그 정보 추출
+                # DB 에 저장할 로그 정보 추출
                 log_entries = []
                 for line in lines:
                     # 로그 파일에서 필요한 정보 추출
@@ -166,11 +166,11 @@ def get_log(request):
                     # 이벤트 시간을 datetime 객체로 변환
                     event_time = datetime.datetime.strptime(event_time_str, '%Y%m%d_%H%M%S')
                     
-                    # DB에 저장할 로그 엔트리 생성
+                    # DB 에 저장할 로그 엔트리 생성
                     log_entry = LogEntry(source='webcam', execution_num=num, event_type=event_type, event_time=event_time)
                     log_entries.append(log_entry)
                 print(log_entry)
-                # DB에 일괄 저장
+                # DB 에 일괄 저장
                 LogEntry.objects.bulk_create(log_entries)
                 
                 log_content = "Log entries saved to the database."
@@ -187,7 +187,7 @@ def run_yolov5_webcam(request):
     if request.method == 'POST':
         
         #command = '/Users/seoyoobin/Desktop/MLP_AI Engineer Camp/safezone/safezone/safezone_app/yolov5/best.pt'
-        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        command = 'python /var/www/safezone/safezone/media/yolov5/detect.py --weights /var/www/safezone/safezone/media/yolov5/runs/train/yolov5s_third/weights/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
 
         try:
             subprocess.run(command, shell=True, check=True)
@@ -196,7 +196,7 @@ def run_yolov5_webcam(request):
             return HttpResponse(f"Error occurred while running detection: {e}")
         # 웹캠 캡처 객체 생성
         
-        cap = cv2.VideoCapture(0)  # 0은 기본 웹캠을 나타냄
+        cap = cv2.VideoCapture(0)  # 0 은 기본 웹캠을 나타냄
         #count = count * 30
         #start_file_number = count
         #end_file_number = count + 299
