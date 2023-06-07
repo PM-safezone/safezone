@@ -190,7 +190,7 @@ def run_yolov5_webcam(request):
     if request.method == 'POST':
         
         #command = '/Users/seoyoobin/Desktop/MLP_AI Engineer Camp/safezone/safezone/safezone_app/yolov5/best.pt'
-        command = 'python /var/lib/docker/overlay2/d3521fdfa2e9ba39a0f4d4a6cff138647db7d574e14d74edf13e020af78e9200/merged/home/safezone/safezone/media/yolov5/detect.py --weights /home/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0'
+        command = 'python /var/lib/docker/overlay2/d3521fdfa2e9ba39a0f4d4a6cff138647db7d574e14d74edf13e020af78e9200/merged/home/safezone/safezone/media/yolov5/detect.py --weights /home/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
 
         try:
             subprocess.run(command, shell=True, check=True)
