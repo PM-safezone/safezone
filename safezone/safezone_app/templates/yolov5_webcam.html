@@ -156,56 +156,56 @@
 
 
 <script>
-
-    //$(document).ready(function() {
-        // 버튼 클릭 이벤트 처리
-        //$("#get_log").on("click", function() {
-            //updateLog();  // 로그 업데이트 함수 호출
-        //});
-    
-        // 로그 업데이트 함수
-        function updateLog() {
-            var getLogURL = '/get_log/';
-            $.ajax({
-                url: getLogURL,
-                type: 'GET',
-                dataType: 'html',
-                success: function(data) {
-                    console.log(data);
-                },
-                beforeSend: function() {
-                    console.log("I am waiting");
-                },
-                complete: function() {
-                    console.log("I am done");
-                },
-                error: function(request, status, error) {
-                    // do nothing or handle the error gracefully
-                }
-            });
-        }
-    
-        // Attach the click event handler programmatically
-        document.getElementById("get_log").addEventListener("click", updateLog);
-    
-        
-    //});
-    // yolov5_webcam 함수
-    function getYolov5WebcamData() {
-        $.ajax({
-          url: '/yolov5_webcam/',
-          type: 'GET',
-          dataType: 'html',
-          cache: false,
-          success: function(data) {
-            var logContent = $(data).find(".violation-content").val();
-            $("#violation-content").val(logContent);
-            location.reload(); // 페이지 새로고침
-          },
-          error: function(request, status, error) {
-            console.error("An error occurred:", error);
-          }
-        });
+    // 버튼 클릭 시 updateLog() 함수 실행
+    ("#get_log").click(function() {
+       updateLog();
+     });
+     
+     // 로그 업데이트 함수
+     function updateLog() {
+       var getLogURL = '/get_log/';
+       $.ajax({
+         url: getLogURL,
+         type: 'GET',
+         dataType: 'html',
+         success: function(data) {
+           console.log(data);
+           updateTextarea(data); // textarea 업데이트
+           setTimeout(getYolov5WebcamData, 3000); // 3초 후에 getYolov5WebcamData() 함수 실행
+         },
+         beforeSend: function() {
+           console.log("I am waiting");
+         },
+         complete: function() {
+           console.log("I am done");
+         },
+         error: function(request, status, error) {
+           // do nothing or handle the error gracefully
+         }
+       });
+     }
+     
+     // getYolov5WebcamData() 함수
+     function getYolov5WebcamData() {
+       $.ajax({
+         url: '/yolov5_webcam/',
+         type: 'GET',
+         dataType: 'html',
+         cache: false,
+         success: function(data) {
+           var logContent = $(data).find(".violation-content").val();
+           $("#violation-content").val(logContent);
+           location.reload(); // 페이지 새로고침
+         },
+         error: function(request, status, error) {
+        console.error("An error occurred:", error);
+         }
+       });
+     }
+      
+      // getFunction() 함수
+      function getFunction() {
+        getYolov5WebcamData();
       }
       
       function updateTextarea(content) {
