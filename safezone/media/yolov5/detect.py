@@ -196,37 +196,133 @@ def run(
 			else:
 				p, im0, frame = path, im0s.copy(), getattr(dataset, 'frame', 0)
 
-			p = Path(p)  # to Path
-			save_path = str(save_dir / p.name)  # im.jpg
-			txt_path = str(save_dir / 'log' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # im.txt
-			s += '%gx%g ' % im.shape[2:]  # print string
-			gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
-			imc = im0.copy() if save_crop else im0  # for save_crop
-			annotator = Annotator(im0, line_width=line_thickness, example=str(names))
-			if len(det):
-				# Rescale boxes from img_size to im0 size
-				det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round()
-
-				# Print results
-				for c in det[:, 5].unique():
-					n = (det[:, 5] == c).sum()  # detections per class
-					s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
-					# count[str(int(c))] += 1 # 검출된 클래스 개수 늘리기
-					frame_string += (str(int(c)) + " ")  # 검출된 클래스 추가하기
-
-				log_file = str(save_dir / 'labels' / p.stem) + 'log_file.txt'
-				# Write results
-				object_counts = []
-				for *xyxy, conf, cls in reversed(det):
-					object_counts.append(cls)
-					if save_txt:  # Write to file
-						xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
-						line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
-						with open(log_file, 'a') as f:  # 프레임 로그를 파일에 추가
-							for frame_num, cls in enumerate(object_counts, start=1):
-								f.write(f'{frame_num}: {int(cls)}\n')
-					# with open(f'{txt_path}.txt', 'a') as f:
-					#    f.write(('%g ' * len(line)).rstrip() % line + '\n')
+            
+            prev_frames.append(im0)  # im0를 prev_frames에 추가
+                        
+            #Save results (image with detections)
+            if alarm == '':
+                if save_img:
+                    if dataset.mode == 'image':
+                        cv2.imwrite(save_path, im0)
+                    else:  # 'video' or 'stream'
+                        if vid_path[i] != save_path:  # new video
+                            vid_path[i] = save_path
+                            if isinstance(vid_writer[i], cv2.VideoWriter):
+                                vid_writer[i].release()  # release previous video writer
+                            if vid_cap:  # video
+                                fps = vid_cap.get(cv2.CAP_PROP_FPS)
+                                w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                                h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                            else:  # stream
+                                fps, w, h = 30, im0.shape[1], im0.shape[0]
+                            save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
+                            vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'x264'), fps, (w, h))
+                        vid_writer[i].write(im0) 
+                
+            
+            # deque 만들기  
+            if alarm == 'SMS':         
+                if len(detect_deque) < 300: # deque 사이즈가 300이 안되면 
+                    detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 무조건 append            
+                else: # deque 사이즈가 70이 넘으면                 
+                    detect_deque.popleft() # 선입선출
+                    detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 그다음 append
+            
+        # video upload 시 프레임별 클래스 저장
+            frame += 1 
+        if alarm == '':
+            result_frame_string += frame_string + '\n'
+        # with open(f'{save_path_split[0]}.txt', 'a') as f:
+        #     f.write(f'{frame_string}' + '\n')
+        
+        # frame_string_split = frame_string.split(':')[1].split(' ')
+        # for count_index in count:                
+        #     if count_index in frame_string_split:
+        #         count[count_index] += 1
+        #     # else: # 연속해서 검출이 안될경우 카운트 초기화
+        #     #     count[count_index] = 0 
+        
+        if alarm == 'SMS':
+            if len(detect_deque) == 300: # deque 사이즈가 300이면   
+                for detect_deque_val in detect_deque: # deque 탐색 시작
+                    if detect_deque_val: # deque에 값이 있을때
+                        for val in detect_deque_val: # deque의 값이 리스트이기때문에 for문 추가
+                            count[str(val)] += 1 # deque의 값에 해당하는 클래스를 count +1 
+        
+            target_class_ids = [1, 3, 5]
+            for count_index in count: # dictionary 탐색 시작        
+                if count[count_index] >= 240:  # dictionary 값중 240이 넘는 값이 있다면
+                    i += 1
+                    # sms 발송하기
+                    # print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
+                    if int(count_index) == 1 or int(count_index) == 3 or int(count_index) == 5:
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                        if int(count_index) == 1:
+                            log_text = f'Event Time : {timestamp}\nDetected Class : Not worn shoes'
+                        elif int(count_index) == 3:
+                            log_text = f'Event Time : {timestamp}\nDetected Class : Not worn Belt'
+                        elif int(count_index) == 5:
+                            log_text = f'Event Time : {timestamp}\nDetected Class : Not worn Helmet'
+                        SMS_data['content'] = log_text              
+                        res = requests.post(SMS_url+SMS_uri,headers=header,data=json.dumps(SMS_data))
+                    # print(res.json()) 
+                    
+                    if int(c) in target_class_ids:          # target_class_ids : 1, 3, 5 shoes_X, helmet_X, belt_X 세가지 검출
+                        class_name = names[int(c)]          # class_name에 이름 넣어서 표시
+                        class_count = (det[:, 5] == c).sum()# 검출을 했을시 동작 시킬 파트
+                        for j in range(class_count):
+                            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")   # 현재 시간 타임 스탬프
+                            unique_id = str(uuid.uuid4().hex[:6])                           # 파일 고유 번호 
+                            filename = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.jpg" # 파일 네임 폼
+                            print(f"detected_{class_name}_{i}_{timestamp}_{unique_id}.jpg 생성")
+                            cv2.imwrite(filename, im0)                                      # EX : detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.jpg
+                    
+                    # 비디오 저장 부분 진행중
+                    videoname = None  # videoname 변수 초기화
+                    videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.mp4" #exp folder 하위에 ex :detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.mp4 파일 생성
+                    
+                    # 이전 비디오 writer 해제
+                    for writer in vid_writer:   #이전에 사용했던 vid_writer를 해제 하고 release()를 새로 함
+                        if writer is not None:
+                            writer.release()
+                    
+                    if vid_cap:  # video
+                        fps = vid_cap.get(cv2.CAP_PROP_FPS)
+                        w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                        h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                    else:  # stream
+                        fps, w, h = 30, im0.shape[1], im0.shape[0]
+                    
+                    # 비디오 writer 초기화
+                    vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h)))
+                    
+                    # 이전 프레임들을 비디오로 저장
+                    for prev_frame in prev_frames:
+                        frame = prev_frame.copy()
+                        if isinstance(frame, np.ndarray) and len(frame.shape) == 3:
+                            vid_writer[-1].write(frame)
+                        else:
+                            print(f"Invalid frame format: {type(frame)}, skipping...")
+                    
+                    print(f"detected_{class_name}_{i}_{timestamp}_{unique_id} 생성")
+                    
+                    log_text = '' # log_text 초기화
+                    logs = f"{save_dir}/detect_log.txt"
+                    if int(c) == 1:
+                        log_text = f'{timestamp} | Detected Class : Not worn shoes \n'
+                    elif int(c) == 3:
+                        log_text = f'{timestamp} | Detected Class : Not worn Belt \n'
+                    elif int(c) == 5:
+                        log_text = f'{timestamp} | Detected Class : Not worn Helmet \n'
+                        
+                    with open(logs, 'a', encoding='utf-8') as f:
+                        f.write(log_text)
+                    print(f"detected_log 생성 및 쓰기")
+                
+                    for remove_deque in detect_deque:
+                        if remove_deque:  
+                            remove_deque.clear()
+                count[count_index] = 0 # dictionary 초기화
 
 					if save_img or save_crop or view_img:  # Add bbox to image
 						c = int(cls)  # integer class
@@ -396,39 +492,40 @@ def run(
 
 
 def parse_opt():
-	parser = argparse.ArgumentParser()
-	parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'yolov5s.pt', help='model path or triton URL')
-	parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='file/dir/URL/glob/screen/0(webcam)')
-	parser.add_argument('--data', type=str, default=ROOT / 'data/coco128.yaml', help='(optional) dataset.yaml path')
-	parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='inference size h,w')
-	parser.add_argument('--conf-thres', type=float, default=0.25, help='confidence threshold')
-	parser.add_argument('--iou-thres', type=float, default=0.45, help='NMS IoU threshold')
-	parser.add_argument('--max-det', type=int, default=1000, help='maximum detections per image')
-	parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
-	parser.add_argument('--view-img', action='store_true', help='show results')
-	parser.add_argument('--save-txt', action='store_true', help='save results to *.txt')
-	parser.add_argument('--save-conf', action='store_true', help='save confidences in --save-txt labels')
-	parser.add_argument('--save-crop', action='store_true', help='save cropped prediction boxes')
-	parser.add_argument('--nosave', action='store_true', help='do not save images/videos')
-	parser.add_argument('--classes', nargs='+', type=int, help='filter by class: --classes 0, or --classes 0 2 3')
-	parser.add_argument('--agnostic-nms', action='store_true', help='class-agnostic NMS')
-	parser.add_argument('--augment', action='store_true', help='augmented inference')
-	parser.add_argument('--visualize', action='store_true', help='visualize features')
-	parser.add_argument('--update', action='store_true', help='update all models')
-	parser.add_argument('--project', default=ROOT / 'runs/detect', help='save results to project/name')
-	parser.add_argument('--name', default='exp', help='save results to project/name')
-	parser.add_argument('--exist-ok', action='store_true', help='existing project/name ok, do not increment')
-	parser.add_argument('--line-thickness', default=3, type=int, help='bounding box thickness (pixels)')
-	parser.add_argument('--hide-labels', default=False, action='store_true', help='hide labels')
-	parser.add_argument('--hide-conf', default=False, action='store_true', help='hide confidences')
-	parser.add_argument('--half', action='store_true', help='use FP16 half-precision inference')
-	parser.add_argument('--dnn', action='store_true', help='use OpenCV DNN for ONNX inference')
-	parser.add_argument('--vid-stride', type=int, default=1, help='video frame-rate stride')
-	parser.add_argument('--alarm', default='', help='SMS/discord')
-	opt = parser.parse_args()
-	opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
-	print_args(vars(opt))
-	return opt
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'yolov5s.pt', help='model path or triton URL')
+    parser.add_argument('--source', type=str, default=ROOT / 'data/images', help='file/dir/URL/glob/screen/0(webcam)')
+    parser.add_argument('--data', type=str, default=ROOT / 'data/coco128.yaml', help='(optional) dataset.yaml path')
+    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='inference size h,w')
+    parser.add_argument('--conf-thres', type=float, default=0.25, help='confidence threshold')
+    parser.add_argument('--iou-thres', type=float, default=0.45, help='NMS IoU threshold')
+    parser.add_argument('--max-det', type=int, default=1000, help='maximum detections per image')
+    parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
+    parser.add_argument('--view-img', action='store_true', help='show results')
+    parser.add_argument('--save-txt', action='store_true', help='save results to *.txt')
+    parser.add_argument('--save-conf', action='store_true', help='save confidences in --save-txt labels')
+    parser.add_argument('--save-crop', action='store_true', help='save cropped prediction boxes')
+    parser.add_argument('--nosave', action='store_true', help='do not save images/videos')
+    parser.add_argument('--classes', nargs='+', type=int, help='filter by class: --classes 0, or --classes 0 2 3')
+    parser.add_argument('--agnostic-nms', action='store_true', help='class-agnostic NMS')
+    parser.add_argument('--augment', action='store_true', help='augmented inference')
+    parser.add_argument('--visualize', action='store_true', help='visualize features')
+    parser.add_argument('--update', action='store_true', help='update all models')
+    parser.add_argument('--project', default=ROOT / 'runs/detect', help='save results to project/name')
+    parser.add_argument('--name', default='exp', help='save results to project/name')
+    parser.add_argument('--exist-ok', action='store_true', help='existing project/name ok, do not increment')
+    parser.add_argument('--line-thickness', default=3, type=int, help='bounding box thickness (pixels)')
+    parser.add_argument('--hide-labels', default=False, action='store_true', help='hide labels')
+    parser.add_argument('--hide-conf', default=False, action='store_true', help='hide confidences')
+    parser.add_argument('--half', action='store_true', help='use FP16 half-precision inference')
+    parser.add_argument('--dnn', action='store_true', help='use OpenCV DNN for ONNX inference')
+    parser.add_argument('--vid-stride', type=int, default=1, help='video frame-rate stride')
+    parser.add_argument('--alarm', default='', help='SMS/discord')
+    opt = parser.parse_args()
+    opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
+    print_args(vars(opt))
+    return opt
+
 
 def main(opt):
 	check_requirements(exclude=('tensorboard', 'thop'))
