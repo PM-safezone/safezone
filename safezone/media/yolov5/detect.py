@@ -275,8 +275,9 @@ def run(
                     detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 그다음 append
             
         # video upload 시 프레임별 클래스 저장
-        #     frame += 1 
-        # save_path_split = save_path.split('.mp4')        
+            frame += 1 
+        if alarm == '':
+            result_frame_string += frame_string + '\n'
         # with open(f'{save_path_split[0]}.txt', 'a') as f:
         #     f.write(f'{frame_string}' + '\n')
         
@@ -299,9 +300,17 @@ def run(
                 if count[count_index] >= 240:  # dictionary 값중 240이 넘는 값이 있다면
                     i += 1
                     # sms 발송하기
-                    print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
-                    # SMS_data['content'] = count_index + "번 클래스가 70프레임 발견되었습니다."              
-                    # res = requests.post(SMS_url+SMS_uri,headers=header,data=json.dumps(SMS_data))
+                    # print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
+                    if int(count_index) == 1 or int(count_index) == 3 or int(count_index) == 5:
+                        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                        if int(count_index) == 1:
+                            log_text = f'Event Time : {timestamp}\nDetected Class : Not worn shoes'
+                        elif int(count_index) == 3:
+                            log_text = f'Event Time : {timestamp}\nDetected Class : Not worn Belt'
+                        elif int(count_index) == 5:
+                            log_text = f'Event Time : {timestamp}\nDetected Class : Not worn Helmet'
+                        SMS_data['content'] = log_text              
+                        res = requests.post(SMS_url+SMS_uri,headers=header,data=json.dumps(SMS_data))
                     # print(res.json()) 
                     
                     if int(c) in target_class_ids:          # target_class_ids : 1, 3, 5 shoes_X, helmet_X, belt_X 세가지 검출
@@ -355,51 +364,7 @@ def run(
                     with open(logs, 'a', encoding='utf-8') as f:
                         f.write(log_text)
                     print(f"detected_log 생성 및 쓰기")
-                    
-                    
-                    ## 비디오 저장 부분 진행중
-                    #videoname = None  # videoname 변수 초기화
-                    #videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.mp4"
-                    ## vid_writer 리스트 초기화
-                    #vid_writer = [None] * len(vid_path)
-                    #print(vid_writer, videoname)
-                    ## videoname이 비어 있지 않을 때만 경로 설정
-                    #if videoname is not None:
-                    #    save_path = str(Path(videoname).with_suffix('.mp4'))
-                    #    print(save_path)
-                    #if len(vid_path) <= i:
-                    #    vid_path = save_path  # Add new video path to the list
-                    #    vid_writer.append(cv2.VideoWriter())  # Add a new element to vid_writer list
-                    #    print(vid_writer, vid_path, save_path)
-                    ## 새로운 비디오를 위한 파일 이름 생성
-                    #
-                    #
-            #
-    #
-                    #if vid_writer is not None:
-                    #    vid_writer.release()  # release previous video writer
-                    #    print('release previous video writer')
-    #
-                    #if vid_cap:  # video
-                    #    fps = vid_cap.get(cv2.CAP_PROP_FPS)
-                    #    w = int(vid_cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                    #    h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                    #else:  # stream
-                    #    fps, w, h = 30, im0.shape[1], im0.shape[0]
-    #
-                    #
-                    #vid_writer = cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
-                    ## 이전 프레임들을 비디오로 저장
-                    #for prev_frame in prev_frames:
-                    #    frame = prev_frame.copy()
-                    #    vid_writer.write(frame)
-                    #print(f"detected_{class_name}_{i}_{timestamp}_{unique_id} 생성")
-
-
-                    # 현재 프레임을 비디오로 저장
-                    #vid_writer[i].write(im0)
-                    #print(f"detected_{class_name}_{i}_{timestamp}_{unique_id} 생성")
-                        
+                
                     for remove_deque in detect_deque:
                         if remove_deque:  
                             remove_deque.clear()
@@ -457,7 +422,7 @@ def parse_opt():
     parser.add_argument('--half', action='store_true', help='use FP16 half-precision inference')
     parser.add_argument('--dnn', action='store_true', help='use OpenCV DNN for ONNX inference')
     parser.add_argument('--vid-stride', type=int, default=1, help='video frame-rate stride')
-    parser.add_argument('--alarm', default='', help='sms/discord')
+    parser.add_argument('--alarm', default='', help='SMS/discord')
     opt = parser.parse_args()
     opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
     print_args(vars(opt))

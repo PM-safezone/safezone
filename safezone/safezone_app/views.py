@@ -107,7 +107,7 @@ def video_analyze(request):
         video_file = request.FILES['video_file']
         upload = default_storage.save(video_file.name,ContentFile(video_file.read()))
 
-        command = 'python /var/lib/docker/overlay2/d3521fdfa2e9ba39a0f4d4a6cff138647db7d574e14d74edf13e020af78e9200/merged/home/safezone/safezone/media/yolov5/detect.py --source /var/lib/docker/overlay2/d3521fdfa2e9ba39a0f4d4a6cff138647db7d574e14d74edf13e020af78e9200/merged/home/safezone/safezone/media/' + video_file.name + ' --weights /home/best.pt --exist-ok'
+        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/detect.py --source C:/Users/Jinsan/Desktop/safezone_project/safezone/media/' + video_file.name + ' --weights C:/Users/Jinsan/Desktop/best.pt --exist-ok'
         print(command)
         try:
             subprocess.run(command, shell=True, check=True)            
@@ -115,7 +115,7 @@ def video_analyze(request):
             print(e)
 
         detect_video_file = '/media/yolov5/runs/detect/exp/'+video_file.name
-        detect_txt_file = '/var/lib/docker/overlay2/d3521fdfa2e9ba39a0f4d4a6cff138647db7d574e14d74edf13e020af78e9200/merged/home/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
+        detect_txt_file = 'C:/Users/Jinsan/Desktop/safezone_project/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
         f = open(detect_txt_file,'r')
         text_data = f.read()
         f.close()
@@ -147,7 +147,7 @@ def get_log(request):
     global num  # num 변수를 전역 변수로 사용
     num += 1  # num 값 증가
     if request.method == 'GET':
-        exp_dir = '/var/lib/docker/overlay2/d3521fdfa2e9ba39a0f4d4a6cff138647db7d574e14d74edf13e020af78e9200/merged/home/safezone/safezone/media/yolov5/runs/detect/'
+        exp_dir = 'C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/runs/detect/'
         subdirs = [f.path for f in os.scandir(exp_dir) if f.is_dir() and f.name.startswith('exp') and f.name[3:].isdigit()]
 
         if subdirs:
@@ -190,8 +190,8 @@ def run_yolov5_webcam(request):
     if request.method == 'POST':
         
         #command = '/Users/seoyoobin/Desktop/MLP_AI Engineer Camp/safezone/safezone/safezone_app/yolov5/best.pt'
-        command = 'python /var/lib/docker/overlay2/d3521fdfa2e9ba39a0f4d4a6cff138647db7d574e14d74edf13e020af78e9200/merged/home/safezone/safezone/media/yolov5/detect.py --weights /home/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
-
+        #command = 'python /var/lib/docker/overlay2/d3521fdfa2e9ba39a0f4d4a6cff138647db7d574e14d74edf13e020af78e9200/merged/home/safezone/safezone/media/yolov5/detect.py --weights /home/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
+        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/detect.py --weights C:/Users/Jinsan/Desktop/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
         try:
             subprocess.run(command, shell=True, check=True)
             return HttpResponse("Detection completed successfully.")
