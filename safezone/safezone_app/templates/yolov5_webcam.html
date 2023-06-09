@@ -38,7 +38,7 @@
         }
 
         body {
-            background-color: #0f1020;
+            background-color: #171717;
             font-family: 'nanumsquare', sans-serif;
             font-size: 16px;
             line-height: 1.5;
@@ -48,7 +48,7 @@
             text-align: center;
             font-size: 3rem;
             font-weight: bold;
-            color: #eaff00;
+            color: #171717;
             margin-bottom: 30px;
         }
 
@@ -64,12 +64,13 @@
         .form-container {
             margin-top: 500px;
             max-width: 700px;
+            height: 800px;
             margin: 100px auto;
             padding: 50px;
-            background-color: #0f1020;
+            background-color: #ffffff;
             box-shadow: 0px 0px 10px #eaff00(0, 0, 0, 0.1);
             border-radius: 5px;
-            border: 2px solid #eaff00;
+            border: 2px solid #007eff;
         }
 
         .btn {
@@ -83,38 +84,55 @@
         }
        
         .btn-start {
-            background-color: #eaff00;
-            border: 0.5px solid #0f1020;
-            color: #0f1020;
-            margin-top: 50px;
-            margin-bottom: 30px;
-            margin-left: 10px;
-            margin-right: 110px;
+            background-color: #007eff;
+            border: 0.5px solid #007eff;
+            color: #ffffff;
+            margin-top: 50px;            
+            margin-right: 20px;
         }
 
         .btn-stop {
-            background-color: #0f1020;
-            border: 0.5px solid #eaff00;
-            color: #eaff00;
+            background-color: #007eff;
+            border: 0.5px solid #007eff;
+            color: #ffffff;
             margin-top: 50px;
-            margin-bottom: 30px;
         }
 
         .prompt-box {
             margin-top: 30px;
-            max-width: 400px;
-            margin-bottom: 80px;
+            max-width: 600px;
+            width: 600px;
+            margin-bottom: 30px;
             padding: 10px;
             font-size: 13px;
-            background-color: #0f1020;
-            border: 1px solid #eaff00;
+            background-color: #171717;
+            border: 1px solid #171717;
             border-radius: 3px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
+        .violation-box {
+            padding: 20px;            
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
+            border: 2px solid #171717;
+            border-radius: 10px;
+            position: absolute;  
+            margin-top : 50px;          
+            width: 600px;
+            height: 300px;
+        }
+
+        .violation-content {
+            width: 100%;
+            height: 250px;
+            resize: none;
+            color: #171717;
+        }
+
         #status-label {
             margin-right: 5px;
-            color: #eaff00;
+            color: #ffffff;
         }
 
         #output {
@@ -122,10 +140,22 @@
             flex-grow: 1;
             color: #eaff00;
         }
+
+        .btn-views_reload {
+            background-color: #007eff;
+            border: 0.5px solid #007eff;
+            color: #ffffff;                        
+            margin-right: 20px;
+        }
+
+        .btn-get_log_btn {
+            background-color: #007eff;
+            border: 0.5px solid #007eff;
+            color: #ffffff;                     
+        }
     </style>
 </head>
-<body>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>    
 
     <div class="form-container">
         <h1>YOLOv5 <br> Webcam Detection</h1>
@@ -136,22 +166,22 @@
                 <button class="btn btn-start" id="startButton" onclick="toggleButton('startButton', 'stopButton')">Start Detection</button>
             </form>
             <button class="btn btn-stop" id="stopButton" onclick="toggleButton('stopButton', 'startButton')" disabled>Stop Detection</button><br>
-        </div>
-
-        <button class="fa-solid fa-house" style="color: #eaff00; background-color: transparent; border: none; font-size: 30px; position: absolute; top: 500px; right: 515px;" id="homeButton"></button>
+        </div>     
 
         <div class="prompt-box">
             <span id="status-label">Status : </span>
             <span id="output" style="float: right;"></span>
         </div>
-        <button class="btn btn-start" id="get_log" onclick="updateLog()">views and reload</button>  
-        <button id="get_log_btn" onclick="getYolov5WebcamData()">Get Log</button>
+        <button class="btn btn-views_reload" id="get_log" onclick="updateLog()">views and reload</button>  
+        <button class="btn btn-get_log_btn" id="get_log_btn" onclick="getYolov5WebcamData()">Get Log</button>
 
         <div class="violation-box">
             <div class="text_container">
-                <textarea rows="10" cols="80">{{ log_text }}</textarea>
+                <textarea id="violation-content" class="violation-content" row="5">{{ log_text }}</textarea>
             </div>
         </div>
+
+        <!-- <button class="fa-solid fa-house" style="color: #eaff00; background-color: transparent; border: none; font-size: 30px; position: absolute;" id="homeButton"></button> -->
     </div>
 
 
@@ -295,5 +325,6 @@
 
     
 </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

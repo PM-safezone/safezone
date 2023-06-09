@@ -430,7 +430,6 @@ def parse_opt():
 	print_args(vars(opt))
 	return opt
 
-
 def main(opt):
 	check_requirements(exclude=('tensorboard', 'thop'))
 	run(**vars(opt))
