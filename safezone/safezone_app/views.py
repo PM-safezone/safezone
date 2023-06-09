@@ -120,11 +120,6 @@ def video_analyze(request):
         # detect_txt_file = 'D:/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
         detect_txt_file = '/home/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
 
-        while not os.path.exists(detect_video_file):
-            print(f"Waiting for file {detect_video_file} to be created...")
-            time.sleep(1)  # wait for 1 second before checking again
-
-
         f = open(detect_txt_file,'r')
         text_data = f.read()
         f.close()
