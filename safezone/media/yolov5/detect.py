@@ -290,7 +290,7 @@ def run(
 		#     #     count[count_index] = 0
 
 		if alarm == 'SMS':
-			if len(detect_deque) == 300:  # deque 사이즈가 300 이면
+		    if len(detect_deque) == 300:  # deque 사이즈가 300 이면
 				for detect_deque_val in detect_deque:  # deque 탐색 시작
 					if detect_deque_val:  # deque 에 값이 있을때
 						for val in detect_deque_val:  # deque 의 값이 리스트이기때문에 for 문 추가
