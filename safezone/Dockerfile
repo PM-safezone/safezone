@@ -2,11 +2,11 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo "testing88"
+RUN echo "testing12"
 
-#RUN git clone https://github.com/moongi-lee/safezone.git
+RUN git clone https://github.com/PM-safezone/safezone.git
 
-WORKDIR /home/safezone
+WORKDIR /home/safezone/safezone
 
 RUN pip install -r requirements.txt
 
