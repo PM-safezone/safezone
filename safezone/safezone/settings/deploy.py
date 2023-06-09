@@ -33,25 +33,25 @@ ALLOWED_HOSTS = ["*"]
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE' : 'django.db.backends.mysql',
-        'NAME' : 'safezone',
-        'USER' : 'root',
-        'PASSWORD' : 'ubuntu',
-        'HOST' : '35.77.252.68',
-        'PORT' : '3306',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql', # mariaDB 자체가 mysql 기반
-#         'NAME': 'safezone',
-#         'USER': 'safezone',
-#         # 'PASSWORD': 'ubuntu',
-#         'PASSWORD': read_secret('MYSQL_PASSWORD'),  # DOCKER SECRET 에서 가져옴
-#         'HOST': 'mariadb',  # container name
-#         'PORT': '3306',
+#         'ENGINE' : 'django.db.backends.mysql',
+#         'NAME' : 'safezone',
+#         'USER' : 'root',
+#         'PASSWORD' : 'ubuntu',
+#         'HOST' : '35.77.252.68',
+#         'PORT' : '3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # mariaDB 자체가 mysql 기반
+        'NAME': 'safezone',
+        'USER': 'safezone',
+        # 'PASSWORD': 'ubuntu',
+        'PASSWORD': read_secret('MYSQL_PASSWORD'),  # DOCKER SECRET 에서 가져옴
+        'HOST': 'mariadb',  # container name
+        'PORT': '3306',
+    }
+}
