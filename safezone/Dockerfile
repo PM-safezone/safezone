@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo "testing12"
+RUN echo "testing1233"
 
 RUN git clone https://github.com/PM-safezone/safezone.git
 
