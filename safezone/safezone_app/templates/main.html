@@ -59,7 +59,7 @@
             line-height: 1.5;
         }
         
-        /* 9개의 CCTV */
+        /* 9 개의 CCTV */
         .cctv-container {
             width: 55%;
             margin: auto;
@@ -105,7 +105,7 @@
             height: 100%;
         }
 
-       
+
         .camera-name {
             color: white;
             position: absolute;
@@ -330,14 +330,14 @@
                 display:flex;
                 justify-content: center;
             }
-        
+
             .social{
                 font-size:40px;
                 position:relative;
                 top:100px;
                 display:none;
                 left:0px;
-                
+
                 @media screen and (max-width: 525px){
                     font-size: 35px;
                     top:31px;
@@ -459,7 +459,7 @@
             animation-iteration-count: infinite;
             animation-timing-function: linear;
         }
-    
+
         .checkbox-container input[type="checkbox"]:checked + span:before {
             animation-delay: 0.5s;
         }
@@ -588,36 +588,36 @@
     </a>
     <div class="container">
         <div class="socialContainer">
-            <div class="click"></div>  
+            <div class="click"></div>
             <span class="faceSocial">
                 <i class="fas fa-helmet-safety" aria-hidden="true"></i>
             </span>
-                
+
             <span class="backSocial">
                 <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
             </span>
-                
+
             <div class="social">
                 <i class="fas fa-wrench" aria-hidden="true"></i>
                 <div class="tooltip">Settings</div>
             </div>
             <div class="social">
-                <a href="upload_video.html"><i class="fas fa-clapperboard" aria-hidden="true"></i></a>
+                <a href="{% url 'safezone_app:upload_video' %}"><i class="fas fa-clapperboard" aria-hidden="true"></i></a>
                 <div class="tooltip">비디오<br>업로드</div>
             </div>
             <div class="social">
-                <a href="yolov5_webcam.html" target="_blank"><i class="fas fa-video" aria-hidden="true"></i></a>
+                <a href="{% url 'safezone_app:yolov5_webcam' %}" target="_blank"><i class="fas fa-video" aria-hidden="true"></i></a>
                 <div class="tooltip">실시간<br>인식</div>
             </div>
         </div>
     </div>
 
-    
+
     <div class="overlay"></div>
 
     <div class="settings-container">
         <h1>Settings</h1>
-        
+
         <div class="form-row">
             <label for="log-interval">로그 출력 간격</label>
             <input type="text" id="log-interval" name="log-interval" value="00:01:00">
@@ -638,7 +638,7 @@
                 </label>
             </div>
         </div>
-        
+
         <div class="form-row">
             <label for="log-location">로그 저장위치</label>
             <input type="text" id="log-location" name="log-location" value="D:/log">
@@ -663,13 +663,13 @@
             {# 로그아웃 버튼 변경 #}
         <a id="logout-button" class="btn btn-logout" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
         <a id="mypage-button" class="btn btn-mypage" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
-        <a id="sitemanreg-button" class="btn btn-register" href="#"><span>현장 관리자 등록</span></a>
+        <a id="sitemanreg-button" class="btn btn-register" href="{% url 'siteadmin_app:list' %}"><span>현장 관리자 등록</span></a>
 
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
-                    
-                    <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+
+                    <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
@@ -677,7 +677,7 @@
                 <div class="camera-name" style="top: 332px; left: 210px;">CCTV-1</div>
 
                 <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
-                    <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
@@ -685,7 +685,7 @@
                 <div class="camera-name" style="top: 332px; left: 475px;">CCTV-2</div>
 
                 <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
-                    <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
@@ -693,7 +693,7 @@
                 <div class="camera-name" style="top: 332px; left: 735px;">CCTV-3</div>
 
                 <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
-                    <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
@@ -701,7 +701,7 @@
                 <div class="camera-name" style="top: 521px; left: 210px;">CCTV-4</div>
 
                 <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
-                    <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
