@@ -363,7 +363,7 @@ def run(
 							vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'x264'), fps, (w, h))
 						vid_writer[i].write(im0)
 
-						# deque 만들기
+					# deque 만들기
 			if alarm == 'SMS':
 				if len(detect_deque) < 300:  # deque 사이즈가 300 이 안되면
 					detect_deque.append(list(map(int, list(det[:, 5].unique()))))  # 무조건 append
