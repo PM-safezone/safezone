@@ -22,8 +22,8 @@ environ.Env.read_env(
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-# SECRET_KEY = read_secret('DJANGO_SECRET_KEY')  # DOCKER SECRET 에서 가져옴
+# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = read_secret('DJANGO_SECRET_KEY')  # DOCKER SECRET 에서 가져옴
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False # 배포환경에서 바뀌어야함.

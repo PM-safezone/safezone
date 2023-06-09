@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-+LsVWPG8T/1IcZOJxN9X7VJzrl8Zv7LZVLwOryH0MVtE/+JtURleOQzQ2cXf+QJOQ2RZJfFI/i+5ue5sh5q3qg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.min.js"></script>
     <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
     <script src="https://vjs.zencdn.net/7.15.4/video.js"></script>  <!--Video.js--> 
     <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" /> <!--Video.js--> 
@@ -31,20 +34,13 @@
             }
         }
 
-        body {
-            background-color: #0e0f37 !important;
-            font-family: 'nanumsquare', sans-serif;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
         h1 {
-            margin-top: 80px;
-            margin-left: 8%;
-            text-align: left;
+            margin-top: 60px;
+            text-align: center;
             font-size: 3rem;
             font-weight: bold;
-            color: #ffffff;
+            color: #0e0f37;
+            margin-bottom: 50px;
         }
 
         h1:after {
@@ -55,12 +51,20 @@
             animation-timing-function: linear;
             animation-delay: 0.5s;
         }
+
+        body {
+            background-color: #0e0f37 !important;
+            font-family: 'nanumsquare', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
         
+        /* 9 개의 CCTV */
         .cctv-container {
             width: 55%;
             margin: auto;
             margin-top: 50px;
-            margin-left: 5%;
+            margin-left: 8%;
         }
 
         .cctv-row {
@@ -84,25 +88,14 @@
             font-weight: bold;
             vertical-align: top;
             position: relative;
-            border-radius: 10px;
+            /* border-radius: 10px; */
             box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
-            border: 2px solid #ffffff;
+            border: 1px solid #ffffff;
             overflow: hidden;
         }
 
-        .cctv-camera img {
-            border-radius: 10px;
-            /* position: absolute; */
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
         .cctv-camera video {
-            border-radius: 10px;
+            /* border-radius: 10px; */
             /* position: absolute; */
             /* transform: translate(-100%, -100%); */
             object-fit: cover;
@@ -112,26 +105,26 @@
             height: 100%;
         }
 
-       
+
         .camera-name {
-            color: #00eaff;
+            color: white;
             position: absolute;
-            top: 100%;
-            left: 0;
         }
 
+        /* 위반 사항 박스 */
         .violation-box {
             padding: 20px;
-            margin-right: 5%;
+            margin-right: 2.5%;
             background-color: #ffffff;
             box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
-            border: 2px solid #00eaff;
+            border: 1px solid #D456FA;
+            color: #0e0f37;
             border-radius: 10px;
             position: absolute;
-            top: 133px;
+            top: 132px;
             right: 30px;
             width: 400px;
-            height: auto;
+            height: 549px;
             margin-top: 30px;
         }
 
@@ -147,27 +140,12 @@
 
         .violation-content {
             width: 100%;
-            height: 240px;
+            height: 370px;
             resize: none;
+            border: 1px solid #D456FA;
         }
 
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 400px;
-        }
-
-        .button-container button {
-            flex: 1;
-            margin: 0 5px;
-        }
-
+        /* 위반 사항 박스 안의 save, clear 버튼 */
         .button-group {
             display: flex;
             justify-content: right;
@@ -176,191 +154,573 @@
             width: 100%;
         }
 
+        /* 로그아웃 버튼 위치 */
         #logout-button {
             position: absolute;
             top: 80px;
-            right: 100px;
+            right: 70px;
             z-index: 1;
         }
 
+        /* 마이페이지 버튼 위치 */
         #mypage-button {
             position: absolute;
             top: 80px;
-            right: 190px;
+            right: 160px;
             z-index: 1;
         }
-        
-        .button-set {
-            display: flex;
-            justify-content: right;
-            margin-right: 100px;
-            gap: 10px;
-            width: 100%;
+
+        /* 현장 관리자 등록 버튼 위치 */
+        #sitemanreg-button {
+            position: absolute;
+            top: 80px;
+            right: 262.5px;
+            z-index: 1;
         }
 
+        /* 로그아웃 버튼 스타일 */
         .btn-logout {
-            background-color: #00eaff;
-            border: 0.5px solid #0f1020;
-            color: #0f1020;
+            background-color: #0e0f37;
+            border: 0.5px solid #D456FA;
+            color: #D456FA;
             margin-bottom: 20px;
         }
 
         .btn-logout:hover {
-            background-color: #0f1020;
-            border: 0.5px solid #00eaff;
-            color: #00eaff;
+            background-color: #D456FA;
+            border: 0.5px solid #0e0f37;
+            color: #0e0f37;
         }
 
         .btn-logout:active {
-            background-color: #00eaff;
+            background-color: #D456FA;
             color: #0f1020;
         }
 
+        /* 마이페이지 버튼 스타일 */
+        .btn-mypage {
+            background-color: #0e0f37;
+            border: 0.5px solid white;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .btn-mypage:hover {
+            background-color: white;
+            border: 0.5px solid #0e0f37;
+            color: #0e0f37;
+        }
+
+        .btn-mypage:active {
+            background-color: white;
+            color: #0f1020;
+        }
+
+        /* 현장 관리자 등록 버튼 스타일 */
+        .btn-register {
+            background-color: #0e0f37;
+            border: 0.5px solid white;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .btn-register:hover {
+            background-color: white;
+            border: 0.5px solid #0e0f37;
+            color: #0e0f37;
+        }
+
+        .btn-register:active {
+            background-color: white;
+            color: #0f1020;
+        }
+
+        /* save 버튼 스타일 */
         .btn-save0 {
-            background-color: #0f1020;
-            border: 0.5px solid #00eaff;
-            color: #00eaff;
+            background-color: #0e0f37;
+            border: 1px solid #D456FA;
+            color: #D456FA;
             margin-bottom: 20px;
         }
 
         .btn-save0:hover {
-            background-color: #00eaff;
-            border: 0.5px solid #0f1020;
-            color: #0f1020;
+            background-color: white;
+            border: 1px solid #0e0f37;
+            color: #0e0f37;
         }
 
         .btn-save0:active {
-            background-color: #0f1020;
-            color: #00eaff;
+            background-color: #0e0f37;
+            color: white;
         }
 
+        /* clear 버튼 스타일 */
         .btn-clear {
-            background-color: #00eaff;
-            border: 0.5px solid #0f1020;
-            color: #0f1020;
+            background-color: white;
+            border: 1px solid #D456FA;
+            color: #D456FA;
             margin-bottom: 20px;
         }
 
         .btn-clear:hover {
-            background-color: #0f1020;
-            border: 0.5px solid #00eaff;
-            color: #00eaff;
+            background-color: #0e0f37;
+            border: 1px solid white;
+            color: white;
         }
 
         .btn-clear:active {
-            background-color: #00eaff;
-            color: #0f1020;
+            background-color: white;
+            color: #0e0f37;
         }
 
-        .btn-settings,
-        .btn-save,
-        .btn-video,
-        .btn-webcam {
-            margin-right: 10px;
-            background-color: #0f1020;
-            border: 0.5px solid #ff6800;
-            color: #ff6800;
-            margin-bottom: 20px;
+        /* 옵션 버튼 위치 및 스타일 */
+        .container {
+            position: absolute;
+            top: 67.5px;
+            left: -662.5px;
+            width: 100%;
+            text-align: center;
         }
 
-        .btn-settings:hover,
-        .btn-save:hover,
-        .btn-video:hover,
-        .btn-webcam:hover {
-            background-color: #ff6800;
-            border: 0.5px solid #0f1020;
-            color: #0f1020;
+        .socialContainer {
+            margin:0 auto;
+            width:65px;
+            height:65px;
+            background-color:#D456FA;
+            border-radius:32.5px;
+            position:relative;
+            /* overflow: hidden; */
+            cursor: pointer;
+            .click {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left:0;
+                right: 0;
+                z-index:10;
+            }
+            .fa-helmet-safety {
+                cursor:pointer;
+                color:white;
+                font-size:30px;
+                top:16px;
+                left:16px;
+                position:absolute;
+                @media screen and (max-width: 525px){
+                    font-size: 30px;
+                    top:33px;
+                    left:35px;
+                }
+            }
+            .fa-times {
+                cursor:pointer;
+                color:white;
+                position:absolute;
+                font-size:34px;
+                top:20px;
+                left:20px;
+                @media screen and (max-width: 525px){
+                    font-size: 35px;
+                    top:30px;
+                    left:35px;
+                }
+            }
+
+            .centered{
+                display:flex;
+                justify-content: center;
+            }
+
+            .social{
+                font-size:40px;
+                position:relative;
+                top:100px;
+                display:none;
+                left:0px;
+
+                @media screen and (max-width: 525px){
+                    font-size: 35px;
+                    top:31px;
+                }
+                .fas{
+                    color:#4bbfe1;
+                    margin-bottom:20px;
+                    font-weight:bold;
+                    transition: all .2s ease-in-out;
+                    @media screen and (max-width: 525px){
+                        margin-bottom: 15px;
+                    }
+                }
+            }
         }
 
-        .btn-settings:active,
-        .btn-save:active,
-        .btn-video:active,
-        .btn-webcam:active {
-            background-color: #0f1020;
-            color: #ff6800;
+        .social {
+            position: relative;
         }
 
-        .sidebar {
+        /* 옵션 버튼 안 아이콘 description 위치 및 스타일 */
+        .tooltip {
+            position: absolute;
+            top: 25px;
+            right: -60px;
+            width: 60px;
+            background-color: white;
+            color: #0e0f37;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            opacity: 0;
+            overflow: visible;
+            z-index: 9999;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            transform: translate(0, -50%);
+        }
+
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            margin-top: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent white transparent transparent;
+        }
+
+
+        .social:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
-            height: 100vh;
-            width: 50px;
-            background-color: #253659;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+            display: none;
         }
 
-        .sidebar i{
+        /* settings */
+        .settings-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
+            border-radius: 5px;
+            border: 2px solid #ffffff;
+            z-index: 10000;
+            display: none;
+        }
+
+        .checkbox-container {
+            display: inline-block;
+        }
+
+        .checkbox-container label {
+            display: block;
+            /* margin-bottom: 0px; */
+            /* margin-left: 0px; */
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox-container input[type="checkbox"] + span:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #ffffff;
+            border: 2px solid #0e0f37;
+            border-radius: 3px;
+            margin-right: 5px;
+            position: relative;
+            top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + span:before {
+            background-color: #0e0f37;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + span:before {
+            animation-name: glitch-checkbox;
+            animation-duration: var(--glitched-duration);
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        .checkbox-container input[type="checkbox"]:checked + span:before {
+            animation-delay: 0.5s;
+        }
+
+        #Discord {
+            position: relative;
+            top: 10px;
+            /* top: 50px; */
+        }
+
+        #email,
+        #phone {
+            position: relative;
+            left: 200px;
+            top: 10px;
+        }
+
+        .checkbox-container label span {
+            position: relative;
+            top: -1px;
+            left: -50px;
+        }
+
+        .checkbox-text {
+            position: relative;
+            top: -1px;
+            left: 0px !important;
+        }
+
+        .checkbox-text {
+            margin-left: 200px;
+        }
+
+        .form-row {
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-row label {
+            flex-basis: 200px;
+            /* text-align: left; */
+            padding-right: 10px;
+            color: #0e0f37;
+            margin-left: 50px;
+        }
+
+        .form-row input[type="text"] {
+            width: 200px;
+            padding: 7.5px;
+            text-align: left;
+            background-color: #ffffff;
+            color: #0e0f37;
+            border: 1px solid #0e0f37;
+            box-shadow: 0px 0px 3px #0e0f37(0, 0, 0, 0.1);
+            border-radius: 3px;
+            /* margin-top: 5px; */
+        }
+
+        .form-row input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            color: #0e0f37;
+        }
+
+        label[for="violation-location"] {
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            margin-top: -60px;
+        }
+
+        .btn {
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: right;
+            margin-right: -10px;
+        }
+
+        #violation-video-location {
+            margin-bottom: 130px;
+        }
+
+        #violation-location {
+            margin-bottom: 130px;
+        }
+
+        .btn-save {
+            margin-right: 10px;
+            background-color: #0e0f37;
+            border: 2px solid #0e0f37;
+            border-radius: 20px;
+            color: #ffffff;
+            margin-bottom: 30px;
             position: absolute;
-            left: 12.5px;
-            top: 750px;
-            font-size: 24px;
-            color: #ff6800;
+            width: 400px;
+            font-size: 2rem;
+            font-weight: bold;
+            height: 50px;
+            left: 50px;
+            top: 620px;
+        }
+
+        .btn-save:hover {
+            background-color: #ffffff;
+            border: 2px solid #0e0f37;
+            color: #0e0f37;
+        }
+
+        .btn-save:active {
+            background-color: #0e0f37;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
 <main>
-    <div class="sidebar">
-        <i class="fa-solid fa-power-off"></i>
+    <a href="main.html">
+        <img src="https://lh3.googleusercontent.com/ubgTiaiJDkACsv2CpMrmz4jX7Sx5sDWjbqARhzq_W4rjVQCvdnOvFUiNElICFOqjDd_JkHYWbSpnZiCYHYpDn7LSQTtiZ7MyhOsYBo4AJvJFdWY_deBSZ4dAylOGE5usiWh_XXEXTdEpmw37GKWHGFp0YfSHy6SMpzQpKQA0eBfLgV87_Mco0z4kVy3C4gl5mrLsnmL4DXogZDzYCcDEE6Tuxd8uC9KnY-dHJIdDxSO1xCRIgsWRr-rf6H1bcYCtioewXzAx7ObKw8zCwKp160TkVARReWyKpH4aXfdsiUO6my782ga-XUIpdyATu4kv7ii9d-TYBr7opNy6bs87iJh73WDXyg3zGtptRJ0Xmb0bLfy7EHVS3zWP0yINZ2Xk4AUHcbgPg7QcfNos1UmzOyN6vmM-_MkAD3dmPrWNrm_C9TWOU0J-UbAxB9KJF7_1FddGDeLwCL0_Tk5SWwLsr2PfxJw-KmBEyqPy3KEgRSZKAiQbNVLvDmOwTef6sDMZk4jvAp5h2O1vjHFQv31YrzQg1mn05gEV8HmIQI3MqvuIXibp9SYfPHZ7BeCD5M0TmENUZZaui0OoCyxHvJtpo85dof5pHWb7hJ9lYpV9EPKvG35zUxtko7dJHrjjeGF_MwgqXzr8MfghN0ZqRx8s9AocfKVbnlslkGSxDc7jXF9QOanL_NDjB77DTcVvEw0cTM2-pLco7wVkVbKChcg8-qxK4E79zjvcS17n4HnAfcfiRgM2oi-E2Z-jpPMJpIon-uaQ2iDKKCc0wNjHGJboC_x5pDu5nsZxWOTstRD16OMPb0Ret86xNqSyLO94Ytq1nQCRnuoYMzNEI4UXxYS1_OhO1tM45ltzKSKkUWiYMIIc8ciK37n7AMLIR2YCwiJDueDv-VAKtiaXjbV-Us7bpKMxnaCcCg9wg7DhkpBieUfmE93wKMqW1DyKkP15pkWzhsgssx8NXo0IHU8QC388qQ=w169-h213-s-no?authuser=0" alt="logo" class="logo" style="margin-top:60px; margin-bottom: -20px; margin-left:8%; width:4%; height:4%;">
+        <img src="https://lh3.googleusercontent.com/EE-Ai7K0aViwbWE0cB6itEfgd0rtLj-96USD2AeN7W3rwWV_suWLObh_IvY-9z39TfxXkDD1jKu098u2t-kdx_L_FeMeDW1Zv2KP4Vvq7lQ_8BMJJpND4y2LSSENUVKEd1iExMIEQHdjY8D5ufAFYCq1nrg1fKlC_-41AJKVqhi1japBTrO6UeHhpCcxalbNd8XCFCzn8YIWmf2boSQJfVQwa7ohksCbNyCha4mKqe-UbY8smmwDQ8QxebGd5iO11kA5xWzabkT3Inn3vKNhclSFjztQx_w4do5wIXAWOW5N9ZiXp2ySkFQB_Rf4xUNbzV6ccubdicYNWXbzN0qUXCKpLtktoqrNUs5oNpqQEge1WZSBZ_K5PP6_-bO_wbkEPLxhAQTG2cPusy3Z3Ip5fflDiekxtOFif1CVUpW6TlKd1WdseOEDVXm2idV3Y6Pe-HmKH1qF9UEgJTXItmwEcV872SUOkQkAyLp8hUYtCkqjcfPjR4FP4lvQAgMh-VvtYwRsNkqi7GilTOh-Fz4XYXci84EylvS745NexQVmijBDQv2uBoeOc-oV_JKqlch0HZt613XhDoxf_Zh6ssWSeKANKPkmwP6MDkDG6hVtf1okKPtTlGHMWtEmx22FHAjLDfpKEIk-A-96Yj4eXbtvTWE63O8RXrSHsGm62L8reUKEnSW-524TfyxdIvsY5smq2IrU3iiI-nmZDO2geSHuWPBESim3rQ5g2BXOY_evt1wCtZPDyhPIVhS2OcPAETpjsofbfBNs0FXY0SBng5OEakc-buFOPXa8oUX5IOw7pRBPPiD4NVl6EdcLe26H1K1MwEoPvIuBJivoYYK2DSmM_4Gx8zfV5XFrg14-nRp4dcdbQrSAil1iCdRpAwVV9bT9_pIYB7eQXEqu1zjIXKGwb4CB_kAT_4vo-bNsYMcM8ooX7LnRvUM9hNrHo602UCJOL8B4jHcQfcYsxriLX9u3WA=w288-h47-s-no?authuser=0" alt="logo_name" class="logo_name" style="margin-top:60px; margin-bottom: -20px;">
+    </a>
+    <div class="container">
+        <div class="socialContainer">
+            <div class="click"></div>
+            <span class="faceSocial">
+                <i class="fas fa-helmet-safety" aria-hidden="true"></i>
+            </span>
+
+            <span class="backSocial">
+                <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+            </span>
+
+            <div class="social">
+                <i class="fas fa-wrench" aria-hidden="true"></i>
+                <div class="tooltip">Settings</div>
+            </div>
+            <div class="social">
+                <a href="{% url 'safezone_app:upload_video' %}"><i class="fas fa-clapperboard" aria-hidden="true"></i></a>
+                <div class="tooltip">비디오<br>업로드</div>
+            </div>
+            <div class="social">
+                <a href="{% url 'safezone_app:yolov5_webcam' %}" target="_blank"><i class="fas fa-video" aria-hidden="true"></i></a>
+                <div class="tooltip">실시간<br>인식</div>
+            </div>
+        </div>
     </div>
+
+
+    <div class="overlay"></div>
+
+    <div class="settings-container">
+        <h1>Settings</h1>
+
+        <div class="form-row">
+            <label for="log-interval">로그 출력 간격</label>
+            <input type="text" id="log-interval" name="log-interval" value="00:01:00">
+        </div>
+
+        <div class="form-row">
+            <label for="notification">알림 수단</label>
+            <div class="checkbox-container">
+                <label for="Discord">
+                    <input type="checkbox" id="Discord" name="notification" value="Discord"><span>Discord</span>
+                </label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="checkbox-container">
+                <label for="phone">
+                    <input type="checkbox" id="phone" name="notification" value="phone"><span class="checkbox-text">휴대 전화</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <label for="log-location">로그 저장위치</label>
+            <input type="text" id="log-location" name="log-location" value="D:/log">
+        </div>
+
+        <div class="form-row">
+            <label for="video-location">영상 저장위치</label>
+            <input type="text" id="video-location" name="video-location" value="D:/video">
+        </div>
+
+        <div class="form-row">
+            <label for="violation-location" id="violation-video-location">위반영상 저장위치</label>
+            <input type="text" id="violation-location" name="violation-location" value="D:/video_Violations">
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-save" id="save-settings-button" onclick="saveSettings()">저장</button>
+        </div>
+    </div>
+
     <section>
-        <h1>CCTV 연동화면</h1>
             {# 로그아웃 버튼 변경 #}
-        <a id="logout-button" class="btn btn-primary" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
-        <a id="mypage-button" class="btn btn-primary" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
+        <a id="logout-button" class="btn btn-logout" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
+        <a id="mypage-button" class="btn btn-mypage" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
+        <a id="sitemanreg-button" class="btn btn-register" href="{% url 'siteadmin_app:list' %}"><span>현장 관리자 등록</span></a>
+
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
-                    
-                    <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+
+                    <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
-                    <!--<img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+1" alt="CCTV 1">-->
                 </div>
-                <div class="camera-name" style="top: 332px; left: 165px;">CCTV-1</div>
+                <div class="camera-name" style="top: 332px; left: 210px;">CCTV-1</div>
 
                 <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
-                    <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
-                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+2" alt="CCTV 2"> -->
                 </div>
+                <div class="camera-name" style="top: 332px; left: 475px;">CCTV-2</div>
+
                 <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
-                    <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
-                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+3" alt="CCTV 3"> -->
                 </div>
+                <div class="camera-name" style="top: 332px; left: 735px;">CCTV-3</div>
+
                 <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
-                    <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
-                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+4" alt="CCTV 4"> -->
                 </div>
+                <div class="camera-name" style="top: 521px; left: 210px;">CCTV-4</div>
+
                 <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
-                    <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js를 사용하여 실시간 영상 불러오기-->
+                    <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                     <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
                         <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
                     </div>
-                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+5" alt="CCTV 5"> -->
                 </div>
+                <div class="camera-name" style="top: 521px; left: 475px;">CCTV-5</div>
+
                 <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
-                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+6" alt="CCTV 6"> -->
                 </div>
+
                 <div class="cctv-camera" id="cctv-7" data-area="7" data-visible="7">
-                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+7" alt="CCTV 7"> -->
                 </div>
+
                 <div class="cctv-camera" id="cctv-8" data-area="8" data-visible="8">
-                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+8" alt="CCTV 8"> -->
                 </div>
+
                 <div class="cctv-camera" id="cctv-9" data-area="9" data-visible="9">
-                    <!-- <img src="https://dummyimage.com/640x480/000/ffffff&text=CCTV+9" alt="CCTV 9"> -->
                 </div>
             </div>
+
             <div class="violation-box">
                 <div class="violation-text">위반 사항</div>
                 <div>
@@ -383,7 +743,7 @@
                     <button onclick="save0Text()" id="save0-button" class="btn btn-save0">Save</button>
                     <button onclick="clearText()" id="clear-button" class="btn btn-clear">Clear</button>
                 </div>
-                <div class="button-container">
+                <!-- <div class="button-container">
                     <button class="btn btn-settings" onclick="location.href='settings.html'">Settings</button>
                     <button class="btn btn-save">Save File</button>
                     <form action="{% url 'safezone_app:video' %}" method="POST">
@@ -392,9 +752,9 @@
                     </form>
                     <form action="{% url 'safezone_app:yolov5_webcam' %}" method = "POST">
                         {% csrf_token %}
-                        <button class="btn btn-webcam">실시간 인식</button>
+                        <button class="btn btn-webcam">WebCam 실시간 인식</button>
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
 </section>
@@ -599,45 +959,85 @@
             }
         });
     });
-    // SAVE, CLEAR BUTTON
-    // // 페이지가 로드될 때 텍스트 박스의 값을 복원합니다.
-    // window.onload = function() {
-    // var savedText = localStorage.getItem("myText");
-    // if (savedText) {
-    //     document.getElementById("myTextarea").value = savedText;
-    // }
-    // };
 
-    // // 텍스트 박스의 값을 로컬 스토리지에 저장합니다.
-    // function saveText() {
-    // var text = document.getElementById("myTextarea").value;
-    // localStorage.setItem("myText", text);
-    // }
+    $( ".click").click(function() {
+      $(this).velocity({
+           scale: 0
+      });
+      $(".fa-helmet-safety").velocity({
+            scale: 0,
+      }, {
+            duration: 200,
+      });
+      $(".fa-times").velocity({
+                scale: [1,0],
+          }, {
+                duration: 400,
+                display: 'block',
+      });
+      $(".social").velocity({
+          translateX: [0, 75],
+        }, {
+          duration: 400,
+          display: 'block',
+          easing: [70,8],
+      });
+      $(".socialContainer").velocity({
+                height: [650, 65],
+              }, {
+                duration: 400,
+                easing: [70,8],
+      });
+    });
 
-    // // 텍스트 박스의 값을 지웁니다.
-    // function clearText() {
-    // document.getElementById("myTextarea").value = "";
-    // // 로컬 스토리지에서 저장된 값을 제거합니다.
-    // localStorage.removeItem("myText");
-    // }
+
+
+
+    $( ".fa-times").click(function() {
+      $(".click").velocity({
+            scale: 1
+      });
+      $(".fa-times").velocity({
+            scale: 0,
+      }, {
+            duration: 200,
+      });
+      $(".fa-helmet-safety").velocity({
+                scale: [1,0],
+          }, {
+                duration: 400,
+                display: 'block',
+      });
+      $(".social").velocity({
+                    translateY: [75, 0],
+              }, {
+                    duration: 100,
+                    display: 'none',
+                    delay: 0,
+      });
+      $(".social").velocity({
+                    translateY: [0, 75],
+              }, {
+                    duration: 100,
+      });
+      $(".socialContainer").velocity({
+                height: [65, 650],
+              }, {
+                duration: 400,
+                easing: [70,8],
+                delay: 100,
+      });
+    });
+
+    $('.fa-wrench').click(function() {
+        $('.overlay').fadeIn();
+        $('.settings-container').fadeIn();
+    });
+
+    $('#save-settings-button').click(function() {
+        $('.settings-container').fadeOut();
+        $('.overlay').fadeOut();
+    });
 </script>
 </body>
 </html>
-
-<!-- 라이브 캠 html
-<div class="cctv-camera" id="cctv-9">]
-  <video src="라이브 캠 소스" alt="CCTV 9" autoplay></video>
-  <div class="camera-name">CCTV-9</div>
-</div>
- -->
- 
-<!-- 라이브 캠 javascript
-navigator.mediaDevices.getUserMedia({ video: true })
-  .then(function(stream) {
-    var videoElement = document.getElementById("cctv-9");
-    videoElement.srcObject = stream;
-  })
-  .catch(function(error) {
-    console.error("라이브 캠을 가져오는 중 오류가 발생했습니다:", error);
-  });
- -->

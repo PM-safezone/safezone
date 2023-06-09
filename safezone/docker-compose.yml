@@ -18,6 +18,7 @@ services:
       - /home/project/best.pt:/home/project/best.pt
       - static-volume:/home/safezone/staticfiles
       - media-volume:/home/safezone/media
+      - model-volume:/home/safezone/media/yolov5/runs/detect/exp/
     secrets:
       - MYSQL_PASSWORD
       - DJANGO_SECRET_KEY
@@ -44,6 +45,7 @@ volumes:
   static-volume:
   media-volume:
   database-volume:
+  model-volume:
 
 secrets:
   DJANGO_SECRET_KEY:
