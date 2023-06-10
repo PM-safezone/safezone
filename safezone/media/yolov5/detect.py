@@ -261,7 +261,7 @@ def run(
                                 h = int(vid_cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
                             else:  # stream
                                 fps, w, h = 30, im0.shape[1], im0.shape[0]
-                            save_path = str(Path(save_path).with_suffix('.avi'))  # force *.avi suffix on results videos
+                            save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
                             vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'x264'), fps, (w, h))
                         vid_writer[i].write(im0) 
                 
@@ -325,7 +325,7 @@ def run(
                     
                     # 비디오 저장 부분 진행중
                     videoname = None  # videoname 변수 초기화
-                    videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.avi" #exp folder 하위에 ex :detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.avi 파일 생성
+                    videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.mp4" #exp folder 하위에 ex :detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.mp4 파일 생성
                     
                     # 이전 비디오 writer 해제
                     for writer in vid_writer:   #이전에 사용했던 vid_writer 를 해제 하고 release() 를 새로 함
@@ -340,7 +340,7 @@ def run(
                         fps, w, h = 30, im0.shape[1], im0.shape[0]
                     
                     # 비디오 writer 초기화
-                    # vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'aviv'), fps, (w, h)))
+                    # vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h)))
                     vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'XVID'), fps, (w, h)))
 
                     # 이전 프레임들을 비디오로 저장
@@ -375,12 +375,12 @@ def run(
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
     if alarm == '':
-            save_path_split = save_path.split('.avi')
+            save_path_split = save_path.split('.mp4')
             with open(f'{save_path_split[0]}.txt', 'w') as f:
                 f.write(f'{result_frame_string}' + '\n')
    
     # detecting count check
-    # save_path_split = save_path.split('.avi')
+    # save_path_split = save_path.split('.mp4')
     # for count_check in count:    #     
     #     with open(f'{save_path_split[0]}.txt', 'a') as f:
     #         f.write(f'{count_check} {count[count_check]}' + '\n')
