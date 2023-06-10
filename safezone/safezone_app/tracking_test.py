@@ -2,23 +2,23 @@
 
 import requests
 
-detect_txt_file = 'C:/Users/leeyo/Project/safezone/safezone/media/yolov5/runs/detect/exp/video_test.txt'
-f = open(detect_txt_file,'r')
-text_data = f.read()
-f.close()
+# detect_txt_file = 'C:/Users/leeyo/Project/safezone/safezone/media/yolov5/runs/detect/exp/video_test.txt'
+# f = open(detect_txt_file,'r')
+# text_data = f.read()
+# f.close()
 
-print(text_data)
+# print(text_data)
 
 
 # discord 연동
-# discord = "https://discord.com/api/webhooks/1112547580702888066/vE27sKAJFlsHgR4v-shbzPKRK7CYJBqp3e3sk6f1OUJx0bdtTvcgjnaQVAq5yIMe0HU3"
+discord = "https://discord.com/api/webhooks/1112547580702888066/vE27sKAJFlsHgR4v-shbzPKRK7CYJBqp3e3sk6f1OUJx0bdtTvcgjnaQVAq5yIMe0HU3"
 
-# discord_headers={
-#     'Content-Type':'application/json'
-# }
+discord_headers={
+    'Content-Type':'application/json'
+}
 
-# discord_data = '{"content":"discord test"}'
-# response = requests.post(discord, headers=discord_headers, data=discord_data)
+discord_data = '{"content":"test"}'
+response = requests.post(discord, headers=discord_headers, data=discord_data)
 
 
 

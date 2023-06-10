@@ -109,7 +109,7 @@ def video_analyze(request):
         upload = default_storage.save(video_file.name,ContentFile(video_file.read()))
 
         # command = 'python D:/safezone/safezone/media/yolov5/detect.py --source D:/safezone/safezone/media/' + video_file.name + ' --weights D:/safezone/best.pt --exist-ok'
-        command = 'python /home/safezone/safezone/media/yolov5/detect.py --source /home/safezone/safezone/media/' + video_file.name + ' --weights /home/project/best.pt --exist-ok'
+        command = 'python C:/Users/leeyo/Project/safezone/safezone/media/yolov5/detect.py --source C:/Users/leeyo/Downloads/' + video_file.name + ' --weights C:/Users/leeyo/Project/safezone/safezone/media/yolov5/runs/train/yolov5s_third/weights/best.pt --exist-ok'
         print(command)
         try:
             subprocess.run(command, shell=True, check=True)
@@ -118,7 +118,7 @@ def video_analyze(request):
 
         detect_video_file = '/media/yolov5/runs/detect/exp/'+video_file.name
         # detect_txt_file = 'D:/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
-        detect_txt_file = '/home/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
+        detect_txt_file = 'C:/Users/leeyo/Project/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
 
         f = open(detect_txt_file,'r')
         text_data = f.read()
