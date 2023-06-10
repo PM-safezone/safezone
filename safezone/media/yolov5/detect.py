@@ -243,7 +243,7 @@ def run(
                 cv2.waitKey(1)  # 1 millisecond
 
             
-            prev_frames.append(im0)  # im0를 prev_frames에 추가
+            prev_frames.append(im0)  # im0 를 prev_frames 에 추가
                         
             #Save results (image with detections)
             if alarm == '':
@@ -268,9 +268,9 @@ def run(
             
             # deque 만들기  
             if alarm == 'SMS':         
-                if len(detect_deque) < 300: # deque 사이즈가 300이 안되면 
+                if len(detect_deque) < 300: # deque 사이즈가 300 이 안되면 
                     detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 무조건 append            
-                else: # deque 사이즈가 70이 넘으면                 
+                else: # deque 사이즈가 70 이 넘으면                 
                     detect_deque.popleft() # 선입선출
                     detect_deque.append(list(map(int, list(det[:, 5].unique())))) # 그다음 append
             
@@ -289,18 +289,18 @@ def run(
         #     #     count[count_index] = 0 
         
         if alarm == 'SMS':
-            if len(detect_deque) == 300: # deque 사이즈가 300이면   
+            if len(detect_deque) == 300: # deque 사이즈가 300 이면   
                 for detect_deque_val in detect_deque: # deque 탐색 시작
-                    if detect_deque_val: # deque에 값이 있을때
-                        for val in detect_deque_val: # deque의 값이 리스트이기때문에 for문 추가
-                            count[str(val)] += 1 # deque의 값에 해당하는 클래스를 count +1 
+                    if detect_deque_val: # deque 에 값이 있을때
+                        for val in detect_deque_val: # deque 의 값이 리스트이기때문에 for 문 추가
+                            count[str(val)] += 1 # deque 의 값에 해당하는 클래스를 count +1 
         
             target_class_ids = [1, 3, 5]
             for count_index in count: # dictionary 탐색 시작        
-                if count[count_index] >= 240:  # dictionary 값중 240이 넘는 값이 있다면
+                if count[count_index] >= 240:  # dictionary 값중 240 이 넘는 값이 있다면
                     i += 1
                     # sms 발송하기
-                    # print("SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기SMS 발송하기")   
+                    # print("SMS 발송하기 SMS 발송하기 SMS 발송하기 SMS 발송하기 SMS 발송하기 SMS 발송하기 SMS 발송하기 SMS 발송하기 SMS 발송하기 SMS 발송하기")   
                     if int(count_index) == 1 or int(count_index) == 3 or int(count_index) == 5:
                         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
                         if int(count_index) == 1:
@@ -314,7 +314,7 @@ def run(
                     # print(res.json()) 
                     
                     if int(c) in target_class_ids:          # target_class_ids : 1, 3, 5 shoes_X, helmet_X, belt_X 세가지 검출
-                        class_name = names[int(c)]          # class_name에 이름 넣어서 표시
+                        class_name = names[int(c)]          # class_name 에 이름 넣어서 표시
                         class_count = (det[:, 5] == c).sum()# 검출을 했을시 동작 시킬 파트
                         for j in range(class_count):
                             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")   # 현재 시간 타임 스탬프
@@ -328,7 +328,7 @@ def run(
                     videoname = f"{save_dir}/detected_{class_name}_{i}_{timestamp}_{unique_id}.mp4" #exp folder 하위에 ex :detected_safety_helmet_X_1_현재날짜_현재시각_고유번호.mp4 파일 생성
                     
                     # 이전 비디오 writer 해제
-                    for writer in vid_writer:   #이전에 사용했던 vid_writer를 해제 하고 release()를 새로 함
+                    for writer in vid_writer:   #이전에 사용했던 vid_writer 를 해제 하고 release() 를 새로 함
                         if writer is not None:
                             writer.release()
                     
@@ -340,8 +340,9 @@ def run(
                         fps, w, h = 30, im0.shape[1], im0.shape[0]
                     
                     # 비디오 writer 초기화
-                    vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h)))
-                    
+                    # vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h)))
+                    vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'XVID'), fps, (w, h)))
+
                     # 이전 프레임들을 비디오로 저장
                     for prev_frame in prev_frames:
                         frame = prev_frame.copy()
@@ -424,7 +425,7 @@ def parse_opt():
     parser.add_argument('--vid-stride', type=int, default=1, help='video frame-rate stride')
     parser.add_argument('--alarm', default='', help='SMS/discord')
     opt = parser.parse_args()
-    opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expand
+    opt.imgsz *= 2 if len(opt.imgsz) == 1 else 1  # expandcmake
     print_args(vars(opt))
     return opt
 

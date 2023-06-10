@@ -11,14 +11,13 @@ services:
     ports:
       - 80:80
   django_container_gunicorn:
-    image: django_test:2
+    image: django_test:1
     networks:
       - nginx-django
     volumes:
       - /home/project/best.pt:/home/project/best.pt
-      - static-volume:/home/safezone/staticfiles
-      - media-volume:/home/safezone/media
-      - model-volume:/home/safezone/media/yolov5/runs/detect/exp/
+      - static-volume:/home/safezone/safezone/staticfiles
+      - media-volume:/home/safezone/safezone/media
     secrets:
       - MYSQL_PASSWORD
       - DJANGO_SECRET_KEY
