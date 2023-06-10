@@ -41,7 +41,7 @@ import time, json
 from collections import deque
 
 import torch
-
+torch.set_num_threads(1)
 # 문자 알람 관련 정보
 SMS_timestamp = int(time.time() * 1000)
 SMS_timestamp = str(SMS_timestamp)
