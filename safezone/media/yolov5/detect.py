@@ -340,8 +340,8 @@ def run(
                         fps, w, h = 30, im0.shape[1], im0.shape[0]
                     
                     # 비디오 writer 초기화
-                    # vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h)))
-                    vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'XVID'), fps, (w, h)))
+                    vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h)))
+                    # vid_writer.append(cv2.VideoWriter(videoname, cv2.VideoWriter_fourcc(*'XVID'), fps, (w, h)))
 
                     # 이전 프레임들을 비디오로 저장
                     for prev_frame in prev_frames:
