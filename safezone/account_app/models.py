@@ -13,4 +13,5 @@ class UserModel(User):
 	management_locations = models.CharField(max_length=100, choices=MANAGEMENT_LOCATIONS_CHOICES)
 	phone = models.CharField(max_length=100)
 
+
 	

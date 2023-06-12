@@ -1,0 +1,238 @@
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+body {
+    background-color: #0e0f37;
+    font-family: 'nanumsquare', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.logo {
+    width: 22rem;
+    height: 15rem;
+    margin-left: 10rem;
+    margin-top: 0rem;
+}
+
+.logo_name {
+    margin-top: 10px;
+    width: 300px;
+    height: 50px;
+    margin-left: 50px;
+    margin-bottom: 40px;
+}
+
+
+.form-container {
+    position: fixed;
+    height:90rem;
+    top: 50%;
+    left: 50%;
+    padding: 50px;
+    min-width: 500px;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 40px;
+}
+
+
+.form-container label {
+    margin-left: 40px;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0f1020;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+
+    border-radius: 3px;
+    width: 100%;
+    padding: 12px 40px;
+    margin: 8px 0;
+    background-color: #ffffff;
+    display: inline-block;
+    color: #0e0f37;
+    border: 1px solid #0e0f37;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
+    outline: none;
+    color: #0e0f37;
+    background-color: #ffffff;
+}
+
+.form-container label i {
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+
+.username-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+
+}
+
+.username-container i{
+    position: absolute;
+    left: 13px;
+    top: 25px;
+    font-size: 18px;
+    color: #0e0f37;
+}
+
+.password-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+}
+
+.password-container i{
+    position: absolute;
+    left: 13px;
+    top: 32px;
+    color: #0e0f37;
+}
+
+
+.password2-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+}
+
+.password2-container i{
+    position: absolute;
+    left: 13px;
+    top: 32px;
+    color: #0e0f37;
+}
+
+.nickname-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+}
+
+.nickname-container i{
+    position: absolute;
+    left: 13px;
+    top: 25px;
+    color: #0e0f37;
+}
+
+.email-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+}
+
+.email-container i{
+    position: absolute;
+    left: 13px;
+    top: 25px;
+    color: #0e0f37;
+}
+
+.phone-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+    margin-top: 2rem;
+}
+
+.phone-container i{
+    position: absolute;
+    left: 13px;
+    top: 25px;
+    color: #0e0f37;
+}
+
+.ml-container {
+    position: relative;
+    width: 89.5%;
+    height: 50px;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+}
+
+.ml-container i{
+    position: absolute;
+    left: 30px;
+    top: 25px;
+    color: #0e0f37;
+}
+
+.ml-select option{
+    margin-left: 13px;   /* or any value you want */
+}
+
+
+
+.form-group select,
+.form-group input[type="tel"] {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    font-size: 1.5rem;
+    color: #0e0f37;
+    border: 1px solid #0e0f37;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-group input[type="tel"]:focus {
+    outline: none;
+    background-color: #ffffff;
+    color: #0e0f37;
+}
+
+.form-group select {
+    font-size: 1.15rem;
+}
+
+.form-group input[type="email"] {
+    margin-bottom: 150px;
+}
+
+.btn {
+    font-size: 16px;
+}
+
+.btn-container {
+}
+
+.btn-register {
+    background-color: #6646F3;
+    border: 2px solid #6646F3;
+    border-radius: 20px;
+    color: #ffffff;
+    width: 380px;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 85%;
+    margin-top: 2rem;
+    margin-left: 3rem;
+}
+
+.btn-register:hover {
+    background-color: #ffffff;
+    border: 2px solid #6646F3;
+    color: #6646F3;
+}
+
+.btn-register:active {
+    background-color: #D456FA;
+    color: #ffffff;
+}
