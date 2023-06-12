@@ -11,7 +11,7 @@ services:
     ports:
       - 80:80
   django_container_gunicorn:
-    image: django_test:2
+    image: django_safezone:1
     networks:
       - nginx-django
     volumes:
