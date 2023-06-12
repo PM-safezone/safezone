@@ -1,22 +1,90 @@
 from django import forms
 
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from account_app.models import UserModel
 
 
 class CreateAdminForm(UserCreationForm):
-	email = forms.CharField(label="이메일")
-	username = forms.CharField(label="이름")
-	password1 = forms.CharField(label="비밀번호", widget=forms.PasswordInput)
-	password2 = forms.CharField(label="비밀번호 확인", widget=forms.PasswordInput)
+	username = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'class': 'username-container',
+				'type': 'text',
+				'placeholder': 'id.',
+				'uname': 'uname',
+				'required': True
+			}
+		)
+	)
+	password1 = forms.CharField(
+		widget=forms.PasswordInput(
+			attrs={
+				'class': 'password-container',
+				'placeholder': 'password.',
+				'uname': 'pwd',
+				'required': True
+			}
+		)
+	)
+	password2 = forms.CharField(
+		widget=forms.PasswordInput(
+			attrs={
+				'class': 'password2-container',
+				'placeholder': 'password confirmation.',
+				'uname': 'pwd2',
+				'required': True
+			}
+		)
+	)
+	nickname = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'class': 'nickname-container',
+				'placeholder': 'name.',
+				'uname': 'name',
+				'required': True
+			}
+		)
+	)
+
+	email = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'class': 'email-container',
+				'placeholder': 'email.',
+				'uname': 'email',
+				'required': True
+			}
+		)
+	)
 	MANAGEMENT_LOCATIONS_CHOICES = [
+		('placeholder', 'choice management location.'),  # placeholder
 		('option1', '구역 1'),
 		('option2', '구역 2'),
 		('option3', '구역 3'),
 	]
-	management_locations = forms.ChoiceField(label="관리 위치", choices=MANAGEMENT_LOCATIONS_CHOICES)
-	phone = forms.CharField(label="휴대전화")
+	management_locations = forms.ChoiceField(
+		choices=MANAGEMENT_LOCATIONS_CHOICES,
+		widget=forms.Select(
+			attrs={
+				'class': 'ml-container ml-select',
+				'uname': 'ml',
+				'required': True,
+				'placeholder': 'choice management location.'
+			}
+		)
+	)
+	phone = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'class': 'phone-container',
+				'placeholder': 'phone number',
+				'uname': 'phone',
+				'required': True
+			}
+		)
+	)
 
 	class Meta:
 		model = UserModel
@@ -35,10 +103,11 @@ class CreateAdminForm(UserCreationForm):
 
 
 class AdminUpdateForm(CreateAdminForm):
+
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-
-		self.fields['username'].disabled = True
+		self.fields['username'].label = "ID"
+		self.fields['nickname'].label = "Name"
 
 
 class AdminDetailForm(AdminUpdateForm):
@@ -49,3 +118,27 @@ class AdminDetailForm(AdminUpdateForm):
 
 		for field in self.fields:
 			self.fields[field].disabled = True
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+	username = forms.CharField(
+		widget=forms.TextInput(
+			attrs={
+				'class': 'username-container',
+				'type': 'text',
+				'name': 'uname',
+				'placeholder': 'id',
+				'required': True
+			}
+		)
+	)
+	password = forms.CharField(
+		widget=forms.PasswordInput(
+			attrs={
+				'class': 'password-container',
+				'placeholder': 'password',
+				'name': 'pwd',
+				'required': True
+			}
+		)
+	)
