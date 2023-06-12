@@ -183,3 +183,62 @@ h1 {
     margin-top: 2rem;
     font-size: 2rem;
 }
+
+
+
+.name-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+
+}
+
+.name-container i{
+    position: absolute;
+    left: 13px;
+    top: 25px;
+    font-size: 18px;
+    color: #0e0f37;
+}
+
+
+
+.email-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+}
+
+.email-container i{
+    position: absolute;
+    left: 13px;
+    top: 25px;
+    color: #0e0f37;
+}
+
+.phone-container {
+    position: relative;
+    width: 80%;
+    margin-left: 4rem;
+}
+
+.phone-container i{
+    position: absolute;
+    left: 13px;
+    top: 25px;
+    color: #0e0f37;
+}
+
+.ml-container {
+    position: relative;
+    width: 89.5%;
+    height: 50px;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+}
+.ml-container i {
+    position: absolute;
+    left: 30px;
+    top: 25px;
+    color: #0e0f37;
+}

@@ -9,7 +9,6 @@
 
 {% endblock %}
 
-
 {% block body %}
     <div class="form-container">
         <img src="{% static 'image/safezone_logo.png' %}" alt="logo" class="logo">
@@ -36,13 +35,13 @@
                 {{ form.email }}
                 <i class="fa-solid fa-envelope"></i>
             </div>
-            <div class="ml-container">
-                {{ form.management_locations }}
-                <i class="fa-solid fa-location"></i>
-            </div>
             <div class="phone-container">
                 {{ form.phone }}
                 <i class="fa-solid fa-mobile"></i>
+            </div>
+            <div class="ml-container">
+                {{ form.management_locations }}
+{#                <i class="fa-solid fa-location"></i>#}
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-register">REGISTER</button>

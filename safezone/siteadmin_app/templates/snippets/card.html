@@ -7,14 +7,14 @@
         <img class="card-img-top" src="{{ siteadmin.image.url }}" alt="Admin Image"
              style="display: block">
     </div>
-    <div>
+    <div class="name-container">
         {{ siteadmin.name }}
     </div>
-    <div>
-        {{ siteadmin.get_management_locations_display }}
-    </div>
-    <div>
+    <div class="phone-container">
         {{ siteadmin.phone }}
+    </div>
+    <div class="ml-container">
+        {{ siteadmin.get_management_locations_display }}
     </div>
 </div>
 

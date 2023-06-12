@@ -56,7 +56,6 @@ body {
 .form-container input[type="password"]:focus {
     outline: none;
     color: #0e0f37;
-    box-shadow: 0px 0px 5px #ffffff(0, 0, 0, 0.2);
     background-color: #ffffff;
 }
 
@@ -87,14 +86,19 @@ body {
 }
 
 .create_admin {
-    margin-top: 2rem;
-    margin-left: 14rem;
+    margin-top: 4rem;
+    margin-left: 15rem;
     color: black;
     font-size: 2rem;
     text-decoration: none;
     border-bottom: 2px solid black;
     padding-bottom: 1px;
     display: inline-block;
+}
+
+.create_admin:hover {
+    text-decoration: none;
+     border-bottom: 2px solid white;
 }
 
 

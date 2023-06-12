@@ -12,25 +12,25 @@
         <h1>현장 관리자 등록</h1>
         <form action="{% url 'siteadmin_app:create' %}" method="post"  enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="name-container">
-                {{ form.name }}
-                <i class="fa-solid fa-helmet-safety"></i>
-            </div>
             <div class="image-container">
                 {{ form.image }}
                 <i class="fa-solid fa-image"></i>
+            </div>
+            <div class="name-container">
+                {{ form.name }}
+                <i class="fa-solid fa-helmet-safety"></i>
             </div>
             <div class="email-container">
                 {{ form.email }}
                 <i class="fa-solid fa-envelope"></i>
             </div>
-            <div class="ml-container">
-                {{ form.management_locations }}
-                <i class="fa-solid fa-location"></i>
-            </div>
             <div class="phone-container">
                 {{ form.phone }}
                 <i class="fa-solid fa-mobile"></i>
+            </div>
+            <div class="ml-container">
+                {{ form.management_locations }}
+{#                <i class="fa-solid fa-location"></i>#}
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-register">등록</button>
