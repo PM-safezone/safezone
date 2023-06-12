@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -268,80 +269,81 @@
     </style>
 </head>
 <body>
-{#    <div class="form-container">#}
-{#        <img src="https://lh3.googleusercontent.com/YrZvK386PmWFaKCHDtGu_P9w4PoSP6B6pON9Zg8__Fvk-KpxdUdWtRj2iZAU2R7PaFnn-PgrO5nDg_WnmKsbqSB5t9D-YkLRhZQ3XZdnUeakv8JUtDhkHFowEYjPXUpTr1w5yuhdKw963b4DY-CveJOo_aVPqce5RZAgq5ArWgzyI9Zk58XgFH509cV-8s-doFKGZdy65maHS7hv5FAwLwDqYhfr3dOqUg_BJslSbaM95xa-_EG2D_sdpaBMk--isPSwckeJgFGwueI7b_2GDgmi98p5Q9tkqLSeav7Q-jXm90t4VxuLL-EEtrfHL4ywD43FFoyxyXHenS_MSTp4U7O0vV5NGV6vSo5eCJit95x7tunJbBkHAWui1_X4SMw6H9BYMcI754QMiwgC9aYogvOb63ISv8WY3Kjk52uEOSGvmI17tw2BkRbqHXHnoYKVQANgaWe34gqrqzbyFatfyjNh2VC-Gs19orHC_t61622CrRs73D_0FgieFqw0l0Rfd54wu_rIhYUmF3rNKegjqvyU2hEQ_mydeumeuayVfUxkTGVQioUv5yOgajw0cFMx4rQGVSIBeXvlQcoCFU-saYuyirzm2taeRGACev2bWHdShK_xu3V4fwVMQz1B2wDndTmbmj3P4sVD_Wh1IsutWHmEWP6Qpg-q838mKMnjKbk0LTkGET0xx89gr_MYGEoH5HTW5q983VggNCXD-OO_74wLr30VDDTsS7yPrN2Us4z2WXeJyGJOXLWMtTOra57qJL7IHUAQRJTeJE3e50atJAnDP5_H0qXoGAVSLUP3P-oY2gWCGPVVN8JBJ0o-uLPNasmpUPSrKSCtt7g63aBnhtAUFClsr3m0aPqHSmh8BJXBzoMXuMDdVNVAw7yaLZz5ntYxfd8gRm9eUuCeBOrBI6_GeDisFVFAc3BAFqhnSo-lZXoCfZTaijY4ppIH0Taf-ZdGi-bsAfiFX4XL3SrAmA=w320-h368-s-no?authuser=0" alt="logo" class="logo">#}
-{#        <br><img src="https://lh3.googleusercontent.com/lMdZQfjcQrYwzCsB98Xui6VL2bznjOV5Ivtf74lu2KZS00wVMW3rJjhSbYoTFFSkIuZkkRnMvlr_J3w45hcqOjp9dPi2KkqxRIlnJCMWBUdLjYEcpuOShvvwKDk4McMN2inX833nUnKyBjLy0KyQRHoGsgE2-SfEsewRa9ZbSQRjqPUyRfo5iiVeipoqfaAdN1jbOGYbNwqBcrBnxSkzmTDcRrCvEIH9Te6phwdUoYJcth-WAroGZP1tMJkF7uanV4AeLCEzwMokPUxZKdf2LXaG0BZgzharRimKUtj8MZGopiHkXQ7pK8-7GjhkGjjeOHTAxRSacc2-NrdUchtkHAKovhhpCzDlb8AM_RLbpPkdOWHXb7UKfbSQru3gB8RHA6frbdGfTBXl0VttZJqxCZdJ8fsJyOjlp6kdU25l1CryrG21C8b1HSubXWtZyCtzbs-a-DOdr20v60er5h9IvAX4bTIWUI-AFVchlQ8h8xwgDa6ON8efSMunfG9CD7GqDQfVJVOfU3F2hmLVdWnxCZGz00eY_HkRp72SrYWMn8ACk86VxUEt_smAJc06fM8gg1H0LMHykaISy-y1G-WsYi1B1lnYeMOKRNub2vHXZp0icilCuzkdqv6JECImIS7_kd3CSp78MBZpm2JCtvpGuTm9CBnyrjScb1q7jHRaHsltIt20GFhgeQaDFuSOzBA4zFOnp6i_ArEU6oph9IKRn8qv9NM0Dk5GgM9j9E1DAKKT3MMBUXIxNhAOl6rtOHNJ-sk7Q1PZ6Y6mn99Q6guD8jkrdPnCMJF48ba3voFCaFF9mninlMy6tNq8ZxrFuHew2k4pwJzZ27Cq283VYsKiSnIc7_mQMvrdw_wOqKLhsiM06HTRXu_bMkIRXu6VtWnCjNYyu0iKXIavc34n31RJGVBmXoMvmML7Ln2Ut-mM-8YB-VhCPFyYveS53nnEP8ZJTejFheE_VynwpD6TRM87Pg=w334-h61-s-no?authuser=0" alt="logo_name" class="logo_name">#}
-{##}
-{#        <!-- <h1>로그인</h1> -->#}
-{##}
-{#        <!-- <form method="POST">#}
-{#            {% csrf_token %}#}
-{#            <div class="form-field">#}
-{#                <label for="username"><i class="fa-solid fa-user-helmet-safety" style="color: #0f1020;"></i>아이디</label>#}
-{#                {{ form.username }}#}
-{#            </div>#}
-{##}
-{#            <div class="form-field">#}
-{#                <label for="password">비밀번호</label>#}
-{#                {{ form.password }}#}
-{#            </div>#}
-{##}
-{#        <div class="btn-container">#}
-{#            <button type="submit" class="btn btn-login">LOGIN</button>#}
-{#            <button type="button" class="btn btn-register" onclick="location.href='../create'">관리자 등록</button>#}
-{#        </div>#}
-{#        </form> -->#}
-{##}
-{#        <form method="POST">#}
-{#            {% csrf_token %}#}
-{#            <!-- {{ form.as_p }} -->#}
-{#            <!-- <label for="username">아이디</label>#}
-{#            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요"><i class="fas fa-user-helmet-safety" style="color: #0f1020;"></i>#}
-{#            <label for="password">비밀번호</label>#}
-{#            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"> -->#}
-{##}
-{#            <div class="username-container">#}
-{#                <input type="text" #}
-{#                        placeholder="아이디를 입력하세요"#}
-{#                        name="uname" required> #}
-{#                <i class="fa-solid fa-helmet-safety"></i>#}
-{#            </div>#}
-{#              #}
-{#            <div class="password-container">#}
-{#                <input type="password"#}
-{#                        placeholder="비밀번호를 입력하세요"#}
-{#                        name="psw" required> #}
-{#                <i class="fa fa-key fa-lg"></i>#}
-{#            </div>#}
-{##}
-{#            <div class="btn-container">#}
-{#                <button type="submit" class="btn btn-login">LOGIN</button>#}
-{#                <a href="../create" class="register-button">관리자 등록</a>#}
-{#                <!-- <button type="button" class="btn btn-register" onclick="location.href='../create'">관리자등록</button> -->#}
-{#            </div>#}
-{#        </form>#}
-{#    </div>#}
-  <div class="form-container">
-      <h1>로그인</h1>
+    <div class="form-container">
+        <img src="{% static 'image/safezone_logo.png' %}" alt="logo" class="logo">
+        <br><img src="{% static 'image/safezone_name_logo.png' %}">
 
-      <form method="POST">
-          {% csrf_token %}
-          <div class="form-field">
-              <label for="username">아이디</label>
-              {{ form.username }}
-          </div>
+        <!-- <h1>로그인</h1> -->
 
-          <div class="form-field">
-              <label for="password">비밀번호</label>
-              {{ form.password }}
-          </div>
+        <!-- <form method="POST">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="username"><i class="fa-solid fa-user-helmet-safety" style="color: #0f1020;"></i>아이디</label>
+                {{ form.username }}
+            </div>
 
-      <div class="btn-container">
-          <button type="submit" class="btn btn-login">로그인</button>
-          <button type="button" class="btn btn-register" onclick="location.href='../create'">관리자 등록</button>
-      </div>
-      </form>
-  </div>
+
+            <div class="form-field">
+                <label for="password">비밀번호</label>
+                {{ form.password }}
+            </div>
+
+        <div class="btn-container">
+            <button type="submit" class="btn btn-login">LOGIN</button>
+            <button type="button" class="btn btn-register" onclick="location.href='../create'">관리자 등록</button>
+        </div>
+        </form> -->
+
+        <form method="POST">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <!-- <label for="username">아이디</label>
+            <input type="text" id="username" name="username" placeholder="아이디를 입력하세요"><i class="fas fa-user-helmet-safety" style="color: #0f1020;"></i>
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요"> -->
+
+            <div class="username-container">
+                <input type="text"
+                        placeholder="아이디를 입력하세요"
+                        name="uname" required>
+                <i class="fa-solid fa-helmet-safety"></i>
+            </div>
+
+            <div class="password-container">
+                <input type="password"
+                        placeholder="비밀번호를 입력하세요"
+                        name="psw" required>
+                <i class="fa fa-key fa-lg"></i>
+            </div>
+
+            <div class="btn-container">
+                <button type="submit" class="btn btn-login">LOGIN</button>
+                <a href="../create" class="register-button">관리자 등록</a>
+                <!-- <button type="button" class="btn btn-register" onclick="location.href='../create'">관리자등록</button> -->
+            </div>
+        </form>
+    </div>
+{#  <div class="form-container">#}
+{#      <h1>로그인</h1>#}
+{##}
+{#      <form method="POST">#}
+{#          {% csrf_token %}#}
+{#          <div class="form-field">#}
+{#              <label for="username">아이디</label>#}
+{#              {{ form.username }}#}
+{#          </div>#}
+{##}
+{#          <div class="form-field">#}
+{#              <label for="password">비밀번호</label>#}
+{#              {{ form.password }}#}
+{#          </div>#}
+{##}
+{#      <div class="btn-container">#}
+{#          <button type="submit" class="btn btn-login">로그인</button>#}
+{#          <button type="button" class="btn btn-register" onclick="location.href='../create'">관리자 등록</button>#}
+{#      </div>#}
+{#      </form>#}
+{#  </div>#}
 
 </body>
 </html> 
