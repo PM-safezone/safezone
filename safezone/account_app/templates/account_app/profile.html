@@ -31,13 +31,13 @@
             {{ form.email }}
             <i class="fa-solid fa-envelope"></i>
         </div>
-        <div class="ml-container">
-            {{ form.management_locations }}
-            <i class="fa-solid fa-location"></i>
-        </div>
         <div class="phone-container">
             {{ form.phone }}
             <i class="fa-solid fa-mobile"></i>
+        </div>
+        <div class="ml-container">
+            {{ form.management_locations }}
+{#            <i class="fa-solid fa-location"></i>#}
         </div>
 
             {% if target_user.pk == request.user.pk %}

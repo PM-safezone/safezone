@@ -29,20 +29,3 @@
         </form>
     </div>
 {% endblock %}
-
-
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/siteadmin_app/card.css' %}">
-
-<div class="form-container">
-        <img src="{{ siteadmin.image.url }}" alt="" class="image-container">
-        <h1>
-            {{ siteadmin.name }}
-        </h1>
-        <h1>
-            {{ siteadmin.get_management_locations_display }}
-        </h1>
-        <h1>
-            {{ siteadmin.phone }}
-        </h1>
-</div>

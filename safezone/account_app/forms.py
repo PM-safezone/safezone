@@ -41,7 +41,7 @@ class CreateAdminForm(UserCreationForm):
 		widget=forms.TextInput(
 			attrs={
 				'class': 'nickname-container',
-				'placeholder': 'name.',
+				'placeholder': 'name',
 				'uname': 'name',
 				'required': True
 			}

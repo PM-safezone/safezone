@@ -5,21 +5,25 @@
     <title>현장 관리자 정보</title>
     <link rel="stylesheet" href="{% static 'css/siteadmin_app/detail.css' %}">
     <script src="https://kit.fontawesome.com/35b6327311.js" crossOrigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 {% endblock %}
 
 {% block body %}
     <div class="form-container">
         <img src="{{ target_siteadmin.image.url }}" alt="" class="image-container">
-        <h1>
-            {{ target_siteadmin.name }}
-        </h1>
-        <h1>
-            {{ target_siteadmin.get_management_locations_display }}
-        </h1>
-        <h1>
-            {{ target_siteadmin.phone }}
-        </h1>
-
+        <div class="name-container">
+            {{ form.name }}
+            <i class="fa-solid fa-helmet-safety"></i>
+        </div>
+        <div class="phone-container">
+            {{ form.phone }}
+            <i class="fa-solid fa-mobile"></i>
+        </div>
+        <div class="ml-container">
+            {{ form.management_locations }}
+{#                <i class="fa-solid fa-location"></i>#}
+        </div>
 
         <a href="{% url 'siteadmin_app:update' pk=target_siteadmin.pk %}"
         class="btn_update">
