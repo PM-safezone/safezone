@@ -175,19 +175,24 @@ body {
 }
 
 .ml-container {
-    position: relative;
-    width: 89.5%;
+    padding: 12px 25px;
+    position: absolute;
+    width: 80%;
     height: 50px;
-    margin-left: 2rem;
-    margin-top: 0.5rem;
+    text-indent: 10px;
+    /* margin-left: 0.8rem; */
+    left: 45px;
+    top: 285px;
 }
 
 .ml-container i{
     position: absolute;
-    left: 30px;
-    top: 25px;
+    left: 45px;
+    top: 300px;
+    font-size: 21px;
     color: #0e0f37;
 }
+
 
 .ml-select option{
     margin-left: 13px;   /* or any value you want */
@@ -258,7 +263,7 @@ body {
 .btn_update{
     color: #4BBFE1;
     text-align: center;
-    margin-top: 4rem;
+    margin-top: 10rem;
 }
 
 .btn_delete{

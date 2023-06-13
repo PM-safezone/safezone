@@ -13,6 +13,10 @@
         <h1>현장 관리자 정보 수정</h1>
         <form action="{% url 'siteadmin_app:update' pk=target_siteadmin.pk %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            <div class="image-container">
+                {{ form.image }}
+{#                <i class="fa-solid fa-image"></i>#}
+            </div>
             <div class="name-container">
                 {{ form.name }}
                 <i class="fa-solid fa-helmet-safety"></i>
@@ -23,11 +27,7 @@
             </div>
             <div class="ml-container">
                 {{ form.management_locations }}
-{#                <i class="fa-solid fa-location"></i>#}
-            </div>
-            <div class="image-container">
-                {{ form.image }}
-                <i class="fa-solid fa-image"></i>
+                <i class="fa-solid fa-location"></i>
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-register">변경</button>

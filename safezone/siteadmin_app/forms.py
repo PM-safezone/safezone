@@ -62,4 +62,3 @@ class SiteAdminDetailForm(SiteAdminCreationForm):
 		super().__init__(*args, **kwargs)
 		for field in self.fields:
 			self.fields[field].disabled = True
-

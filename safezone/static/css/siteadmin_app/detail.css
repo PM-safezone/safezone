@@ -115,7 +115,7 @@ h1 {
     position: relative;
     width: 80%;
     margin-left: 4rem;
-    margin-top: 2rem;
+    /*margin-top: 2rem;*/
 }
 
 .phone-container i{
@@ -124,18 +124,21 @@ h1 {
     top: 25px;
     color: #0e0f37;
 }
-
 .ml-container {
-    position: relative;
-    width: 89.5%;
-    height: 50px;
-    margin-left: 2rem;
-    margin-top: 0.5rem;
-}
-.ml-container i {
     position: absolute;
-    left: 30px;
-    top: 25px;
+    width: 80%;
+    height: 50px;
+    text-indent: 10px;
+    /* margin-left: 0.8rem; */
+    /*top: 55px;*/
+
+}
+
+.ml-container i{
+    position: absolute;
+    left: 43px;
+    top: 186px;
+    font-size: 21px;
     color: #0e0f37;
 }
 
