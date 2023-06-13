@@ -156,10 +156,7 @@ body {
 }
 
 .ml-container {
-<<<<<<< HEAD
-=======
     /* padding-left: 100px; */
->>>>>>> edefe7713bdb14166d5b59ce1598a5268dcd73ab
     padding: 12px 25px;
     position: absolute;
     width: 80%;
@@ -167,22 +164,15 @@ body {
     text-indent: 10px;
     /* margin-left: 0.8rem; */
     left: 45px;
-<<<<<<< HEAD
-    top: 350px;
-=======
-    top: 347.5px;
->>>>>>> edefe7713bdb14166d5b59ce1598a5268dcd73ab
+    top: 347px;
 }
 
 .ml-container i{
     position: absolute;
-<<<<<<< HEAD
     left: 45px;
     top: 365px;
-=======
     right: 325px;
     top: 362.5px;
->>>>>>> edefe7713bdb14166d5b59ce1598a5268dcd73ab
     font-size: 21px;
     color: #0e0f37;
 }

@@ -4,9 +4,6 @@
 {% block extra_head %}
     <title>현장 관리자 정보</title>
     <link rel="stylesheet" href="{% static 'css/siteadmin_app/detail.css' %}">
-    <script src="https://kit.fontawesome.com/35b6327311.js" crossOrigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 {% endblock %}
 
 {% block body %}
@@ -22,7 +19,7 @@
         </div>
         <div class="ml-container">
             {{ form.management_locations }}
-                <i class="fa-solid fa-location"></i>
+{#            <i class="fa-solid fa-location"></i>#}
         </div>
 
         <a href="{% url 'siteadmin_app:update' pk=target_siteadmin.pk %}"

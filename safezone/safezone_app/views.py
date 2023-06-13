@@ -158,8 +158,8 @@ def get_log(request):
     global num  # num 변수를 전역 변수로 사용
     num += 1  # num 값 증가
     if request.method == 'GET':
-        #exp_dir = 'D:/safezone/safezone/media/yolov5/runs/detect/'
-        exp_dir = 'C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/runs/detect/'
+        exp_dir = 'D:/safezone/safezone/media/yolov5/runs/detect/'
+        # exp_dir = 'C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/runs/detect/'
         # exp_dir = '/home/safezone/safezone/media/yolov5/runs/detect/'
         subdirs = [f.path for f in os.scandir(exp_dir) if f.is_dir() and f.name.startswith('exp') and f.name[3:].isdigit()]
 
@@ -204,8 +204,8 @@ def run_yolov5_webcam(request):
 
         #command = '/Users/seoyoobin/Desktop/MLP_AI Engineer Camp/safezone/safezone/safezone_app/yolov5/best.pt'
         # command = 'python D:/safezone/safezone/media/yolov5/detect.py --weights D:/safezone/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
-        command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/detect.py --weights C:/Users/Jinsan/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
-        #command = 'python D:/safezone/safezone/media/yolov5/detect.py --weights D:/safezone/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
+        # command = 'python C:/Users/Jinsan/Desktop/safezone_project/safezone/media/yolov5/detect.py --weights C:/Users/Jinsan/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
+        command = 'python D:/safezone/safezone/media/yolov5/detect.py --weights D:/safezone/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
         # command = 'python C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/yolov5/detect.py --weights D:/safezone/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
         # command = 'python /home/safezone/safezone/media/yolov5/detect.py --weights /home/project/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
 

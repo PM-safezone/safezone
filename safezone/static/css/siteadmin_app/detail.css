@@ -128,16 +128,14 @@ h1 {
     position: absolute;
     width: 80%;
     height: 50px;
-    text-indent: 10px;
-    /* margin-left: 0.8rem; */
+    margin-left: 0.8rem;
     /*top: 55px;*/
-
 }
 
 .ml-container i{
     position: absolute;
     left: 43px;
-    top: 186px;
+    top: 170px;
     font-size: 21px;
     color: #0e0f37;
 }
