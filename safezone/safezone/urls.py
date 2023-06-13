@@ -20,7 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('safezone',include('safezone_app.urls')),
+    path('safezone/',include('safezone_app.urls')),
     path('',include('account_app.urls')),
     path('siteadmins/',include('siteadmin_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
