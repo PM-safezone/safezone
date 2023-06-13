@@ -109,8 +109,8 @@ def video_analyze(request):
         upload = default_storage.save(video_file.name,ContentFile(video_file.read()))
 
         # command = 'python D:/safezone/safezone/media/yolov5/detect.py --source D:/safezone/safezone/media/' + video_file.name + ' --weights D:/safezone/best.pt --exist-ok'
-        command = 'python C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/yolov5/detect.py --source C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/' + video_file.name + ' --weights C:/Users/leemo/moongi-laptop/project_source/safezone/best.pt --exist-ok'
-        # command = 'python /home/safezone/safezone/media/yolov5/detect.py --source /home/safezone/safezone/media/' + video_file.name + ' --weights /home/project/best.pt --exist-ok'
+        # command = 'python C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/yolov5/detect.py --source C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/' + video_file.name + ' --weights C:/Users/leemo/moongi-laptop/project_source/safezone/best.pt --exist-ok'
+        command = 'python /home/safezone/safezone/media/yolov5/detect.py --source /home/safezone/safezone/media/' + video_file.name + ' --weights /home/project/best.pt --exist-ok'
         # command = 'python D:/safezone/safezone/media/yolov5/detect.py --source D:/safezon//safezone/media/' + video_file.name + ' --weights D:/safezone/best.pt --exist-ok'
         # command = 'python C:/Users/leeyo/Project/safezone/safezone/media/yolov5/detect.py --source C:/Users/leeyo/Downloads/' + video_file.name + ' --weights C:/Users/leeyo/Project/safezone/safezone/media/yolov5/runs/train/yolov5s_third/weights/best.pt --exist-ok'
 
@@ -122,8 +122,8 @@ def video_analyze(request):
 
         detect_video_file = '/media/yolov5/runs/detect/exp/'+video_file.name
         # detect_txt_file = 'D:/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
-        detect_txt_file = 'C:/Users/leemo/moongi-laptop/project_source/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
-        # detect_txt_file = '/home/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
+        # detect_txt_file = 'C:/Users/leemo/moongi-laptop/project_source/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
+        detect_txt_file = '/home/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
         # detect_txt_file = 'D:/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
         # detect_txt_file = 'C:/Users/leeyo/Project/safezone/safezone' + detect_video_file.split('.mp4')[0] + '.txt'
 
@@ -159,8 +159,8 @@ def get_log(request):
     num += 1  # num 값 증가
     if request.method == 'GET':
         # exp_dir = 'D:/safezone/safezone/media/yolov5/runs/detect/'
-        exp_dir = 'C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/yolov5/runs/detect/'
-        # exp_dir = '/home/safezone/safezone/media/yolov5/runs/detect/'
+        # exp_dir = 'C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/yolov5/runs/detect/'
+        exp_dir = '/home/safezone/safezone/media/yolov5/runs/detect/'
         subdirs = [f.path for f in os.scandir(exp_dir) if f.is_dir() and f.name.startswith('exp') and f.name[3:].isdigit()]
 
         if subdirs:
@@ -204,8 +204,8 @@ def run_yolov5_webcam(request):
 
         #command = '/Users/seoyoobin/Desktop/MLP_AI Engineer Camp/safezone/safezone/safezone_app/yolov5/best.pt'
         # command = 'python D:/safezone/safezone/media/yolov5/detect.py --weights D:/safezone/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
-        command = 'python C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/yolov5/detect.py --weights D:/safezone/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
-        # command = 'python /home/safezone/safezone/media/yolov5/detect.py --weights /home/project/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
+        # command = 'python C:/Users/leemo/moongi-laptop/project_source/safezone/safezone/media/yolov5/detect.py --weights D:/safezone/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
+        command = 'python /home/safezone/safezone/media/yolov5/detect.py --weights /home/project/best.pt --save-txt --save-conf --conf-thres 0.60 --source 0 --alarm SMS'
 
         try:
             subprocess.run(command, shell=True, check=True)
