@@ -20,7 +20,7 @@ body {
     min-width: 500px;
     transform: translate(-50%, -50%);
     background-color: #ffffff;
-    border-radius: 40px;
+    border-radius: 20px;
 }
 
 
@@ -86,10 +86,10 @@ body {
 }
 
 .create_admin {
-    margin-top: 4rem;
-    margin-left: 15rem;
+    margin-top: 2rem;
+    margin-left: 16rem;
     color: black;
-    font-size: 2rem;
+    font-size: 1.6rem;
     text-decoration: none;
     border-bottom: 2px solid black;
     padding-bottom: 1px;
@@ -106,7 +106,7 @@ body {
     width: 22rem;
     height: 15rem;
     margin-left: 10rem;
-    margin-top: 5rem;
+    margin-top: 3.5rem;
 }
 
 .logo_name {
