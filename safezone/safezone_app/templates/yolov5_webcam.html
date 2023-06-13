@@ -158,7 +158,7 @@
 <body>    
 
     <div class="form-container">
-        <h1>YOLOv5 <br> Webcam Detection</h1>
+        <h1>RTC Detection</h1>
 
         <div class="btn-container">
             <form method='POST'>
@@ -173,7 +173,7 @@
             <span id="output" style="float: right;"></span>
         </div>
         <button class="btn btn-start" id="get_log" onclick="updateLog()">views and reload</button>  
-``
+
         <div class="violation-box">
             <div class="text_container">
                 <textarea id="violation-content" class="violation-content" row="5">{{ log_text }}</textarea>
@@ -276,7 +276,7 @@
             $("#output").html("Detection in progress...");
     
             $.ajax({
-                url: "/run_yolov5_webcam/",
+                url: "/safezonerun_yolov5_webcam/",
                 type: "POST",
                 data: {
                     'start_flag': true,
