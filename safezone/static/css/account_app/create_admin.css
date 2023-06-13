@@ -19,20 +19,21 @@ body {
     width: 300px;
     height: 50px;
     margin-left: 50px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 
 .form-container {
+    overflow: scroll;
     position: fixed;
-    height:90rem;
+    height:73rem;
     top: 50%;
     left: 50%;
     padding: 50px;
     min-width: 500px;
     transform: translate(-50%, -50%);
     background-color: #ffffff;
-    border-radius: 40px;
+    border-radius: 20px;
 }
 
 
@@ -144,6 +145,7 @@ body {
     position: relative;
     width: 80%;
     margin-left: 4rem;
+    margin-bottom: 50px;
 }
 
 .phone-container i{
@@ -154,17 +156,22 @@ body {
 }
 
 .ml-container {
-    position: relative;
-    width: 89.5%;
+    /* padding-left: 100px; */
+    padding: 12px 25px;
+    position: absolute;
+    width: 80%;
     height: 50px;
-    margin-left: 2rem;
-    margin-top: 0.5rem;
+    text-indent: 10px;
+    /* margin-left: 0.8rem; */
+    left: 45px;
+    top: 347.5px;
 }
 
 .ml-container i{
     position: absolute;
-    left: 30px;
-    top: 25px;
+    left: 47px;
+    top: 362.5px;
+    font-size: 21px;
     color: #0e0f37;
 }
 
@@ -219,6 +226,7 @@ body {
     width: 80%;
     margin-top: 3rem;
     margin-left: 4rem;
+    margin-bottom: 25px;
 }
 
 .btn-register:hover {
@@ -228,6 +236,30 @@ body {
 }
 
 .btn-register:active {
-    background-color: #D456FA;
+    background-color: #6646F3;
     color: #ffffff;
+}
+
+.tooltip {
+    position: absolute;
+    top: 280px;
+    right: 150px;
+    width: 200px;
+    background-color: white;
+    color: #0e0f37;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    overflow: visible;
+    z-index: 9999;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    transform: translate(0, -50%);
+}
+
+.form-container:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
 }
