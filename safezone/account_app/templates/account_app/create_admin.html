@@ -11,6 +11,7 @@
 
 {% block body %}
     <div class="form-container">
+        <div class="tooltip"><i class="fa-solid fa-arrow-down-long"></i>&nbsp;Scroll Down to Complete&nbsp;<i class="fa-solid fa-arrow-down-long"></i></div>
         <img src="{% static 'image/safezone_logo.png' %}" alt="logo" class="logo">
         <br><img src="{% static 'image/safezone_name_logo.png' %}" class="logo_name">
         <form action="{% url 'account_app:create' %}" method="post">
@@ -41,7 +42,7 @@
             </div>
             <div class="ml-container">
                 {{ form.management_locations }}
-{#                <i class="fa-solid fa-location"></i>#}
+                <i class="fa-solid fa-map-pin"></i>
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-register">REGISTER</button>
