@@ -164,13 +164,11 @@ body {
     text-indent: 10px;
     /* margin-left: 0.8rem; */
     left: 45px;
-    top: 347px;
+    top: 347.5px;
 }
 
 .ml-container i{
     position: absolute;
-    left: 45px;
-    top: 365px;
     right: 325px;
     top: 362.5px;
     font-size: 21px;
@@ -226,7 +224,7 @@ body {
     font-size: 2rem;
     font-weight: bold;
     width: 80%;
-    margin-top: 9rem;
+    margin-top: 3rem;
     margin-left: 4rem;
     margin-bottom: 25px;
 }
