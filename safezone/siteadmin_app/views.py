@@ -23,7 +23,7 @@ class SiteAdminListView(ListView):
 	model = SiteAdmin
 	context_objecct_name = 'siteadmin_list'
 	template_name = 'siteadmin_app/list.html'
-	paginate_by = 20
+	paginate_by = 16
 
 
 # class SiteAdminDetailView(DetailView):

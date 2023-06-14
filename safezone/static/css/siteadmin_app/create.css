@@ -1,4 +1,22 @@
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+:root {
+        --glitched-duration: 1s;
+    }
+
+@keyframes hxafter {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    51% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 
 body {
     background-color: #0e0f37;
@@ -26,7 +44,7 @@ h1:after {
 
 .form-container {
     position: fixed;
-    height:55rem;
+    height:60rem;
     top: 50%;
     left: 50%;
     padding: 50px;
@@ -78,7 +96,7 @@ h1:after {
     position: relative;
     width: 80%;
     margin-left: 4rem;
-    margin-top: 10rem;
+    margin-top: 5rem;
 }
 
 .name-container i{
@@ -118,16 +136,22 @@ h1:after {
 }
 
 .ml-container {
-    position: relative;
-    width: 89.5%;
-    height: 50px;
-    margin-left: 2rem;
-    margin-top: 0.5rem;
-}
-.ml-container i {
+    padding: 12px 25px;
     position: absolute;
-    left: 30px;
-    top: 25px;
+    width: 80%;
+    height: 50px;
+    text-indent: 10px;
+    margin-left: 2rem;
+    margin-top: 3rem;
+    left: 25px;
+    top: 165px;
+}
+
+.ml-container i{
+    position: absolute;
+    left: 43px;
+    top: 212px;
+    font-size: 21px;
     color: #0e0f37;
 }
 
@@ -146,24 +170,7 @@ h1:after {
     color: #0e0f37;
 }
 
-.ml-container {
-    padding: 12px 25px;
-    position: absolute;
-    width: 80%;
-    height: 50px;
-    text-indent: 10px;
-    /* margin-left: 0.8rem; */
-    left: 25px;
-    top: 165px;
-}
 
-.ml-container i{
-    position: absolute;
-    left: 43px;
-    top: 186px;
-    font-size: 21px;
-    color: #0e0f37;
-}
 
 .ml-select option{
     margin-left: 13px;   /* or any value you want */
@@ -179,7 +186,7 @@ h1:after {
     font-size: 2rem;
     font-weight: bold;
     width: 85%;
-    margin-top: 10rem;
+    margin-top: 11rem;
     margin-left: 3rem;
 }
 

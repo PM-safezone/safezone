@@ -6,28 +6,39 @@ body {
 }
 
 .container {
-    padding: 0;
+    padding: 1rem;
     margin: 0 auto;
-    background: ;
 }
 
+.container a:hover {
+    text-decoration: none;
+}
+
+
 .container div {
+  padding: 5px;
   display: flex;
+  flex-direction: column;
+  background-color: white;
   justify-content: center;
   align-items: center;
   border-radius: 1rem;
 }
 
 .container img {
-  width: 7rem;
-  height: 7rem;
+  width: 10rem;
+  height: 10rem;
   object-fit: cover;
   border-radius: 1rem;
 }
 
  /* 현장 관리자 등록 버튼 스타일 */
+.btn-container{
+    text-align: center;
+}
+
 .btn-register {
-    background-color: #0e0f37;
+    background-color: white !important;
     border: 0.5px solid white;
     color: white;
     margin-bottom: 20px;
@@ -46,4 +57,21 @@ body {
 
 .btn {
     font-size: 16px;
+}
+
+.btn-secondary:active {
+    background-color: cornflowerblue !important;
+    color: black !important;
+}
+
+.btn-secondary {
+    background-color: white !important;
+    color: black !important;
+}
+
+.text-container {
+    text-align: center;
+    margin-top: 30rem;
+    margin-bottom: 10rem;
+    color: white;
 }
