@@ -1,4 +1,5 @@
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
 :root {
         --glitched-duration: 1s;
     }
@@ -29,7 +30,8 @@ h1 {
     text-align: center;
     font-size: 3rem;
     font-weight: bold;
-    color: black;
+    color: 0e0f37;
+    margin-top: 50px;
     margin-bottom: 50px;
 }
 
@@ -51,7 +53,7 @@ h1:after {
     min-width: 500px;
     transform: translate(-50%, -50%);
     background-color: #ffffff;
-    border-radius: 40px;
+    border-radius: 20px;
 }
 
 
@@ -61,7 +63,7 @@ h1:after {
     margin-bottom: 10px;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #0f1020;
+    color: #0e0f37;
 }
 
 .form-container input[type="text"],
@@ -96,18 +98,16 @@ h1:after {
     position: relative;
     width: 80%;
     margin-left: 4rem;
-    margin-top: 5rem;
+    margin-top: 0rem;
 }
 
 .name-container i{
     position: absolute;
-    left: 13px;
+    left: 10px;
     top: 25px;
     font-size: 18px;
     color: #0e0f37;
 }
-
-
 
 .email-container {
     position: relative;
@@ -142,15 +142,15 @@ h1:after {
     height: 50px;
     text-indent: 10px;
     margin-left: 2rem;
-    margin-top: 3rem;
+    margin-top: -0.25rem;
     left: 25px;
-    top: 165px;
+    /* top: 180px; */
 }
 
 .ml-container i{
     position: absolute;
     left: 43px;
-    top: 212px;
+    top: 25px;
     font-size: 21px;
     color: #0e0f37;
 }
@@ -172,6 +172,7 @@ h1:after {
 
 
 
+
 .ml-select option{
     margin-left: 13px;   /* or any value you want */
 }
@@ -182,12 +183,12 @@ h1:after {
     border: 2px solid #6646F3;
     border-radius: 20px;
     color: #ffffff;
-    width: 380px;
     font-size: 2rem;
     font-weight: bold;
-    width: 85%;
-    margin-top: 11rem;
-    margin-left: 3rem;
+    width: 80%;
+    margin-top: 7.5rem;
+    margin-left: 4rem;
+    margin-bottom: 25px;
 }
 
 .btn-register:hover {
@@ -197,6 +198,7 @@ h1:after {
 }
 
 .btn-register:active {
-    background-color: #D456FA;
+    background-color: #6646F3;
     color: #ffffff;
 }
+
