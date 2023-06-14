@@ -672,7 +672,7 @@
             {# 로그아웃 버튼 변경 #}
         <a id="logout-button" class="btn btn-logout" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
         <a id="mypage-button" class="btn btn-mypage" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
-        <a id="sitemanreg-button" class="btn btn-register" href="{% url 'siteadmin_app:list' %}"><span>현장 관리자 등록</span></a>
+        <a id="sitemanreg-button" class="btn btn-register" href="{% url 'siteadmin_app:list' %}"><span>현장 관리자 리스트</span></a>
 
         <div class="cctv-container">
             <div class="cctv-row">

@@ -1,30 +1,49 @@
+body {
+    background-color: #0e0f37 !important;
+    font-family: 'nanumsquare', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.container {
+    padding: 0;
+    margin: 0 auto;
+    background: ;
+}
+
 .container div {
-      width: 250px;
-      height: 500px;
-      background-color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border-radius: 1rem;
-    }
-    .container img{
-      width: 70%;
-      border-radius: 1rem;
-    }
-    a {
-        color: inherit;    /* 현재 색상을 상속받음 (클릭 시 색상 변경 방지) */
-        text-decoration: none;    /* 밑줄 제거 */
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+}
 
-    a:visited {
-        color: inherit;    /* 방문한 링크의 색상 변경 방지 */
-    }
+.container img {
+  width: 7rem;
+  height: 7rem;
+  object-fit: cover;
+  border-radius: 1rem;
+}
 
-    a:hover {
-        color: inherit;    /* 마우스 오버 시 색상 변경 방지 */
-    }
+ /* 현장 관리자 등록 버튼 스타일 */
+.btn-register {
+    background-color: #0e0f37;
+    border: 0.5px solid white;
+    color: white;
+    margin-bottom: 20px;
+}
 
-    a:active {
-        color: inherit;    /* 활성화된 링크 (클릭 시) 색상 변경 방지 */
-    }
+.btn-register:hover {
+    background-color: white;
+    border: 0.5px solid #0e0f37;
+    color: #0e0f37;
+}
+
+.btn-register:active {
+    background-color: white;
+    color: #0f1020;
+}
+
+.btn {
+    font-size: 16px;
+}
