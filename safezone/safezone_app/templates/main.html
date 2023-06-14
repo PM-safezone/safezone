@@ -94,6 +94,14 @@
             overflow: hidden;
         }
 
+        .cctv-camera i {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+
         .cctv-camera video {
             /* border-radius: 10px; */
             /* position: absolute; */
@@ -669,58 +677,60 @@
         <div class="cctv-container">
             <div class="cctv-row">
                 <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
-
                     <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
-                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
-                    </div>
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
-                <div class="camera-name" style="top: 332px; left: 210px;">CCTV-1</div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 332px; left:210px">CCTV-1</div>
 
                 <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
                     <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
-                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
-                    </div>
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
-                <div class="camera-name" style="top: 332px; left: 475px;">CCTV-2</div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 332px; left:475px">CCTV-2</div>
 
                 <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
                     <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
-                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
-                    </div>
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
-                <div class="camera-name" style="top: 332px; left: 735px;">CCTV-3</div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 332px; left:735px">CCTV-3</div>
 
                 <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
                     <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
-                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
-                    </div>
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
-                <div class="camera-name" style="top: 521px; left: 210px;">CCTV-4</div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 521px; left:210px">CCTV-4</div>
 
                 <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
                     <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <div class="zoom-in-button" onclick="zoomInCamera('my-video')">
-                        <i class='fa-solid fa-arrow-up-right-and-arrow-down-left-from-center' style='color: #00eaff;'></i>
-                    </div>
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
-                <div class="camera-name" style="top: 521px; left: 475px;">CCTV-5</div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 521px; left:475px">CCTV-5</div>
 
                 <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
+                    <video id="my-video6" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 521px; left:735px">CCTV-6</div>
 
                 <div class="cctv-camera" id="cctv-7" data-area="7" data-visible="7">
+                    <video id="my-video7" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 711px; left:210px">CCTV-7</div>
 
                 <div class="cctv-camera" id="cctv-8" data-area="8" data-visible="8">
+                    <video id="my-video8" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 711px; left:475px">CCTV-8</div>
 
                 <div class="cctv-camera" id="cctv-9" data-area="9" data-visible="9">
+                    <video id="my-video9" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                 </div>
+                <div class="cctv-no" style="position: fixed; color: white; top: 711px; left:735px">CCTV-9</div>
             </div>
+        </div>
 
             <div class="violation-box">
                 <div class="violation-text">위반 사항</div>
@@ -762,8 +772,8 @@
 </main>
 
 <script>
-    // JW Player 설정
-    var player = videojs('my-video1', {
+   // JW Player 설정
+   var player = videojs('my-video1', {
         sources: [{
           src: 'http://210.99.70.120:1935/live/cctv001.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
@@ -808,6 +818,44 @@
       height: '166px',
       autoplay: true
     });
+    var player = videojs('my-video6', {
+        sources: [{
+          src: 'http://210.99.70.120:1935/live/cctv006.stream/playlist.m3u8',
+          type: 'application/x-mpegURL'
+        }],
+        width: '240px',
+        height: '166px',
+        autoplay: true
+      });
+    var player = videojs('my-video7', {
+        sources: [{
+          src: 'http://210.99.70.120:1935/live/cctv007.stream/playlist.m3u8',
+          type: 'application/x-mpegURL'
+        }],
+        width: '240px',
+        height: '166px',
+        autoplay: true
+    });
+    var player = videojs('my-video8', {
+        sources: [{
+          src: 'http://210.99.70.120:1935/live/cctv008.stream/playlist.m3u8',
+          type: 'application/x-mpegURL'
+        }],
+        width: '240px',
+        height: '166px',
+        autoplay: true
+    });
+
+    var player = videojs('my-video9', {
+        sources: [{
+          src: 'http://210.99.70.120:1935/live/cctv009.stream/playlist.m3u8',
+          type: 'application/x-mpegURL'
+        }],
+        width: '240px',
+        height: '166px',
+        autoplay: true
+      });
+    
     // AJAX 요청 보내기
     function sendRequest() {
       $.ajax({
@@ -829,77 +877,47 @@
         sendRequest();
     });
 
-    function zoomInCamera() {
-        var cameras = document.getElementsByClassName("camera");
-
-        for (var i = 0; i < cameras.length; i++) {
-            cameras[i].addEventListener("click", function() {
-            this.style.width = "100%";
-            this.style.paddingTop = "65%";
-            this.style.marginBottom = "0";
-            this.style.marginRight = "0";
-            this.style.zIndex = "999";
-            });
-        }
-    }
-
-    zoomInCamera();
-
-    document.addEventListener("DOMContentLoaded", function () {
-        var cameras = document.getElementsByClassName("cctv-camera");
-
-        for (var i = 0; i < cameras.length; i++) {
-            // 카메라 확대
-            cameras[i].addEventListener("click", function () {
-                this.style.width = "100%";
-                this.style.paddingTop = "65%";
-                this.style.marginBottom = "0";
-                this.style.marginRight = "0";
-                this.style.zIndex = "999";
-
-                // 축소 버튼 추가
-                var zoomOutButton = document.createElement("button");
-                zoomOutButton.innerHTML = "<i class='fa-solid fa-down-left-and-up-right-to-center' style='color: white;'></i>";
-                zoomOutButton.style.backgroundColor = "transparent";
-                zoomOutButton.style.border = "none";
-                zoomOutButton.style.position = "absolute";
-                zoomOutButton.style.top =  "175px";
-                zoomOutButton.style.right = "542.5px";
-                zoomOutButton.style.zIndex = "1000";
-                this.parentElement.appendChild(zoomOutButton);
-
-                // 축소 버튼 클릭
-                zoomOutButton.addEventListener("click", function () {
-                    // 카메라 축소
-                    for (var j = 0; j < cameras.length; j++) {
-                        cameras[j].style.width = "";
-                        cameras[j].style.paddingTop = "";
-                        cameras[j].style.marginBottom = "";
-                        cameras[j].style.marginRight = "";
-                        cameras[j].style.zIndex = "";
-                        cameras[j].style.display = "inline-block";
-                    }
-
-                    // 축소 버튼 삭제
-                    zoomOutButton.addEventListener("transitionend", function () {
-                        zoomOutButton.remove();
-                    });
-
-                    // 버튼 숨기기 애니메이션 시작
-                    zoomOutButton.style.opacity = "0";
-                });
-
-                
-                // 다른 카메라 숨기기
-                for (var j = 0; j < cameras.length; j++) {
-                    if (cameras[j] !== this) {
-                        cameras[j].style.display = "none";
-                    }
-                }
-            });
-        }
+    // 확대 및 축소
+    $(document).ready(function() {
+        $('.cctv-camera i').click(function() {
+            var $camera = $(this).parent();
+            var $video = $camera.find('video');
+            var $player = videojs($video.attr('id'));
+            
+            if (!$camera.hasClass('zoomed')) {
+            $camera.addClass('zoomed');
+            $camera.css('width', '800px');
+            $camera.css('height', '549px');
+            $video.css('width', '800px');
+            $video.css('height', '549px');
+            $video.css('position', 'absolute');
+            $video.css('top', '0');
+            $video.css('left', '0');
+            $player.dimensions('0%', '0%');
+            $player.controlBar.dimensions('display', 'none');
+            $(this).removeClass('fa-expand').addClass('fa-compress' );
+            $('.cctv-no').hide();
+            $('.cctv-camera').not($camera).hide();
+            } else {
+            $camera.removeClass('zoomed');
+            $camera.css('width', 'calc(33.3% - 2.5%)');
+            $camera.css('height', '170px');
+            $video.css('width', '100%');
+            $video.css('height', '100%');
+            $video.css('position', 'static');
+            $player.dimensions('240px', '166px');
+            $(this).removeClass('fa-compress').addClass('fa-expand');
+            $('.cctv-no').show();
+            $('.cctv-camera').not('.zoomed').show();
+            }
+        });
     });
 
+
+
+
+
+    
     // 선택박스 값 변경 시 위반사항 텍스트 박스 내용 변경
     var areaSelect = document.getElementById("area-select");
     var violationContent = document.getElementById("violation-content");
