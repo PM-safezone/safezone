@@ -6,16 +6,247 @@
           rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
           crossorigin="anonymous">
 
+    <style>
+        @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+        :root {
+                --glitched-duration: 1s;
+            }
+
+        @keyframes hxafter {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0;
+            }
+            51% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        body {
+            background-color: #0e0f37;
+            font-family: 'nanumsquare', sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 50px;
+        }
+
+        h1:after {
+            content: "_";
+            animation-name: hxafter;
+            animation-duration: var(--glitched-duration);
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-delay: 0.5s;
+        }
+
+        h4 {
+            color: red;
+            text-align: center;
+        }
+
+        .form-container {
+            position: fixed;
+            height:30rem;
+            top: 50%;
+            left: 50%;
+            padding: 50px;
+            min-width: 500px;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            border-radius: 20px;
+        }
+
+
+        .form-container label {
+            margin-left: 40px;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0f1020;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+
+            border-radius: 3px;
+            width: 100%;
+            padding: 12px 40px;
+            margin: 8px 0;
+            background-color: #ffffff;
+            display: inline-block;
+            color: #0e0f37;
+            border: 1px solid #0e0f37;
+            box-sizing: border-box;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-container input[type="text"]:focus,
+        .form-container input[type="password"]:focus {
+            outline: none;
+            color: #0e0f37;
+            background-color: #ffffff;
+        }
+
+        .form-container label i {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+
+        .name-container {
+            position: relative;
+            width: 80%;
+            margin-left: 4rem;
+            margin-top: 5rem;
+        }
+
+        .name-container i{
+            position: absolute;
+            left: 13px;
+            top: 25px;
+            font-size: 18px;
+            color: #0e0f37;
+        }
+
+
+
+        .email-container {
+            position: relative;
+            width: 80%;
+            margin-left: 4rem;
+        }
+
+        .email-container i{
+            position: absolute;
+            left: 13px;
+            top: 25px;
+            color: #0e0f37;
+        }
+
+        .phone-container {
+            position: relative;
+            width: 80%;
+            margin-left: 4rem;
+        }
+
+        .phone-container i{
+            position: absolute;
+            left: 13px;
+            top: 25px;
+            color: #0e0f37;
+        }
+
+        .ml-container {
+            padding: 12px 25px;
+            position: absolute;
+            width: 80%;
+            height: 50px;
+            text-indent: 10px;
+            margin-left: 2rem;
+            margin-top: 3rem;
+            left: 25px;
+            top: 165px;
+        }
+
+        .ml-container i{
+            position: absolute;
+            left: 43px;
+            top: 212px;
+            font-size: 21px;
+            color: #0e0f37;
+        }
+
+        .image-container {
+            position: relative;
+            width: 89.5%;
+            height: 50px;
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .image-container i{
+            position: absolute;
+            left: 30px;
+            top: 25px;
+            color: #0e0f37;
+        }
+
+
+
+        .ml-select option{
+            margin-left: 13px;   /* or any value you want */
+        }
+
+
+        .btn-register {
+            background-color: #6646F3;
+            border: 2px solid #6646F3;
+            border-radius: 20px;
+            color: #ffffff;
+            width: 380px;
+            font-size: 2rem;
+            font-weight: bold;
+            width: 85%;
+            margin-top: 11rem;
+            margin-left: 3rem;
+        }
+
+        .btn-register:hover {
+            background-color: #ffffff;
+            border: 2px solid #6646F3;
+            color: #6646F3;
+        }
+
+        .btn-register:active {
+            background-color: #D456FA;
+            color: #ffffff;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 4rem;
+        }
+    </style>
 </head>
-{% load bootstrap4 %}
+<body>
+<!-- {% load bootstrap4 %}
 
     <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
         <div class="mb-4">
-            <h4>현장관리자 삭제 {{ target_siteadmin.title }} 미완성성성 ddd</h4>
+            <h4>현장 관리자 탈퇴 {{ target_siteadmin.title }}</h4>
         </div>
         <form action="{% url 'siteadmin_app:delete' pk=target_siteadmin.pk %}" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
             <input type="submit" class="btn btn-danger rounded-pill col-6 mt-3">
         </form>
+    </div> -->
+
+    <div class="form-container">
+        <form action="{% url 'siteadmin_app':delete' pk=target_user.pk %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <h1>현장 관리자 탈퇴 {{ target_siteadmin.title }}</h1>
+                <h4>정말로 삭제하시겠습니까?</h4>
+                {{ form.as_p }}
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-danger">확인</button>
+                </div>
+            </div>
+        </form>
     </div>
+
+</body>
