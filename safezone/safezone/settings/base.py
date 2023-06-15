@@ -43,6 +43,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'safezone_app.middleware.DisableClientSideCachingMiddleware',
+    'siteadmin_app.middleware.DisableClientSideCachingMiddleware',
 ]
 
 ROOT_URLCONF = 'safezone.urls'
@@ -117,7 +119,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = reverse_lazy('safezone_app:main') # mainpage 등록
 LOGOUT_REDIRECT_URL = reverse_lazy('account_app:login') # 로그아웃시 로그인 페이지로 이동하도록 설정
 
+LOGIN_URL = 'account_app:login' # 로그인이 필요하나 로그인 하지않고 접근시 자동으로 로그인 페이지로 보내기위해 등록
+
+
 MEDIA_URL = '/media/' # 사진 저장을 위해 수정
 # 미디어 관리를 위해 Pillow 설치
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')# 사진 저장을 위해 수정
-

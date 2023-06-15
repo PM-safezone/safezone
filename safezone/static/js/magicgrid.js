@@ -293,12 +293,28 @@ let magicGrid = new MagicGrid({
   useMin: true
 });
 
-var masonrys = document.getElementsByTagName('img');
+// var masonrys = document.getElementsByTagName('img');
+//
+// for (let i = 0; i < masonrys.length; i++) {
+//   masonrys[i].addEventListener('load', function (){
+//                                 magicGrid.positionItems();
+//     }, false);
+// };
+//
+// magicGrid.listen();
+
+let masonrys = document.getElementsByTagName('img');
 
 for (let i = 0; i < masonrys.length; i++) {
+  // 이미지가 이미 로드되었다면, load 이벤트를 강제로 발생시킵니다.
+  if (masonrys[i].complete) {
+    masonrys[i].dispatchEvent(new Event('load'));
+  }
+
+  // 그렇지 않다면, 정상적으로 load 이벤트를 대기합니다.
   masonrys[i].addEventListener('load', function (){
-                                magicGrid.positionItems();
-    }, false);
+    magicGrid.positionItems();
+  }, false);
 };
 
 magicGrid.listen();

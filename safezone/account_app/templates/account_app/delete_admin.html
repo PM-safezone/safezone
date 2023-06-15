@@ -16,7 +16,8 @@
                 <h4>정말로 삭제하시겠습니까?</h4>
                 {{ form.as_p }}
                 <div class="btn-container">
-                    <button type="submit" class="btn btn-danger">확인</button>
+                    <button type="submit" class="btn btn-danger btn-ok">확인</button>
+                    <button type="button" class="btn btn-danger btn-cancel" onclick="window.history.back();">취소</button>
                 </div>
             </div>
         </form>

@@ -30,8 +30,8 @@ h1 {
     text-align: center;
     font-size: 3rem;
     font-weight: bold;
-    color: 0e0f37;
-    margin-top: 50px;
+    color: black;
+    /*margin-top: 50px;*/
     margin-bottom: 50px;
 }
 
@@ -186,7 +186,7 @@ h1:after {
     font-size: 2rem;
     font-weight: bold;
     width: 80%;
-    margin-top: 7.5rem;
+    margin-top: 2rem;
     margin-left: 4rem;
     margin-bottom: 25px;
 }
@@ -202,3 +202,27 @@ h1:after {
     color: #ffffff;
 }
 
+
+.btn-cancel {
+    background-color: red;
+    border: 2px solid red;
+    border-radius: 20px;
+    color: #ffffff;
+    width: 380px;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 80%;
+    margin-top: 10rem;
+    margin-left: 4rem;
+}
+
+.btn-cancel:hover {
+    background-color: #ffffff;
+    border: 2px solid red;
+    color: red;
+}
+
+.btn-cancel:active {
+    background-color: #D456FA;
+    color: #ffffff;
+}

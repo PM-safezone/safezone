@@ -62,6 +62,7 @@ body {
 .btn-login {
     display: block;
     margin-left: 4rem;
+    margin-top: 2rem;
     background-color: #D456FA;
     border: 2px solid #D456FA;
     border-radius: 20px;
@@ -86,7 +87,7 @@ body {
 }
 
 .create_admin {
-    margin-top: 2rem;
+    margin-top: 5rem;
     margin-left: 16rem;
     color: black;
     font-size: 1.6rem;
@@ -106,7 +107,7 @@ body {
     width: 22rem;
     height: 15rem;
     margin-left: 10rem;
-    margin-top: 3.5rem;
+    margin-top: 2rem;
 }
 
 .logo_name {
@@ -164,4 +165,10 @@ body {
 
 ::placeholder {
     color: gray;
+}
+
+
+ul.errorlist {
+    list-style-type: none;
+    margin-left: 5rem;
 }

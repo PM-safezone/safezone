@@ -58,154 +58,19 @@ h4 {
     border-radius: 40px;
 }
 
-
-.form-container label {
-    margin-left: 40px;
-    display: block;
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #0f1020;
-}
-
-.form-container input[type="text"],
-.form-container input[type="password"] {
-
-    border-radius: 3px;
-    width: 100%;
-    padding: 12px 40px;
-    margin: 8px 0;
-    background-color: #ffffff;
-    display: inline-block;
-    color: #0e0f37;
-    border: 1px solid #0e0f37;
-    box-sizing: border-box;
-    transition: all 0.3s ease-in-out;
-}
-
-.form-container input[type="text"]:focus,
-.form-container input[type="password"]:focus {
-    outline: none;
-    color: #0e0f37;
-    background-color: #ffffff;
-}
-
-.form-container label i {
-    margin-right: 10px;
-    vertical-align: middle;
-}
-
-
-.name-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-    margin-top: 5rem;
-}
-
-.name-container i{
-    position: absolute;
-    left: 13px;
-    top: 25px;
-    font-size: 18px;
-    color: #0e0f37;
-}
-
-
-
-.email-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-}
-
-.email-container i{
-    position: absolute;
-    left: 13px;
-    top: 25px;
-    color: #0e0f37;
-}
-
-.phone-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-}
-
-.phone-container i{
-    position: absolute;
-    left: 13px;
-    top: 25px;
-    color: #0e0f37;
-}
-
-.ml-container {
-    padding: 12px 25px;
-    position: absolute;
-    width: 80%;
-    height: 50px;
-    text-indent: 10px;
-    margin-left: 2rem;
-    margin-top: 3rem;
-    left: 25px;
-    top: 165px;
-}
-
-.ml-container i{
-    position: absolute;
-    left: 43px;
-    top: 212px;
-    font-size: 21px;
-    color: #0e0f37;
-}
-
-.image-container {
-    position: relative;
-    width: 89.5%;
-    height: 50px;
-    margin-left: 2rem;
-    margin-top: 0.5rem;
-}
-
-.image-container i{
-    position: absolute;
-    left: 30px;
-    top: 25px;
-    color: #0e0f37;
-}
-
-
-
-.ml-select option{
-    margin-left: 13px;   /* or any value you want */
-}
-
-
-.btn-register {
-    background-color: #6646F3;
-    border: 2px solid #6646F3;
-    border-radius: 20px;
-    color: #ffffff;
-    width: 380px;
-    font-size: 2rem;
-    font-weight: bold;
-    width: 85%;
-    margin-top: 11rem;
-    margin-left: 3rem;
-}
-
-.btn-register:hover {
-    background-color: #ffffff;
-    border: 2px solid #6646F3;
-    color: #6646F3;
-}
-
-.btn-register:active {
-    background-color: #D456FA;
-    color: #ffffff;
-}
-
 .btn-container {
+    margin-top: 2rem;
     text-align: center;
-    margin-top: 4rem;
+}
+
+.btn-ok {
+    margin-top: 2rem;
+    margin-right: 3rem;
+
+}
+
+.btn-cancel {
+    background-color: black;
+    border: 2px solid black;
+    margin-top: 2rem;
 }

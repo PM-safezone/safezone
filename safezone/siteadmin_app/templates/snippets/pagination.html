@@ -1,20 +1,31 @@
+{#<div style="text-align: center; margin: 1rem 0;">#}
+{#    {% if page_obj.has_previous %}#}
+{#    <a href="{% url 'siteadmin_app:list' %}?page={{ page_obj.previous_page_number }}"#}
+{#       class="btn btn-secondary rounded-pill">#}
+{#        {{ page_obj.previous_page_number }}#}
+{#    </a>#}
+{#    {% endif %}#}
+{##}
+{#    <a href="{% url 'siteadmin_app:list' %}?page={{ page_obj.number }}"#}
+{#       class="btn btn-secondary rounded-pill active">#}
+{#      {{ page_obj.number }}#}
+{#    </a>#}
+{##}
+{#    {% if page_obj.has_next %}#}
+{#    <a href="{% url 'siteadmin_app:list' %}?page={{ page_obj.next_page_number }}"#}
+{#       class="btn btn-secondary rounded-pill">#}
+{#      {{ page_obj.next_page_number }}#}
+{#    </a>#}
+{#    {% endif %}#}
+{#</div>#}
+
+{# 앞뒤 뿐 아니라 생성된 모든 페이지의 버튼을 표시하기 위해 추가. #}
+
 <div style="text-align: center; margin: 1rem 0;">
-    {% if page_obj.has_previous %}
-    <a href="{% url 'siteadmin_app:list' %}?page={{ page_obj.previous_page_number }}"
-       class="btn btn-secondary rounded-pill">
-        {{ page_obj.previous_page_number }}
+    {% for i in page_range %}
+    <a href="{% url 'siteadmin_app:list' %}?page={{ i }}"
+       class="btn btn-secondary rounded-pill {% if i == page_obj.number %}active{% endif %}">
+        {{ i }}
     </a>
-    {% endif %}
-
-    <a href="{% url 'siteadmin_app:list' %}?page={{ page_obj.number }}"
-       class="btn btn-secondary rounded-pill active">
-      {{ page_obj.number }}
-    </a>
-
-    {% if page_obj.has_next %}
-    <a href="{% url 'siteadmin_app:list' %}?page={{ page_obj.next_page_number }}"
-       class="btn btn-secondary rounded-pill">
-      {{ page_obj.next_page_number }}
-    </a>
-    {% endif %}
+    {% endfor %}
 </div>

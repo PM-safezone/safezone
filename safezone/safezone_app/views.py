@@ -22,12 +22,13 @@ import json
 from collections import deque
 import base64
 # Create your views here.
-# @login_required
+@login_required
 def main(request):
     #rtsp_url = 'rtsp://210.99.70.120:1935/live/cctv001.stream'
     #display_rtsp_video(rtsp_url)
     return render(request, 'main.html')
 
+@login_required
 def settings(request):
     if request.method == 'POST':
         log_interval = request.POST.get('log-interval')
@@ -56,6 +57,7 @@ def settings(request):
     
 
 
+@login_required
 def upload_video(request):
     if request.method == 'POST':                            # form 으로 Method=POST 로 받아와서 작업
         form = VideoForm(request.POST, request.FILES)       # forms.py 에서 작업하기위해 POST 로 요청, FILES 를 불러옴 
@@ -100,10 +102,14 @@ def upload_video(request):
 
     return render(request, 'upload_video.html', fileNo=video.fileNo)
 
-def video(request):    
+
+@login_required
+def video(request):
     return render(request, 'upload_video.html')
 
-def video_analyze(request): 
+
+@login_required
+def video_analyze(request):
     if request.method == 'POST':
         video_file = request.FILES['video_file']
         upload = default_storage.save(video_file.name,ContentFile(video_file.read()))
@@ -134,11 +140,15 @@ def video_analyze(request):
     return render(request, 'video_analyze.html')
 
 
+@login_required
 def video_detail(request, fileNo):
     video = get_object_or_404(Video, pk=fileNo)
     return render(request, 'video_detail.html', {'video': video})
 
 num = 0
+
+
+@login_required
 def yolov5_webcam(request):
     global num
     print(num)
@@ -154,6 +164,8 @@ def yolov5_webcam(request):
     print(log_text)
     return render(request, 'yolov5_webcam.html', {'log_text': log_text})
 
+
+@login_required
 def get_log(request):
     global num  # num 변수를 전역 변수로 사용
     num += 1  # num 값 증가
@@ -198,7 +210,9 @@ def get_log(request):
         return HttpResponse(log_content)
 # Ajax 요청 처리
 
+
 @csrf_exempt
+@login_required
 def run_yolov5_webcam(request):
     if request.method == 'POST':
 
@@ -251,7 +265,9 @@ from .CCTV import VideoCamera, gen, video_feed
 
 
 # --------------- 기능 테스트 진행중 -------------------- #
+
 @gzip.gzip_page
+@login_required
 def livefe(request):
     try:
         cam = VideoCamera()
@@ -260,6 +276,8 @@ def livefe(request):
     except:  # This is bad!
         pass
 
+
+@login_required
 def find_camera(id):
     cameras = ['rtsp://210.99.70.120:1935/live/cctv001.stream',
     'rtsp://210.99.70.120:1935/live/cctv002.stream',

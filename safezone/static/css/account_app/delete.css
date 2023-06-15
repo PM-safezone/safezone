@@ -206,6 +206,19 @@ h4 {
 }
 
 .btn-container {
+    margin-top: 2rem;
     text-align: center;
-    margin-top: 4rem;
+}
+
+.btn-ok {
+    margin-top: 2rem;
+    margin-right: 3rem;
+
+}
+
+
+.btn-cancel {
+    background-color: black;
+    border: 2px solid black;
+    margin-top: 2rem;
 }

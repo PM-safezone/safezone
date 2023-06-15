@@ -9,6 +9,11 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
+    <div class="btn-container" style="margin-top: 2rem" >
+      <a href="{% url 'safezone_app:main' %}" class="btn btn-register">
+        메인화면
+      </a>
+    </div>
     {% if siteadmin_list %}
     <div class="container">
         {% for siteadmin in siteadmin_list %}
@@ -27,7 +32,7 @@
     {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
     <div class="btn-container">
-      <a href="{% url 'siteadmin_app:create' %}" class="btn btn-register" target="_blank">
+      <a href="{% url 'siteadmin_app:create' %}" class="btn btn-register">
         현장 관리자 등록
       </a>
     </div>

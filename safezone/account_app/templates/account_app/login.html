@@ -21,6 +21,9 @@
                 {{ form.password }}
                 <i class="fa fa-key fa-lg"></i>
             </div>
+            {% if form.non_field_errors %}
+                <div class="error">{{ form.non_field_errors }}</div>
+            {% endif %}
             <div class="btn-container">
                 <button type="submit" class="btn btn-login">로그인</button>
                 <a href="{% url 'account_app:create' %}" class="create_admin">관리자 등록</a>

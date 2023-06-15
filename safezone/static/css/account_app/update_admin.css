@@ -242,7 +242,7 @@ body {
     font-size: 2rem;
     font-weight: bold;
     width: 85%;
-    margin-top: 10rem;
+    margin-top: 3rem;
     margin-left: 3rem;
 }
 
@@ -257,14 +257,47 @@ body {
     color: #ffffff;
 }
 
-.btn_update{
-    color: #4BBFE1;
-    text-align: center;
-    margin-top: 4rem;
+
+.btn-cancel {
+    background-color: red;
+    border: 2px solid red;
+    border-radius: 20px;
+    color: #ffffff;
+    width: 380px;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 85%;
+    margin-top: 11rem;
+    margin-left: 3rem;
 }
 
-.btn_delete{
+.btn-cancel:hover {
+    background-color: #ffffff;
+    border: 2px solid red;
     color: red;
+}
+
+.btn-cancel:active {
+    background-color: #D456FA;
+    color: #ffffff;
+}
+
+
+.tooltip {
+    position: absolute;
+    top: 280px;
+    right: 150px;
+    width: 200px;
+    background-color: white;
+    color: #0e0f37;
     text-align: center;
-    margin-top: 2rem;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 0;
+    overflow: visible;
+    z-index: 9999;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    transform: translate(0, -50%);
 }

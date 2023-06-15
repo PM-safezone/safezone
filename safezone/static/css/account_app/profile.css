@@ -261,13 +261,19 @@ body {
 }
 
 .btn_update{
-    color: #4BBFE1;
+    color: #6646F3;
     text-align: center;
-    margin-top: 10rem;
+    margin-top: 9rem;
 }
 
 .btn_delete{
     color: red;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn_back{
+    color: black;
     text-align: center;
     margin-top: 2rem;
 }

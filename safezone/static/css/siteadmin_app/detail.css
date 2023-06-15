@@ -7,33 +7,9 @@ body {
     line-height: 1.5;
 }
 
-h1 {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 50px;
-}
-
-.logo {
-    width: 22rem;
-    height: 15rem;
-    margin-left: 10rem;
-    margin-top: 0rem;
-}
-
-.logo_name {
-    margin-top: 10px;
-    width: 300px;
-    height: 50px;
-    margin-left: 50px;
-    margin-bottom: 40px;
-}
-
-
 .form-container {
     position: fixed;
-    height:80rem;
+    height:86rem;
     top: 50%;
     left: 50%;
     padding: 50px;
@@ -53,9 +29,7 @@ h1 {
     color: #0f1020;
 }
 
-.form-container input[type="text"],
-.form-container input[type="password"] {
-
+.form-container input[type="text"] {
     border-radius: 3px;
     width: 100%;
     padding: 12px 40px;
@@ -66,13 +40,6 @@ h1 {
     border: 1px solid #0e0f37;
     box-sizing: border-box;
     transition: all 0.3s ease-in-out;
-}
-
-.form-container input[type="text"]:focus,
-.form-container input[type="password"]:focus {
-    outline: none;
-    color: #0e0f37;
-    background-color: #ffffff;
 }
 
 .form-container label i {
@@ -96,19 +63,6 @@ h1 {
     color: #0e0f37;
 }
 
-.email-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-}
-
-.email-container i{
-    position: absolute;
-    left: 13px;
-    top: 25px;
-    color: #0e0f37;
-}
-
 .phone-container {
     position: relative;
     width: 80%;
@@ -121,41 +75,6 @@ h1 {
     left: 13px;
     top: 25px;
     color: #0e0f37;
-}
-.ml-container {
-    position: absolute;
-    width: 80%;
-    height: 50px;
-    margin-left: 0.8rem;
-    /*top: 55px;*/
-}
-
-.ml-container i{
-    position: absolute;
-    left: 43px;
-    top: 170px;
-    font-size: 21px;
-    color: #0e0f37;
-}
-
-.image-container {
-    position: relative;
-    width: 89.5%;
-    height: 50px;
-    margin-left: 2rem;
-    margin-top: 0.5rem;
-}
-
-.image-container i{
-    position: absolute;
-    left: 30px;
-    top: 25px;
-    color: #0e0f37;
-}
-
-
-.ml-select option{
-    margin-left: 13px;   /* or any value you want */
 }
 
 .image-container{
@@ -181,51 +100,6 @@ h1 {
     text-align: center;
     margin-top: 2rem;
     font-size: 2rem;
-}
-
-
-
-.name-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-
-}
-
-.name-container i{
-    position: absolute;
-    left: 13px;
-    top: 25px;
-    font-size: 18px;
-    color: #0e0f37;
-}
-
-
-
-.email-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-}
-
-.email-container i{
-    position: absolute;
-    left: 13px;
-    top: 25px;
-    color: #0e0f37;
-}
-
-.phone-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-}
-
-.phone-container i{
-    position: absolute;
-    left: 13px;
-    top: 25px;
-    color: #0e0f37;
 }
 
 .ml-container {

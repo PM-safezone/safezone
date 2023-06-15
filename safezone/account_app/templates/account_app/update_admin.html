@@ -8,6 +8,7 @@
 
 {% block body %}
     <div class="form-container">
+        <div class="tooltip"><i class="fa-solid fa-arrow-down-long"></i>&nbsp;Scroll Down to Complete&nbsp;<i class="fa-solid fa-arrow-down-long"></i></div>
         <img src="{% static 'image/safezone_logo.png' %}" alt="logo" class="logo">
         <br><img src="{% static 'image/safezone_name_logo.png' %}" class="logo_name">
         <form action="{% url 'account_app:update' pk=target_user.pk %}" method="post">
@@ -39,6 +40,9 @@
             <div class="ml-container">
                 {{ form.management_locations }}
                 <i class="fa-solid fa-location"></i>
+            </div>
+            <div class="btn-container">
+                <button type="button" class="btn btn-cancel" onclick="window.history.back();">취소</button>
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-register">변경</button>
