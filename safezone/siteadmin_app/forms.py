@@ -62,6 +62,22 @@ class SiteAdminCreationForm(ModelForm):
         fields = ['name', 'image', 'management_locations', 'phone']
 
 
+class SiteAdminUpdateForm(SiteAdminCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        MANAGEMENT_LOCATIONS_CHOICES = [
+            ('option1', '구역 1'),
+            ('option2', '구역 2'),
+            ('option3', '구역 3'),
+            ('option4', '구역 4'),
+            ('option5', '구역 5'),
+            ('option6', '구역 6'),
+            ('option7', '구역 7'),
+            ('option8', '구역 8'),
+            ('option9', '구역 9'),
+        ]
+        self.fields['management_locations'].choices = MANAGEMENT_LOCATIONS_CHOICES
+
 class SiteAdminDetailForm(SiteAdminCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -4,17 +4,25 @@
 {% block extra_head %}
     <title>현장 관리자 정보 수정</title>
     <link rel="stylesheet" href="{% static 'css/siteadmin_app/update.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}
 
 {% block body %}
     <div class="form-container">
         <h1>현장 관리자 정보 수정</h1>
         <form action="{% url 'siteadmin_app:update' pk=target_siteadmin.pk %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="image-container">
-                {{ form.image }}
-{#                <i class="fa-solid fa-image"></i>#}
+            <div class="pre-container" style="display: none;">
+                <img id="image-preview" src="{{ target_siteadmin.image.url }}" alt="Image Preview" class="image-pre">
             </div>
+            {% csrf_token %}
+             <div class="image-container file-input-wrapper">
+                <button class="custom-file-input">사진 선택</button>
+                <input type="file" name="image" id="image-upload" required />
+            </div>
+{#            <div class="image-container">#}
+{#                {{ form.image }}#}
+{#                <i class="fa-solid fa-image"></i>#}
+{#            </div>#}
             <div class="name-container">
                 {{ form.name }}
                 <i class="fa-solid fa-helmet-safety"></i>
@@ -28,11 +36,12 @@
                 <i class="fa-solid fa-location"></i>
             </div>
             <div class="btn-container">
-                <button type="submit" class="btn btn-cancel" onclick="window.history.back();">취소</button>
+                <button type="button" class="btn btn-cancel" onclick="window.history.back();">취소</button>
             </div>
             <div class="btn-container">
                 <button type="submit" class="btn btn-register">변경</button>
             </div>
         </form>
     </div>
+    <script src="{% static 'js/image_upload_update.js' %}"></script>
 {% endblock %}

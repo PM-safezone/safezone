@@ -117,6 +117,19 @@ class AdminUpdateForm(CreateAdminForm):
         self.fields['username'].label = "ID"
         self.fields['nickname'].label = "Admin Name"
 
+        MANAGEMENT_LOCATIONS_CHOICES = [
+            ('option1', '구역 1'),
+            ('option2', '구역 2'),
+            ('option3', '구역 3'),
+            ('option4', '구역 4'),
+            ('option5', '구역 5'),
+            ('option6', '구역 6'),
+            ('option7', '구역 7'),
+            ('option8', '구역 8'),
+            ('option9', '구역 9'),
+        ]
+        self.fields['management_locations'].choices = MANAGEMENT_LOCATIONS_CHOICES
+
 
 class AdminDetailForm(AdminUpdateForm):
     def __init__(self, *args, **kwargs):

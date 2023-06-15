@@ -290,6 +290,7 @@ def find_camera(id):
     return cameras[int(id)]
 
 
+@login_required
 def gen_frames(camera_id):
      
     cam = find_camera(camera_id)
@@ -308,7 +309,7 @@ def gen_frames(camera_id):
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
 
 
-
+@login_required
 def video_feed(request, id):
    
     """Video streaming route. Put this in the src attribute of an img tag."""
@@ -316,6 +317,7 @@ def video_feed(request, id):
                     content_type='multipart/x-mixed-replace; boundary=frame')
 
 
+@login_required
 def index():
     return render('main.html')
 

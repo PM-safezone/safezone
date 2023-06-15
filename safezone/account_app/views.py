@@ -27,6 +27,7 @@ class CreateAdminView(CreateView):
 # 	context_object_name = 'target_user'
 # 	template_name = 'account_app/profile.html'
 
+@method_decorator(has_ownership, 'get')
 class AdminProfileView(UpdateView):
 	model = UserModel
 	form_class = AdminDetailForm

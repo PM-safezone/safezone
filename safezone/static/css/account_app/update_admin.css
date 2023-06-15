@@ -301,3 +301,8 @@ body {
     transition: opacity 0.3s, visibility 0.3s;
     transform: translate(0, -50%);
 }
+
+.form-container:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}

@@ -5,12 +5,11 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, DetailView
 from django.views.generic.edit import FormMixin, UpdateView, DeleteView
 
-from siteadmin_app.forms import SiteAdminCreationForm, SiteAdminDetailForm
+from siteadmin_app.forms import SiteAdminCreationForm, SiteAdminDetailForm, SiteAdminUpdateForm
 from siteadmin_app.models import SiteAdmin
 
 
 # Create your views here.
-
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class SiteAdminCreateView(CreateView):
@@ -46,7 +45,7 @@ class SiteAdminListView(ListView):
 @method_decorator(login_required, 'post')
 class SiteAdminUpdateView(UpdateView):
 	model = SiteAdmin
-	form_class = SiteAdminCreationForm
+	form_class = SiteAdminUpdateForm
 	template_name = 'siteadmin_app/update.html'
 	context_object_name = 'target_siteadmin'
 

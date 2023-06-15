@@ -4,17 +4,25 @@
 {% block extra_head %}
     <title>현장 관리자 등록</title>
     <link rel="stylesheet" href="{% static 'css/siteadmin_app/create.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 {% endblock %}
 
 {% block body %}
-    <div class="form-container ">
+    <div class="form-container">
         <h1>현장 관리자 등록</h1>
         <form action="{% url 'siteadmin_app:create' %}" method="post"  enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="image-container">
-                {{ form.image }}
-{#                <i class="fa-solid fa-image"></i>#}
+            <div class="pre-container" style="display: none;">
+                <img id="image-preview" src="#" alt="Image Preview" class="image-pre">
             </div>
+            {% csrf_token %}
+             <div class="image-container file-input-wrapper">
+                <button class="custom-file-input">사진 선택</button>
+                <input type="file" name="image" id="image-upload" required />
+            </div>
+{#            <div class="image-container">#}
+{#                {{ form.image }}#}
+{#                <i class="fa-solid fa-image"></i>#}
+{#            </div>#}
             <div class="name-container">
                 {{ form.name }}
                 <i class="fa-solid fa-helmet-safety"></i>
@@ -35,5 +43,6 @@
             </div>
         </form>
     </div>
+    <script src="{% static 'js/image_upload.js' %}"></script>
 {% endblock %}
 
