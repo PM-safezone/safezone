@@ -94,7 +94,7 @@ class CreateAdminForm(UserCreationForm):
 
     class Meta:
         model = UserModel
-        fields = ('email', 'username', 'password1', 'password2', 'management_locations', 'phone')
+        fields = ('email', 'username', 'password1', 'password2', 'management_locations', 'phone', 'nickname')
         labels = {
             'username': '아이디',
             'password1': '비밀번호',
@@ -105,6 +105,7 @@ class CreateAdminForm(UserCreationForm):
             'password1': None,
             'password2': None,
             'email': None,
+            'nickname': None,
         }
 
 
@@ -113,7 +114,7 @@ class AdminUpdateForm(CreateAdminForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].label = "ID"
-        self.fields['nickname'].label = "Name"
+        self.fields['nickname'].label = "Admin Name"
 
 
 class AdminDetailForm(AdminUpdateForm):
