@@ -1,4 +1,4 @@
-version: "3.7" # version of docker-compose 버전별로 특징이 docker hub 에 나와있다.
+version: "3.7"
 services:
   nginx:
     image: nginx:1.19.5
@@ -11,7 +11,7 @@ services:
     ports:
       - 80:80
   django_container_gunicorn:
-    image: django_safezone:2
+    image: django_safezone:3
     networks:
       - nginx-django
     volumes:

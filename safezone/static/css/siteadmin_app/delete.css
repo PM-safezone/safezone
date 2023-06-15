@@ -1,59 +1,63 @@
 @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+:root {
+        --glitched-duration: 1s;
+    }
 
-        :root {
-            --glitched-duration: 1s;
-        }
-
-        @keyframes hxafter {
-            0% {
-                opacity: 0;
-            }
-            50% {
-                opacity: 0;
-            }
-            51% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
+@keyframes hxafter {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    51% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 body {
-    background-color: #0f1020;
+    background-color: #0e0f37;
     font-family: 'nanumsquare', sans-serif;
     font-size: 16px;
     line-height: 1.5;
 }
 
-
-.logo {
-    width: 22rem;
-    height: 15rem;
-    margin-left: 10rem;
-    margin-top: 0rem;
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 50px;
 }
 
-.logo_name {
-    margin-top: 10px;
-    width: 300px;
-    height: 50px;
-    margin-left: 50px;
-    margin-bottom: 40px;
+h1:after {
+    content: "_";
+    animation-name: hxafter;
+    animation-duration: var(--glitched-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-delay: 0.5s;
+}
+
+h4 {
+    color: red;
+    text-align: center;
 }
 
 .form-container {
-    overflow: scroll;
     position: fixed;
-    height:73rem;
+    height:30rem;
     top: 50%;
     left: 50%;
     padding: 50px;
     min-width: 500px;
     transform: translate(-50%, -50%);
     background-color: #ffffff;
-    border-radius: 20px;
+    border-radius: 40px;
 }
+
 
 .form-container label {
     margin-left: 40px;
@@ -92,14 +96,14 @@ body {
 }
 
 
-.username-container {
+.name-container {
     position: relative;
     width: 80%;
     margin-left: 4rem;
-
+    margin-top: 5rem;
 }
 
-.username-container i{
+.name-container i{
     position: absolute;
     left: 13px;
     top: 25px;
@@ -107,45 +111,7 @@ body {
     color: #0e0f37;
 }
 
-.password-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-}
 
-.password-container i{
-    position: absolute;
-    left: 13px;
-    top: 32px;
-    color: #0e0f37;
-}
-
-
-.password2-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-}
-
-.password2-container i{
-    position: absolute;
-    left: 13px;
-    top: 32px;
-    color: #0e0f37;
-}
-
-.nickname-container {
-    position: relative;
-    width: 80%;
-    margin-left: 4rem;
-}
-
-.nickname-container i{
-    position: absolute;
-    left: 13px;
-    top: 25px;
-    color: #0e0f37;
-}
 
 .email-container {
     position: relative;
@@ -172,66 +138,48 @@ body {
     top: 25px;
     color: #0e0f37;
 }
+
 .ml-container {
     padding: 12px 25px;
     position: absolute;
     width: 80%;
     height: 50px;
     text-indent: 10px;
-    /* margin-left: 0.8rem; */
-    left: 45px;
-    top: 350px;
+    margin-left: 2rem;
+    margin-top: 3rem;
+    left: 25px;
+    top: 165px;
 }
 
 .ml-container i{
     position: absolute;
-    left: 44px;
-    top: 365px;
+    left: 43px;
+    top: 212px;
     font-size: 21px;
     color: #0e0f37;
 }
+
+.image-container {
+    position: relative;
+    width: 89.5%;
+    height: 50px;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+}
+
+.image-container i{
+    position: absolute;
+    left: 30px;
+    top: 25px;
+    color: #0e0f37;
+}
+
+
 
 .ml-select option{
     margin-left: 13px;   /* or any value you want */
 }
 
-
-
-.form-group select,
-.form-group input[type="tel"] {
-    padding: 10px;
-    border: none;
-    border-radius: 3px;
-    height: 40px;
-    width: 100%;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-    font-size: 1.5rem;
-    color: #0e0f37;
-    border: 1px solid #0e0f37;
-    transition: all 0.3s ease-in-out;
-}
-
-.form-group input[type="tel"]:focus {
-    outline: none;
-    background-color: #ffffff;
-    color: #0e0f37;
-}
-
-.form-group select {
-    font-size: 1.15rem;
-}
-
-.form-group input[type="email"] {
-    margin-bottom: 150px;
-}
-
-.btn {
-    font-size: 16px;
-}
-
-.btn-container {
-}
 
 .btn-register {
     background-color: #6646F3;
@@ -242,7 +190,7 @@ body {
     font-size: 2rem;
     font-weight: bold;
     width: 85%;
-    margin-top: 10rem;
+    margin-top: 11rem;
     margin-left: 3rem;
 }
 
@@ -257,14 +205,7 @@ body {
     color: #ffffff;
 }
 
-.btn_update{
-    color: #4BBFE1;
+.btn-container {
     text-align: center;
     margin-top: 4rem;
-}
-
-.btn_delete{
-    color: red;
-    text-align: center;
-    margin-top: 2rem;
 }
