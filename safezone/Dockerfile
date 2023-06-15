@@ -134,7 +134,7 @@ FROM ubuntu:22.04
 # 2. Set working directory to /home/
 WORKDIR /home/
 
-RUN echo "tt444t251"
+RUN echo "test322"
 
 # 3. Install Anaconda
 RUN apt update && apt install curl -y
