@@ -61,23 +61,20 @@
         
         /* 9 개의 CCTV */
         .cctv-container {
+            position: absolute;
             width: 55%;
-            margin: auto;
-            margin-top: 110px;
-            margin-left: 8%;
+            top: 20.5%;
+            left: 11%;
+            /* margin: auto; */
+            /* margin-top: 110px; */
+            /* margin-left: 8%; */
+
         }
 
-        .cctv-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .cctv-camera {
-            display: inline-block;
-            width: calc(33.3% - 2.5%);
-            height: 170px;
+        .cctv-item {
+            position: relative;
+            box-sizing: border-box;
+            flex: 1 0 calc(33.33% - 2.5%);
             margin-bottom: 2.5%;
             margin-right: 2.5%;
             background-color: #333;
@@ -88,10 +85,29 @@
             font-weight: bold;
             vertical-align: top;
             position: relative;
-            /* border-radius: 10px; */
-            box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border: 1px solid #ffffff;
             overflow: hidden;
+        }
+
+        .cctv-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            width: auto;
+        }
+
+        .cctv-camera {
+            width: 100%;
+            height: 170px;
+        }
+
+        .cctv-no {
+            padding: 0px;
+            color: white;
+            text-align: center;
+            width: 100%;
         }
 
         .cctv-camera i {
@@ -122,18 +138,21 @@
         /* 위반 사항 박스 */
         .violation-box {
             padding: 20px;
-            margin-right: 2.5%;
+            position: absolute;
+            /* margin-right: 2.5%; */
+            right: 5.25%;
+            top: 20.5%;
             background-color: #ffffff;
             box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
             border: 1px solid #D456FA;
             color: #0e0f37;
             border-radius: 10px;
-            position: absolute;
-            top: 132px;
-            right: 30px;
+            /* top: 132px; */
+            /* right: 30px; */
             width: 400px;
-            height: 549px;
-            margin-top: 30px;
+            height: 616px;
+            /* top: 16.75%;
+            margin-top: 30px; */
         }
 
         .violation-box div {
@@ -148,7 +167,7 @@
 
         .violation-content {
             width: 100%;
-            height: 410px;
+            height: 460px;
             resize: none;
             border: 1px solid #D456FA;
             margin-top: -30px;
@@ -166,24 +185,30 @@
         /* 로그아웃 버튼 위치 */
         #logout-button {
             position: absolute;
-            top: 80px;
-            right: 70px;
+            /* top: 80px; */
+            /* right: 70px; */
+            top: 10%;
+            right: 5.25%;
             z-index: 1;
         }
 
         /* 마이페이지 버튼 위치 */
         #mypage-button {
             position: absolute;
-            top: 80px;
-            right: 160px;
+            /* top: 80px; */
+            /* right: 160px; */
+            top: 10%;
+            right: 11.5%;
             z-index: 1;
         }
 
         /* 현장 관리자 등록 버튼 위치 */
         #sitemanreg-button {
             position: absolute;
-            top: 80px;
-            right: 265px;
+            /* top: 80px; */
+            /* right: 265px; */
+            top: 10%;
+            right:18.75%;
             z-index: 1;
         }
 
@@ -285,8 +310,11 @@
         /* 옵션 버튼 위치 및 스타일 */
         .container {
             position: absolute;
-            top: 67.5px;
-            left: -662.5px;
+            /* top: 67.5px; */
+            /* left: -662.5px; */
+            top: 8.5%;
+            left: -42.5%;
+            /* left: -46%; */
             width: 100%;
             text-align: center;
         }
@@ -371,7 +399,7 @@
         .tooltip {
             position: absolute;
             top: 25px;
-            right: -60px;
+            right: 65px;
             width: 60px;
             background-color: white;
             color: #0e0f37;
@@ -391,12 +419,13 @@
             content: "";
             position: absolute;
             top: 50%;
-            left: -10px;
+            right: -10px; /* 수정: 왼쪽 대신 오른쪽으로 지정 */
             margin-top: -5px;
             border-width: 5px;
             border-style: solid;
-            border-color: transparent white transparent transparent;
+            border-color: transparent transparent transparent white; /* 수정: 삼각형이 오른쪽으로 향하도록 색상 순서 변경 */
         }
+
 
 
         .social:hover .tooltip {
@@ -591,147 +620,160 @@
 </head>
 <body>
 <main>
-    {% load static %}
-    <img src="{% static 'image/4.png' %}" alt="logo" class="logo" style="position: relative; top:60px; margin-bottom: -20px; margin-left:8%; width:4%; height:4%;">
-    <img src="{% static 'image/2.png' %}" alt="logo_name" class="logo_name" style="position: relative; top:60px; margin-bottom: -20px;">
+    <!-- <div class="main"> -->
+        {% load static %}
+        <img src="{% static 'image/4.png' %}" alt="logo" class="logo" style="position: absolute; top: 7.25%; left: 10.75%; width:4%; height:10%;">
+        <img src="{% static 'image/2.png' %}" alt="logo_name" class="logo_name" style="position: absolute; top:9.5%; left:15%;">
 
-    <div class="container">
-        <div class="socialContainer">
-            <div class="click"></div>
-            <span class="faceSocial">
-                <i class="fas fa-helmet-safety" aria-hidden="true"></i>
-            </span>
+        <div class="container">
+            <div class="socialContainer">
+                <div class="click"></div>
+                <span class="faceSocial">
+                    <i class="fas fa-helmet-safety" aria-hidden="true"></i>
+                </span>
 
-            <span class="backSocial">
-                <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
-            </span>
+                <span class="backSocial">
+                    <i class="fa fa-times" aria-hidden="true" style="display:none;"></i>
+                </span>
 
-            <div class="social">
-                <i class="fas fa-wrench" aria-hidden="true"></i>
-                <div class="tooltip">Settings</div>
-            </div>
-            <div class="social">
-                <a href="{% url 'safezone_app:video' %}" target="_blank"><i class="fas fa-clapperboard" aria-hidden="true"></i></a>
-                <div class="tooltip">비디오<br>업로드</div>
-            </div>
-            <div class="social">
-                <a href="{% url 'safezone_app:yolov5_webcam' %}" target="_blank"><i class="fas fa-video" aria-hidden="true"></i></a>
-                <div class="tooltip">실시간<br>인식</div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="overlay"></div>
-
-    <div class="settings-container">
-        <h1>Settings</h1>
-
-        <div class="form-row">
-            <label for="log-interval">로그 출력 간격</label>
-            <input type="text" id="log-interval" name="log-interval" value="00:01:00">
-        </div>
-
-        <div class="form-row">
-            <label for="notification">알림 수단</label>
-            <div class="checkbox-container">
-                <label for="Discord">
-                    <input type="checkbox" id="Discord" name="notification" value="Discord"><span>Discord</span>
-                </label>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="checkbox-container">
-                <label for="phone">
-                    <input type="checkbox" id="phone" name="notification" value="phone"><span class="checkbox-text">휴대 전화</span>
-                </label>
+                <div class="social">
+                    <i class="fas fa-wrench" aria-hidden="true"></i>
+                    <div class="tooltip">Settings</div>
+                </div>
+                <div class="social">
+                    <a href="{% url 'safezone_app:video' %}" target="_blank"><i class="fas fa-clapperboard" aria-hidden="true"></i></a>
+                    <div class="tooltip">비디오<br>업로드</div>
+                </div>
+                <div class="social">
+                    <a href="{% url 'safezone_app:yolov5_webcam' %}" target="_blank"><i class="fas fa-video" aria-hidden="true"></i></a>
+                    <div class="tooltip">실시간<br>인식</div>
+                </div>
             </div>
         </div>
 
-        <div class="form-row">
-            <label for="log-location">로그 저장위치</label>
-            <input type="text" id="log-location" name="log-location" value="D:/log">
-        </div>
 
-        <div class="form-row">
-            <label for="video-location">영상 저장위치</label>
-            <input type="text" id="video-location" name="video-location" value="D:/video">
-        </div>
+        <div class="overlay"></div>
 
-        <div class="form-row">
-            <label for="violation-location" id="violation-video-location">위반영상 저장위치</label>
-            <input type="text" id="violation-location" name="violation-location" value="D:/video_Violations">
-        </div>
+        <div class="settings-container">
+            <h1>Settings</h1>
 
-        <div class="button-group">
-            <button class="btn btn-save" id="save-settings-button" onclick="saveSettings()">저장</button>
-        </div>
-    </div>
+            <div class="form-row">
+                <label for="log-interval">로그 출력 간격</label>
+                <input type="text" id="log-interval" name="log-interval" value="00:01:00">
+            </div>
 
-    <section>
-            {# 로그아웃 버튼 변경 #}
-        <a id="logout-button" class="btn btn-logout" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
-        <a id="mypage-button" class="btn btn-mypage" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
-        <a id="sitemanreg-button" class="btn btn-register" href="{% url 'siteadmin_app:list' %}"><span>현장 관리자 리스트</span></a>
-
-        <div class="cctv-container">
-            <div class="cctv-row">
-                <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
-                    <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+            <div class="form-row">
+                <label for="notification">알림 수단</label>
+                <div class="checkbox-container">
+                    <label for="Discord">
+                        <input type="checkbox" id="Discord" name="notification" value="Discord"><span>Discord</span>
+                    </label>
                 </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 332px; left:210px">CCTV-1</div>
-
-                <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
-                    <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+            </div>
+            <div class="form-row">
+                <div class="checkbox-container">
+                    <label for="phone">
+                        <input type="checkbox" id="phone" name="notification" value="phone"><span class="checkbox-text">휴대 전화</span>
+                    </label>
                 </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 332px; left:475px">CCTV-2</div>
+            </div>
 
-                <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
-                    <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
-                </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 332px; left:735px">CCTV-3</div>
+            <div class="form-row">
+                <label for="log-location">로그 저장위치</label>
+                <input type="text" id="log-location" name="log-location" value="D:/log">
+            </div>
 
-                <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
-                    <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
-                </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 521px; left:210px">CCTV-4</div>
+            <div class="form-row">
+                <label for="video-location">영상 저장위치</label>
+                <input type="text" id="video-location" name="video-location" value="D:/video">
+            </div>
 
-                <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
-                    <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
-                </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 521px; left:475px">CCTV-5</div>
+            <div class="form-row">
+                <label for="violation-location" id="violation-video-location">위반영상 저장위치</label>
+                <input type="text" id="violation-location" name="violation-location" value="D:/video_Violations">
+            </div>
 
-                <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
-                    <video id="my-video6" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
-                </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 521px; left:735px">CCTV-6</div>
-
-                <div class="cctv-camera" id="cctv-7" data-area="7" data-visible="7">
-                    <video id="my-video7" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
-                </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 711px; left:210px">CCTV-7</div>
-
-                <div class="cctv-camera" id="cctv-8" data-area="8" data-visible="8">
-                    <video id="my-video8" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
-                </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 711px; left:475px">CCTV-8</div>
-
-                <div class="cctv-camera" id="cctv-9" data-area="9" data-visible="9">
-                    <video id="my-video9" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
-                    <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
-                </div>
-                <div class="cctv-no" style="position: fixed; color: white; top: 711px; left:735px">CCTV-9</div>
+            <div class="button-group">
+                <button class="btn btn-save" id="save-settings-button" onclick="saveSettings()">저장</button>
             </div>
         </div>
 
+        <section>
+                {# 로그아웃 버튼 변경 #}
+            <a id="logout-button" class="btn btn-logout" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
+            <a id="mypage-button" class="btn btn-mypage" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
+            <a id="sitemanreg-button" class="btn btn-register" href="{% url 'siteadmin_app:list' %}"><span>현장 관리자 리스트</span></a>
+
+            <div class="cctv-container">
+                <div class="cctv-row">
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
+                            <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-1</div>
+                    </div>
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
+                            <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-2</div>
+                    </div>
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
+                            <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-3</div>
+                    </div>
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
+                            <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-4</div>
+                    </div>
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
+                            <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-5</div>
+                    </div>
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
+                            <video id="my-video6" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-6</div>
+                    </div>
+    
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-7" data-area="7" data-visible="7">
+                            <video id="my-video7" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-7</div>
+                    </div>
+    
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-8" data-area="8" data-visible="8">
+                            <video id="my-video8" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-8</div>
+                    </div>
+                    <div class="cctv-item">
+                        <div class="cctv-camera" id="cctv-9" data-area="9" data-visible="9">
+                            <video id="my-video9" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
+                        </div>
+                        <div class="cctv-no">CCTV-9</div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="violation-box">
                 <div class="violation-text">위반 사항</div>
                 <div>
@@ -754,21 +796,9 @@
                     <button onclick="save0Text()" id="save0-button" class="btn btn-save0">Save</button>
                     <button onclick="clearText()" id="clear-button" class="btn btn-clear">Clear</button>
                 </div>
-                <!-- <div class="button-container">
-                    <button class="btn btn-settings" onclick="location.href='settings.html'">Settings</button>
-                    <button class="btn btn-save">Save File</button>
-                    <form action="{% url 'safezone_app:video' %}" method="POST">
-                        {% csrf_token %}
-                        <button class="btn btn-video">Video Upload</button>
-                    </form>
-                    <form action="{% url 'safezone_app:yolov5_webcam' %}" method = "POST">
-                        {% csrf_token %}
-                        <button class="btn btn-webcam">WebCam 실시간 인식</button>
-                    </form>
-                </div> -->
             </div>
-        </div>
-</section>
+        </section>
+    <!-- </div> -->
 </main>
 
 <script>
@@ -778,7 +808,7 @@
           src: 'http://210.99.70.120:1935/live/cctv001.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: '240px',
+        width: 'calc(33.33% - 2.5%)',
         height: '166px',
         autoplay: true
       });
@@ -787,7 +817,7 @@
         src: 'http://210.99.70.120:1935/live/cctv002.stream/playlist.m3u8',
         type: 'application/x-mpegURL'
       }],
-      width: '240px',
+      width: 'calc(33.33% - 2.5%)',
       height: '166px',
       autoplay: true
     });
@@ -796,7 +826,7 @@
           src: 'http://210.99.70.120:1935/live/cctv003.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: '240px',
+        width: 'calc(33.33% - 2.5%)',
         height: '166px',
         autoplay: true
       });
@@ -805,7 +835,7 @@
         src: 'http://210.99.70.120:1935/live/cctv004.stream/playlist.m3u8',
         type: 'application/x-mpegURL'
       }],
-      width: '240px',
+      width: 'calc(33.33% - 2.5%)',
       height: '166px',
       autoplay: true
     });
@@ -814,7 +844,7 @@
         src: 'http://210.99.70.120:1935/live/cctv005.stream/playlist.m3u8',
         type: 'application/x-mpegURL'
       }],
-      width: '240px',
+      width: 'calc(33.33% - 2.5%)',
       height: '166px',
       autoplay: true
     });
@@ -823,7 +853,7 @@
           src: 'http://210.99.70.120:1935/live/cctv006.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: '240px',
+        width: 'calc(33.33% - 2.5%)',
         height: '166px',
         autoplay: true
       });
@@ -832,7 +862,7 @@
           src: 'http://210.99.70.120:1935/live/cctv007.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: '240px',
+        width: 'calc(33.33% - 2.5%)',
         height: '166px',
         autoplay: true
     });
@@ -841,7 +871,7 @@
           src: 'http://210.99.70.120:1935/live/cctv008.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: '240px',
+        width: 'calc(33.33% - 2.5%)',
         height: '166px',
         autoplay: true
     });
@@ -851,7 +881,7 @@
           src: 'http://210.99.70.120:1935/live/cctv009.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: '240px',
+        width: 'calc(33.33% - 2.5%)',
         height: '166px',
         autoplay: true
       });
@@ -879,44 +909,72 @@
 
     // 확대 및 축소
     $(document).ready(function() {
-        $('.cctv-camera i').click(function() {
-            var $camera = $(this).parent();
-            var $video = $camera.find('video');
-            var $player = videojs($video.attr('id'));
-            
-            if (!$camera.hasClass('zoomed')) {
-            $camera.addClass('zoomed');
-            $camera.css('width', '800px');
-            $camera.css('height', '549px');
-            $video.css('width', '800px');
-            $video.css('height', '549px');
-            $video.css('position', 'absolute');
-            $video.css('top', '0');
-            $video.css('left', '0');
+        $(document).on('click', '.fa-expand', function() {
+            var cctvItem = $(this).closest('.cctv-item');
+            var cctvCamera = cctvItem.find('.cctv-camera');
+            var videoElement = cctvCamera.find('video');
+
+            // Hide all other cameras
+            $('.cctv-camera').not(cctvCamera).hide();
+
+            // Enlarge the selected camera
+            cctvCamera.css({
+                'width': '800px',
+                'height': '594px'
+            });
+        
+            // Resize the video element
+            videoElement.css({
+                'width': '800px',
+                'height': '592.5px'
+            });
+
+            // Hide the control bar of the selected video
+            var $player = videojs(videoElement.attr('id'));
             $player.dimensions('0%', '0%');
             $player.controlBar.dimensions('display', 'none');
-            $(this).removeClass('fa-expand').addClass('fa-compress' );
-            $('.cctv-no').hide();
-            $('.cctv-camera').not($camera).hide();
-            } else {
-            $camera.removeClass('zoomed');
-            $camera.css('width', 'calc(33.3% - 2.5%)');
-            $camera.css('height', '170px');
-            $video.css('width', '100%');
-            $video.css('height', '100%');
-            $video.css('position', 'static');
+
+            // Change the icon with compress-icon
+            $(this).removeClass('fa-expand').addClass('fa-compress');
+
+            // Hide other items in the row
+            cctvItem.siblings().hide();
+        });
+
+        $(document).on('click', '.fa-compress', function() {
+            var cctvItem = $(this).closest('.cctv-item');
+            var cctvCamera = cctvItem.find('.cctv-camera');
+            var videoElement = cctvCamera.find('video');
+
+            // Show all cameras
+            $('.cctv-camera').show();
+
+            // Reset the size of the selected camera
+            cctvCamera.css({
+                'width': '', // Reset to the default size or specify a different width
+                'height': '' // Reset to the default size or specify a different height
+            });
+            
+            // Reset the size of the video element
+            videoElement.css({
+                'width': '240px', // Reset to the default size or specify a different width
+                'height': '166px' // Reset to the default size or specify a different height
+            });
+
+            // Show the control bar of the selected video
+            var $player = videojs(videoElement.attr('id'));
+            // $player.dimensions('100%', '100%');
+            $player.controlBar.dimensions('display', 'block');
             $player.dimensions('240px', '166px');
+
+
+            // Change the icon back to expand-icon
             $(this).removeClass('fa-compress').addClass('fa-expand');
-            $('.cctv-no').show();
-            $('.cctv-camera').not('.zoomed').show();
-            }
+
+            // Show other items in the row
+            cctvItem.siblings().show();
         });
     });
-
-
-
-
-
     
     // 선택박스 값 변경 시 위반사항 텍스트 박스 내용 변경
     var areaSelect = document.getElementById("area-select");
@@ -1002,7 +1060,7 @@
           easing: [70,8],
       });
       $(".socialContainer").velocity({
-                height: [650, 65],
+                height: [713, 65],
               }, {
                 duration: 400,
                 easing: [70,8],
@@ -1040,7 +1098,7 @@
                     duration: 100,
       });
       $(".socialContainer").velocity({
-                height: [65, 650],
+                height: [65, 713],
               }, {
                 duration: 400,
                 easing: [70,8],
