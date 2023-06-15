@@ -135,7 +135,7 @@ h1:after {
 .ml-container {
     padding: 12px 25px;
     position: absolute;
-    width: 80%;
+    width: 80% !important;
     height: 50px;
     text-indent: 10px;
     margin-left: 2rem;
