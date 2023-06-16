@@ -10,8 +10,8 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.5/velocity.min.js"></script>
     <script src="https://kit.fontawesome.com/35b6327311.js" crossorigin="anonymous"></script>
-    <script src="https://vjs.zencdn.net/7.15.4/video.js"></script>  <!--Video.js--> 
-    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" /> <!--Video.js--> 
+    <script src="https://vjs.zencdn.net/7.15.4/video.js"></script>  <!--Video.js-->
+    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" /> <!--Video.js-->
     <style>
         @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
@@ -58,13 +58,13 @@
             font-size: 16px;
             line-height: 1.5;
         }
-        
+
         /* 9 개의 CCTV */
         .cctv-container {
             position: absolute;
             width: 55%;
             top: 20.5%;
-            left: 11%;
+            left: 7%;
             /* margin: auto; */
             /* margin-top: 110px; */
             /* margin-left: 8%; */
@@ -140,7 +140,7 @@
             padding: 20px;
             position: absolute;
             /* margin-right: 2.5%; */
-            right: 5.25%;
+            right: 4%;
             top: 20.5%;
             background-color: #ffffff;
             box-shadow: 0px 0px 10px #ffffff(0, 0, 0, 0.1);
@@ -183,33 +183,43 @@
         }
 
         /* 로그아웃 버튼 위치 */
-        #logout-button {
-            position: absolute;
+        /* #logout-button { */
+            /* position: absolute; */
             /* top: 80px; */
             /* right: 70px; */
-            top: 10%;
+            /* top: 10%;
             right: 5.25%;
             z-index: 1;
-        }
+        } */
 
         /* 마이페이지 버튼 위치 */
-        #mypage-button {
-            position: absolute;
+        /* #mypage-button { */
+            /* position: absolute; */
             /* top: 80px; */
             /* right: 160px; */
-            top: 10%;
+            /* top: 10%;
             right: 11.5%;
             z-index: 1;
-        }
+        } */
 
         /* 현장 관리자 등록 버튼 위치 */
-        #sitemanreg-button {
-            position: absolute;
+        /* #sitemanreg-button {
+            position: absolute; */
             /* top: 80px; */
             /* right: 265px; */
-            top: 10%;
+            /* top: 10%;
             right:18.75%;
             z-index: 1;
+        } */
+
+        .btn-container {
+            position: absolute;
+            display: flex;
+            top: 10%;
+            right: 4%;
+            z-index: 1;
+            justify-content: right;
+            gap: 10px;
         }
 
         /* 로그아웃 버튼 스타일 */
@@ -307,13 +317,24 @@
             color: #0e0f37;
         }
 
-        /* 옵션 버튼 위치 및 스타일 */
+        /* 옵션 버튼 위치 및 스타일
+        .container {
+            position: absolute;
+            /* top: 67.5px; */
+            /* left: -662.5px; */
+            /* top: 8.5%;
+            left: -42.5%; */
+            /* left: -46%; */
+            /* width: 100%;
+            text-align: center;
+        } */
+
         .container {
             position: absolute;
             /* top: 67.5px; */
             /* left: -662.5px; */
             top: 8.5%;
-            left: -42.5%;
+            left: -46%;
             /* left: -46%; */
             width: 100%;
             text-align: center;
@@ -699,81 +720,83 @@
         </div>
 
         <section>
-                {# 로그아웃 버튼 변경 #}
-            <a id="logout-button" class="btn btn-logout" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
-            <a id="mypage-button" class="btn btn-mypage" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
-            <a id="sitemanreg-button" class="btn btn-register" href="{% url 'siteadmin_app:list' %}"><span>현장 관리자 리스트</span></a>
+            {# 로그아웃 버튼 변경 #}
+            <div class="btn-container">
+                <a id="logout-button" class="btn btn-logout" href="{% url 'account_app:logout' %}?next={% url 'account_app:login' %}">로그아웃</a>
+                <a id="mypage-button" class="btn btn-mypage" href="{% url 'account_app:profile' pk=user.pk %}"><span>마이페이지</span></a>
+                <a id="sitemanreg-button" class="btn btn-register" href="{% url 'siteadmin_app:list' %}"><span>현장 관리자 리스트</span></a>
+            </div>
 
             <div class="cctv-container">
                 <div class="cctv-row">
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-1" data-area="1" data-visible="1">
-                            <video id="my-video1" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video1" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-1</div>
                     </div>
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-2" data-area="2" data-visible="2">
-                            <video id="my-video2" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video2" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-2</div>
                     </div>
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-3" data-area="3" data-visible="3">
-                            <video id="my-video3" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video3" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-3</div>
                     </div>
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-4" data-area="4" data-visible="4">
-                            <video id="my-video4" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video4" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-4</div>
                     </div>
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-5" data-area="5" data-visible="5">
-                            <video id="my-video5" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video5" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-5</div>
                     </div>
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-6" data-area="6" data-visible="6">
-                            <video id="my-video6" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video6" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-6</div>
                     </div>
-    
+
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-7" data-area="7" data-visible="7">
-                            <video id="my-video7" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video7" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-7</div>
                     </div>
-    
+
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-8" data-area="8" data-visible="8">
-                            <video id="my-video8" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video8" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-8</div>
                     </div>
                     <div class="cctv-item">
                         <div class="cctv-camera" id="cctv-9" data-area="9" data-visible="9">
-                            <video id="my-video9" class="video-js vjs-default-skin" controls></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
+                            <video id="my-video9" class="video-js vjs-default-skin" controls style="position: absolute; left: 50%; transform: translateX(-50%);"></video> <!--video.js 를 사용하여 실시간 영상 불러오기-->
                             <i class="fa-solid fa-expand" style="font-size: 15px;"></i>
                         </div>
                         <div class="cctv-no">CCTV-9</div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="violation-box">
                 <div class="violation-text">위반 사항</div>
                 <div>
@@ -808,7 +831,7 @@
           src: 'http://210.99.70.120:1935/live/cctv001.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: 'calc(33.33% - 2.5%)',
+        width: '240px',
         height: '166px',
         autoplay: true
       });
@@ -817,7 +840,7 @@
         src: 'http://210.99.70.120:1935/live/cctv002.stream/playlist.m3u8',
         type: 'application/x-mpegURL'
       }],
-      width: 'calc(33.33% - 2.5%)',
+      width: '240px',
       height: '166px',
       autoplay: true
     });
@@ -826,7 +849,7 @@
           src: 'http://210.99.70.120:1935/live/cctv003.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: 'calc(33.33% - 2.5%)',
+        width: '240px',
         height: '166px',
         autoplay: true
       });
@@ -835,7 +858,7 @@
         src: 'http://210.99.70.120:1935/live/cctv004.stream/playlist.m3u8',
         type: 'application/x-mpegURL'
       }],
-      width: 'calc(33.33% - 2.5%)',
+      width: '240px',
       height: '166px',
       autoplay: true
     });
@@ -844,7 +867,7 @@
         src: 'http://210.99.70.120:1935/live/cctv005.stream/playlist.m3u8',
         type: 'application/x-mpegURL'
       }],
-      width: 'calc(33.33% - 2.5%)',
+      width: '240px',
       height: '166px',
       autoplay: true
     });
@@ -853,7 +876,7 @@
           src: 'http://210.99.70.120:1935/live/cctv006.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: 'calc(33.33% - 2.5%)',
+        width: '240px',
         height: '166px',
         autoplay: true
       });
@@ -862,7 +885,7 @@
           src: 'http://210.99.70.120:1935/live/cctv007.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: 'calc(33.33% - 2.5%)',
+        width: '240px',
         height: '166px',
         autoplay: true
     });
@@ -871,7 +894,7 @@
           src: 'http://210.99.70.120:1935/live/cctv008.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: 'calc(33.33% - 2.5%)',
+        width: '240px',
         height: '166px',
         autoplay: true
     });
@@ -881,11 +904,11 @@
           src: 'http://210.99.70.120:1935/live/cctv009.stream/playlist.m3u8',
           type: 'application/x-mpegURL'
         }],
-        width: 'calc(33.33% - 2.5%)',
+        width: '240px',
         height: '166px',
         autoplay: true
       });
-    
+
     // AJAX 요청 보내기
     function sendRequest() {
       $.ajax({
@@ -921,8 +944,9 @@
             cctvCamera.css({
                 'width': '800px',
                 'height': '594px'
+
             });
-        
+
             // Resize the video element
             videoElement.css({
                 'width': '800px',
@@ -954,7 +978,7 @@
                 'width': '', // Reset to the default size or specify a different width
                 'height': '' // Reset to the default size or specify a different height
             });
-            
+
             // Reset the size of the video element
             videoElement.css({
                 'width': '240px', // Reset to the default size or specify a different width
@@ -975,7 +999,7 @@
             cctvItem.siblings().show();
         });
     });
-    
+
     // 선택박스 값 변경 시 위반사항 텍스트 박스 내용 변경
     var areaSelect = document.getElementById("area-select");
     var violationContent = document.getElementById("violation-content");
@@ -1060,7 +1084,7 @@
           easing: [70,8],
       });
       $(".socialContainer").velocity({
-                height: [713, 65],
+                height: [740, 65],
               }, {
                 duration: 400,
                 easing: [70,8],
@@ -1098,7 +1122,7 @@
                     duration: 100,
       });
       $(".socialContainer").velocity({
-                height: [65, 713],
+                height: [65, 740],
               }, {
                 duration: 400,
                 easing: [70,8],
